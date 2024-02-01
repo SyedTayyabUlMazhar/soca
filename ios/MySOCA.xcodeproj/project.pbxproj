@@ -580,10 +580,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6AWC5S363R;
+				DEVELOPMENT_TEAM = 36978LBVUX;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MySOCA/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MySOCA;
+				INFOPLIST_KEY_CFBundleDisplayName = mySOCA;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -595,7 +595,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mysoca;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mysoca.app;
 				PRODUCT_NAME = MySOCA;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -614,9 +614,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6AWC5S363R;
+				DEVELOPMENT_TEAM = 36978LBVUX;
 				INFOPLIST_FILE = MySOCA/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MySOCA;
+				INFOPLIST_KEY_CFBundleDisplayName = mySOCA;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -628,7 +628,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mysoca;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mysoca.app;
 				PRODUCT_NAME = MySOCA;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
