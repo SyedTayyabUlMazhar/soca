@@ -117,7 +117,7 @@ export default function Performance({route}) {
 
     switch (key) {
       case 'Average':
-        name = 'Batting Average';
+        name = 'Bowling Average';
         break;
       case 'DotBallPercentage':
         name = 'Dot Ball Percentage';
