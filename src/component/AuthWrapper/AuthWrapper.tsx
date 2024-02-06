@@ -27,18 +27,12 @@ export default function AuthWrapper({
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={[
-        scrollEnabled ? {minHeight: '100%'} : {minHeight: '105%'},
-      ]} // Remove height: '100%'
       alwaysBounceVertical={false}
       bounces={false}
-      style={{
-        width: '100%',
-        backgroundColor: '#374051',
-        // marginBottom: 20,
-      }}>
+      contentContainerStyle={{flexGrow: 1, backgroundColor: '#374051'}}>
       <SafeAreaView style={styles.container}>
-        <Image source={SOCAPng} style={{height: 250, width: 250}} />
+        <Image source={SOCAPng} style={{height: '25%', resizeMode: "contain"}} />
+        
         <H1 text="mySOCA" style={{color: Colors.WHITE}} />
 
         <View style={wrapperStyle}>{children}</View>

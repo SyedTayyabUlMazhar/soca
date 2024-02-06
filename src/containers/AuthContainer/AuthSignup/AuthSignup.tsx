@@ -134,7 +134,7 @@ const AuthSignup = () => {
             />
             <View
               style={{
-                marginTop: Metrics.smallMargin,
+                marginTop: Metrics.baseMargin,
                 alignItems: 'center',
               }}>
               <AuthDefaultBottom
@@ -174,18 +174,14 @@ const styles = StyleSheet.create({
     marginTop: Metrics.smallMargin,
   },
   bottomWrapper: {
-    position: 'absolute',
-    // bottom: 20,
-    top: 320,
+    marginTop:"auto",
     width: '80%',
     alignSelf: 'center',
+    marginBottom: 24
   },
   iconContainer: {
-    // padding: 10,
     position: 'absolute',
-    left: 265,
-    right: 0,
+    right: 16,
     top: 20,
-    bottom: 0,
   },
 });
