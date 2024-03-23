@@ -1,6 +1,6 @@
-import {getPayment, getPerformance, getTier} from '@Api/App';
-import {STORAGE_KEYS} from '@Constants/queryKeys';
-import {useQuery} from '@tanstack/react-query';
+import { getPayment } from '@Api/App';
+import { STORAGE_KEYS } from '@Constants/queryKeys';
+import { useQuery } from '@tanstack/react-query';
 
 export default function usePaymentContainer(PlayerID) {
   const {data: getPaymentData, isLoading} = useQuery(

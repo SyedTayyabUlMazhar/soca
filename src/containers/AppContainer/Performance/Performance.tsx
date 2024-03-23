@@ -9,6 +9,7 @@ import {
   LeaguesIcon,
   PlayerImage,
   SilverSmallCup,
+  TotalCatches,
   TourneyIcon,
   Trophy,
 } from '@Asset/logo';
@@ -22,26 +23,34 @@ import H7 from '@Component/Headings/H7';
 import {Colors, Fonts} from '@Theme/index';
 import Metrics from '@Utility/Metrics';
 import usePerformanceContainer from './PerformanceContainer';
+import useProfileContainer from './ProfileContainer';
 
 export default function Performance({route}) {
 
-console.log(route,'routerouterouterouteroute');
+const {playerData}=route?.params || {}
+const {player_reg_no}=playerData||{}
+
+const {getProfileData}=useProfileContainer(player_reg_no)
+
+
 
   return (
     <View style={{backgroundColor:Colors.Colors.APP_BACKGROUND, flex: 1}}>
       <Header title="Player Performance" />
       <ScrollView
         contentContainerStyle={{paddingHorizontal: 15, paddingVertical: Metrics.scale(23),}}>
-        <PlayerInfo />
-        <TotlaGamePlayed />
-        <Attendance />
-        <FieldingErrors />
+        <PlayerInfo playerData={getProfileData}/>
+        <TotlaGamePlayed playerData={getProfileData} />
+        <Attendance playerData={getProfileData}/>
+        <FieldingErrors playerData={getProfileData}/>
       </ScrollView>
     </View>
   );
 }
 
-const PlayerInfo = () => {
+const PlayerInfo = ({playerData}) => {
+  
+  const {Player_Name,Tier,usacid}=playerData?.data||{}
   return (
     <View style={styles.PlayerInfoContainer}>
       <Image source={GirlPlayer} style={styles.image} />
@@ -50,26 +59,28 @@ const PlayerInfo = () => {
         <AgeIcon />
         <H3 text="19" style={styles.ageText} />
       </View>
-      <H3 text="Stacy Gwen" style={styles.nameText} />
-      <H3 text="USACID - Cricclubs id" style={styles.solganText} />
+      <H3 text={Player_Name} style={styles.nameText} />
+      <H3 text="USACID" style={styles.solganText} />
+      <H3 text={usacid} style={styles.solganText}/>
       <View style={styles.cupWrapper}>
         <SilverSmallCup />
-        <H3 text="Silver" style={styles.cupText} />
+        <H3 text={Tier} style={styles.cupText} />
       </View>
       </View>
     </View>
   );
 };
 
-const TotlaGamePlayed = () => {
+const TotlaGamePlayed = ({playerData}) => {
+  const {Runs}=playerData?.data||{}
   return (
     <View style={styles.totalGamePlayedWrapper}>
       <H2 text="Total games played" style={styles.totalGamePlayedTitle} />
       <View style={styles.totalGameBoxesWrapper}>
         <View style={styles.totalGameBoxesInnerWrapper}>
-          <Trophy />
-          <H4 text="$300.00" style={styles.totalGameBoxePrice} />
-          <H4 text="Championships" style={styles.totalGameBoxeTitle} />
+        <TourneyIcon />
+          <H4 text={Runs} style={styles.totalGameBoxePrice} />
+          <H4 text="Total Runs" style={styles.totalGameBoxeTitle} />
         </View>
         <View
           style={[
@@ -77,30 +88,31 @@ const TotlaGamePlayed = () => {
             {marginHorizontal: Metrics.scale(13)},
           ]}>
           <LeaguesIcon />
-          <H4 text="$300.00" style={styles.totalGameBoxePrice} />
-          <H4 text="Championships" style={styles.totalGameBoxeTitle} />
+          <H4 text={playerData?.['Total Wkts']} style={styles.totalGameBoxePrice} />
+          <H4 text="Total Wickets" style={styles.totalGameBoxeTitle} />
         </View>
         <View style={styles.totalGameBoxesInnerWrapper}>
-          <TourneyIcon />
-          <H4 text="$300.00" style={styles.totalGameBoxePrice} />
-          <H4 text="Championships" style={styles.totalGameBoxeTitle} />
+          <TotalCatches />
+          <H4 text={playerData?.['Total Catches']} style={styles.totalGameBoxePrice} />
+          <H4 text="Total Catches" style={styles.totalGameBoxeTitle} />
         </View>
       </View>
     </View>
   );
 };
 
-const Attendance = () => {
+const Attendance = ({playerData}) => {
+  const {coaching_attendance}=playerData?.data||{}
   return (
     <View style={styles.attendanceWrapper}>
       <H2 text="Attendance" style={styles.totalGamePlayedTitle} />
       <View style={styles.attendanceBoxWrapper}>
         <View style={styles.leftSect}>
-          <H4 text='80' style={styles.leftTitle}/>
+          <H4 text={coaching_attendance} style={styles.leftTitle}/>
           <H4 text='out of 100' style={styles.leftSubTitle}/>
         </View>
         <View style={styles.rightSect}>
-           <H4 text='80%' style={styles.rightTitle}/>
+           <H4 text={coaching_attendance} style={styles.rightTitle}/>
            <DummyCircle />
         </View>
       </View>
@@ -108,29 +120,59 @@ const Attendance = () => {
   );
 };
 
-const FieldingErrors = () => {
-  const renderMainCategories = ({item}: any) => {
-    return (
-      <ButtonView key={item?.id} style={styles.catMainWrapper}>
-        <View style={styles.cateTextWrapper}>
-          <H4 text={item?.cate} style={styles.cateTitle} />
-          <H7 text={item?.score} style={styles.cateTagLine} />
-        </View>
-      </ButtonView>
-    );
-  };
+const FieldingErrors = ({playerData}) => {
+  const {catch_drops,full_toss,mis_runouts,misfields,missed_stumpings,short_balls}=playerData?.data?.fieldingErrors || {}
+
   return (
     <View>
       <H2
         text="Fielding errors this year"
         style={styles.totalGamePlayedTitle}
       />
-      <FlatListHandler
-        data={CATEGORIES_MAIN}
-        numColumns={2}
-        columnWrapperStyle={styles.columnWrapperStyle}
-        renderItem={renderMainCategories}
-      />
+      <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+      <ButtonView style={styles.catMainWrapper}>
+        <View style={styles.cateTextWrapper}>
+          <H4 text={"Catch Drops"} style={styles.cateTitle} />
+          <H7 text={catch_drops} style={styles.cateTagLine} />
+        </View>
+      </ButtonView>
+      <ButtonView style={styles.catMainWrapper}>
+        <View style={styles.cateTextWrapper}>
+          <H4 text={"Misfields"} style={styles.cateTitle} />
+          <H7 text={misfields} style={styles.cateTagLine} />
+        </View>
+      </ButtonView>
+      </View>
+      <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+      <ButtonView style={styles.catMainWrapper}>
+        <View style={styles.cateTextWrapper}>
+          <H4 text={"Missed R/O"} style={styles.cateTitle} />
+          <H7 text={mis_runouts} style={styles.cateTagLine} />
+        </View>
+      </ButtonView>
+      <ButtonView style={styles.catMainWrapper}>
+        <View style={styles.cateTextWrapper}>
+          <H4 text={"Full Toss"} style={styles.cateTitle} />
+          <H7 text={full_toss} style={styles.cateTagLine} />
+        </View>
+      </ButtonView>
+      </View>
+      <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+      <ButtonView style={styles.catMainWrapper}>
+        <View style={styles.cateTextWrapper}>
+          <H4 text={"Short Balls"} style={styles.cateTitle} />
+          <H7 text={short_balls} style={styles.cateTagLine} />
+        </View>
+      </ButtonView>
+      <ButtonView style={styles.catMainWrapper}>
+        <View style={styles.cateTextWrapper}>
+          <H4 text={"Miss Stumpings"} style={styles.cateTitle} />
+          <H7 text={missed_stumpings} style={styles.cateTagLine} />
+        </View>
+      </ButtonView>
+      </View>
+       
+   
     </View>
   );
 };
@@ -169,7 +211,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 95,
+    width: 110,
     paddingVertical: 10,
     marginTop: Metrics.scale(11)
   },
@@ -183,7 +225,7 @@ const styles = StyleSheet.create({
     marginLeft: Metrics.scale(5),
   },
   nameText: {
-    ...Fonts.Bold(Fonts.Size.xxLarge, Colors.Colors.WHITE),
+    ...Fonts.Bold(Fonts.Size.large, Colors.Colors.WHITE),
     marginBottom: Metrics.scale(8),
   },
   solganText: {

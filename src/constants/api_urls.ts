@@ -31,11 +31,16 @@ export const SERVICE_CONFIG_URLS = {
     GET_REDEEM:`redeemable/`,
     GET_ACTIVITY:'player/activity/',
     DELETE_ACCOUNT:'user',
-    PARENT_DATA:'/parent/'
+    PARENT_DATA:'/parent/',
+    GET_PLAYER_PROFILE:`/player/`,
+    GET_PLAYER_PERFORMANCE:'/player/'
   },
   COACH:{
     COACH_INFO:'/coach-info/',
     COACH_BATCH:'/coach-batch/',
     COACH_ACTIVITY:'/coach-activites/'
+  },
+  MANAGER:{
+    MANAGER_INFO:'/team-rooster/'
   }
 };

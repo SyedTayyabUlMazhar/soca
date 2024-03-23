@@ -37,120 +37,20 @@ import H2 from '@Component/Headings/H2';
 
 const TierScreen = () => {
   const { getTierData, isLoading } = useTierContainer();
-  // Create an array of boolean values to represent the open/close state for each FAQ item
-  const [isOpenArray, setIsOpenArray] = React.useState(
-    Array(FaqsList.length).fill(false),
-  );
 
-  const handleTogglePress = index => {
-    // Create a copy of the isOpenArray and toggle the state for the clicked FAQ item
-    const updatedIsOpenArray = [...isOpenArray];
-    updatedIsOpenArray[index] = !updatedIsOpenArray[index];
-
-    // Customize the animation duration (e.g., 400 milliseconds)
-    const customLayoutAnimation = {
-      duration: 400, // Adjust this value as needed
-      create: {
-        type: LayoutAnimation.Types.linear,
-        property: LayoutAnimation.Properties.opacity,
-      },
-      update: {
-        type: LayoutAnimation.Types.linear,
-      },
-    };
-
-    setIsOpenArray(updatedIsOpenArray);
-    LayoutAnimation.configureNext(customLayoutAnimation);
-  };
-  const renderItem = ({ item, index }) => {
-    const isDetails = isOpenArray[index]; // Get the open/close state for this FAQ item
-    console.log(item, 'This is item');
-    const { Benefits, Requirement, Tier } = item || {};
-
-    let tierSvg;
-
-    // Conditionally set the SVG component based on the tier
-    if (Tier === 'Gold') {
-      tierSvg = <AwardGoldSvg style={{ height: 20, width: 20 }} />;
-    } else if (Tier === 'Platinum') {
-      tierSvg = <AwardPlatinumSvg style={{ height: 20, width: 20 }} />;
-    } else if (Tier === 'Silver') {
-      tierSvg = <AwardSilverSvg style={{ height: 20, width: 20 }} />;
-    } else if (Tier === 'Member') {
-      tierSvg = <AwardSvg style={{ height: 20, width: 20 }} />;
-    }
-    return (
-      <View
-        style={{
-          backgroundColor: '#09203F',
-          paddingVertical: Metrics.verticalScale(30),
-          paddingHorizontal: 20,
-          marginVertical: Metrics.baseMargin,
-          borderRadius: Metrics.scale(10),
-          shadowOffset: {
-            width: 0,
-            height: 2,
-          },
-          shadowOpacity: 0.25,
-          shadowRadius: 3.84,
-          elevation: 2,
-        }}>
-        <ButtonView
-          onPress={() => handleTogglePress(index)} // Pass the index to identify the clicked FAQ item
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            {tierSvg}
-            <H5
-              text={Tier}
-              style={{ color: 'white', marginHorizontal: Metrics.smallMargin }}
-            />
-          </View>
-
-          <View>{isDetails ? <FaqsIcon2 /> : <FaqsIcon />}</View>
-        </ButtonView>
-        {isDetails && (
-          <View>
-            {Benefits && (
-              <H6
-                style={{
-                  ...Fonts.Medium(Fonts.Size.small, Colors.WHITE_THREE),
-                  marginTop: Metrics.baseMargin,
-                  lineHeight: 30,
-                }}
-                text={`Benefits: ${Benefits}`}
-              />
-            )}
-
-            <H6
-              style={{
-                ...Fonts.Medium(Fonts.Size.small, Colors.WHITE_THREE),
-                marginTop: Metrics.baseMargin,
-                lineHeight: 30,
-              }}
-              text={Requirement && `Requirement: ${Requirement}`}
-            />
-          </View>
-        )}
-      </View>
-    );
-  };
+console.log(getTierData?.message[1],'getTierDatagetTierDatagetTierDatagetTierData');
+const SilverData=getTierData?.message[1]
+const GoldData=getTierData?.message[2]
+const PlatinumData=getTierData?.message[3]
   return (
     <View style={{backgroundColor: Colors.Colors.APP_BACKGROUND, flex: 1 }}>
       <Header backButton={false} desc={"Tiers"} />
       <ScrollView
         contentContainerStyle={{ paddingHorizontal: 15, paddingVertical: Metrics.scale(23) }}>
         <TiersInfoWrapper />
-        <SilverPkg />
-        <GoldPkg />
-        <PlatinumPkg />
+        <SilverPkg SilverData={SilverData}/>
+        <GoldPkg GoldData={GoldData}/>
+        <PlatinumPkg PlatinumData={PlatinumData}/>
         <InfoText />
       </ScrollView>
     </View>
@@ -166,18 +66,20 @@ const TiersInfoWrapper = () => {
   )
 }
 
-const SilverPkg = () => {
+const SilverPkg = ({SilverData}:any) => {
+  console.log(SilverData,'SilverDataSilverDataSilverDataSilverDataSilverData');
+  
   return (
     <View style={styles.packageBoxWrapper}>
       <View style={styles.packageBoxInnerWrapper}>
         <H2 text='Silver' style={styles.tierNameText} />
         <View style={styles.unOrderList}>
           <View style={styles.smallDot} />
-          <Text style={styles.tierTagline}><H6 text='Benefits:' style={styles.tierTaglineLabel} /> 15% more reward points</Text>
+          <Text style={styles.tierTagline}><H6 text='Benefits:' style={styles.tierTaglineLabel} /> {SilverData?.Benefits}</Text>
         </View>
         <View style={styles.unOrderList}>
           <View style={styles.smallDot} />
-          <Text style={styles.tierTagline}><H6 text='Requirements:' style={styles.tierTaglineLabel} /> Be a member for 6 months in a year</Text>
+          <Text style={styles.tierTagline}><H6 text='Requirements:' style={styles.tierTaglineLabel} /> {SilverData?.Requirement}</Text>
         </View>
       </View>
       <View style={styles.trophyWrapper}>
@@ -189,18 +91,19 @@ const SilverPkg = () => {
     </View>
   )
 }
-const GoldPkg = () => {
+const GoldPkg = ({GoldData}:any) => {
+
   return (
     <View style={[styles.packageBoxWrapper, {borderColor: "#FFC700"}]}>
       <View style={styles.packageBoxInnerWrapper}>
         <H2 text='Gold' style={styles.tierNameText} />
         <View style={styles.unOrderList}>
           <View style={styles.smallDot} />
-          <Text style={styles.tierTagline}><H6 text='Benefits:' style={styles.tierTaglineLabel} /> 25% more reward points</Text>
+          <Text style={styles.tierTagline}><H6 text='Benefits:' style={styles.tierTaglineLabel} /> {GoldData?.Benefits}</Text>
         </View>
         <View style={styles.unOrderList}>
           <View style={styles.smallDot} />
-          <Text style={styles.tierTagline}><H6 text='Requirements:' style={styles.tierTaglineLabel} /> Be a member for 9 months in a year</Text>
+          <Text style={styles.tierTagline}><H6 text='Requirements:' style={styles.tierTaglineLabel} /> {GoldData?.Requirement}</Text>
         </View>
       </View>
       <View style={styles.trophyWrapper}>
@@ -210,18 +113,18 @@ const GoldPkg = () => {
   )
 }
 
-const PlatinumPkg = () => {
+const PlatinumPkg = ({PlatinumData}:any) => {
   return (
     <View style={[styles.packageBoxWrapper, {borderColor: Colors.Colors.WHITE}]}>
       <View style={styles.packageBoxInnerWrapper}>
         <H2 text='Platinum' style={styles.tierNameText} />
         <View style={styles.unOrderList}>
           <View style={styles.smallDot} />
-          <Text style={styles.tierTagline}><H6 text='Benefits:' style={styles.tierTaglineLabel} /> 50% more reward points</Text>
+          <Text style={styles.tierTagline}><H6 text='Benefits:' style={styles.tierTaglineLabel} /> {PlatinumData?.Benefits}</Text>
         </View>
         <View style={styles.unOrderList}>
           <View style={styles.smallDot} />
-          <Text style={styles.tierTagline}><H6 text='Requirements:' style={styles.tierTaglineLabel} /> Be a member for 1 year</Text>
+          <Text style={styles.tierTagline}><H6 text='Requirements:' style={styles.tierTaglineLabel} /> {PlatinumData?.Requirement}</Text>
         </View>
       </View>
       <View style={styles.trophyWrapper}>

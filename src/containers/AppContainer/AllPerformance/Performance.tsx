@@ -11,11 +11,15 @@ import H5 from '@Component/Headings/H5'
 import { Colors, Fonts } from '@Theme/index'
 import CustomModal from '@Component/CustomModal/CustomModal'
 import PlayerSelectionModal from './PlayerSelectionModal'
+import useAllPerformanceContainer from './AllPerformanceContainer'
 
 const Performance = () => {
     const [isDeleteAccountVisible, setIsDeleteAccountVisible] =
     React.useState(false);
     const [playerName,setPlayerName]=useState("Stacy Gwen")
+    const {playerPerformanceData}=useAllPerformanceContainer()
+    console.log(playerPerformanceData,'playerPerformanceDataplayerPerformanceData');
+    
     
     const changeDeleteModalVisible = player => {
         setPlayerName(player)
@@ -77,70 +81,46 @@ const OverAllPerformance = () => {
 }
 
 const PlayerStatistics = () => {
-    const tableData = [
-        ['', 'F50', 'F40', 'T30', 'T20', 'Others'],
-        ['Runs', '000', '000', '000', '000', '000'],
-        ['Avg', '000', '000', '000', '000', '000'],
-        ['HS', '000', '000', '000', '000', '000'],
-        ['100’s', '000', '000', '000', '000', '000'],
-        ['50’s', '000', '000', '000', '000', '000']
-    ];
+    const { playerPerformanceData } = useAllPerformanceContainer();
 
-    const tableWktsData = [
-        ['Wkts', '000', '000', '000', '000', '000'],
-        ['Avg', '000', '000', '000', '000', '000'],
-        ['4W', '000', '000', '000', '000', '000'],
-        ['5W', '000', '000', '000', '000', '000'],
-        ['Hatrick', '000', '000', '000', '000', '000']
-    ];
+    if (!playerPerformanceData || !playerPerformanceData.data) {
+        return null; // Handle case when data is not available
+    }
 
-    const tableCatchesData = [
-        ['Catches', '000', '000', '000', '000', '000'],
-        ['WK Dism', '000', '000', '000', '000', '000'],
-        ['ROs', '000', '000', '000', '000', '000'],
-    ];
-
+    const categories = Object.keys(playerPerformanceData.data);
+    const metrics = Object.keys(playerPerformanceData.data[categories[0]]).slice(2);
+    
     return (
         <View style={styles.PlayerStatisticsWrapper}>
             <H2 text='Player statistics' style={styles.overAllPerformanceText} />
             <View style={styles.container}>
-                {tableData.map((rowData, rowIndex) => (
+                <View style={styles.row}>
+                    <View style={[styles.cell, styles.emptyCell]} />
+                    {categories.map((category, index) => (
+                        <View key={index} style={[styles.cell, styles.headerCell]}>
+                            <Text style={[styles.checkingText, { color: Colors.Colors.ICE_BLUE }]}>{category}</Text>
+                        </View>
+                    ))}
+                </View>
+                {metrics.map((metric, rowIndex) => (
                     <View key={rowIndex} style={styles.row}>
-                        {rowData.map((cellData, cellIndex) => (
-                            <View key={cellIndex} style={[styles.cell, cellIndex === 0 && styles.emptyCell]}>
-                                <Text style={[styles.checkingText, cellIndex === 0 && styles.firstCellLabel]}>{cellData}</Text>
-                            </View>
-                        ))}
-                    </View>
-                ))}
-            </View>
-            <View style={styles.container}>
-                {tableWktsData.map((rowData, rowIndex) => (
-                    <View key={rowIndex} style={styles.row}>
-                        {rowData.map((cellData, cellIndex) => (
-                            <View key={cellIndex} style={[styles.cell, cellIndex === 0 && styles.emptyCell]}>
-                                <Text style={[styles.checkingText, cellIndex === 0 && styles.firstCellLabel]}>{cellData}</Text>
-                            </View>
-                        ))}
-                    </View>
-                ))}
-            </View>
-
-            <View style={[styles.container, {borderBottomWidth: 0}]}>
-                {tableCatchesData.map((rowData, rowIndex) => (
-                    <View key={rowIndex} style={styles.row}>
-                        {rowData.map((cellData, cellIndex) => (
-                            <View key={cellIndex} style={[styles.cell, cellIndex === 0 && styles.emptyCell]}>
-                                <Text style={[styles.checkingText, cellIndex === 0 && styles.firstCellLabel]}>{cellData}</Text>
+                        <View style={[styles.cell, styles.emptyCell]}>
+                            <Text style={styles.checkingTexts}>{metric}</Text>
+                        </View>
+                        {categories.map((category, colIndex) => (
+                            <View key={colIndex} style={styles.cell}>
+                                <Text style={styles.checkingText}>
+                                    {playerPerformanceData.data[category][metric]}
+                                </Text>
                             </View>
                         ))}
                     </View>
                 ))}
             </View>
         </View>
+    );
+};
 
-    )
-}
 
 
 
@@ -186,13 +166,16 @@ const styles = StyleSheet.create({
         ...Fonts.Medium(Fonts.Size.xxxxSmall, Colors.Colors.DARK_BLUE),
         flex: 1,
     },
-
-    container: {
-        flex: 1,
-        padding: 10,
-        borderBottomWidth: 1,
-        borderColor: "#003D57"
+    checkingTexts: {
+        ...Fonts.Medium(Fonts.Size.xxxxSmall, Colors.Colors.ICE_BLUE),
     },
+
+    // container: {
+    //     flex: 1,
+    //     padding: 10,
+    //     borderBottomWidth: 1,
+    //     borderColor: "#003D57"
+    // },
     row: {
         flexDirection: 'row',
     },

@@ -1,6 +1,6 @@
-import {getRedeem, getTier} from '@Api/App';
-import {STORAGE_KEYS} from '@Constants/queryKeys';
-import {useQuery} from '@tanstack/react-query';
+import { getRedeem } from '@Api/App';
+import { STORAGE_KEYS } from '@Constants/queryKeys';
+import { useQuery } from '@tanstack/react-query';
 
 export default function useRewardContainer(PlayerID) {
   const {data: getRedeemData, isLoading} = useQuery(

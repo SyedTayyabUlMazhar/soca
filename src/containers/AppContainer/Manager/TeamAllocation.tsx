@@ -7,8 +7,12 @@ import { Colors, Fonts } from '@Theme/index';
 import Metrics from '@Utility/Metrics';
 import * as React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import useManagerContainer from './ManagerContainer';
 
 const TeamAllocation = () => {
+    const {managerData}=useManagerContainer()
+    console.log(managerData,'managerDatamanagerDatamanagerDatamanagerData');
+    
     return (
         <View style={{ backgroundColor: Colors.Colors.APP_BACKGROUND, flex: 1 }}>
             <ScrollView
@@ -20,35 +24,28 @@ const TeamAllocation = () => {
 }
 
 const PlayerAllocationInGame = () => {
-    const [isDeleteAccountVisible, setIsDeleteAccountVisible] =
-    React.useState(false);
+    const { managerData } = useManagerContainer();
+    const [isDeleteAccountVisible, setIsDeleteAccountVisible] = React.useState(false);
+
     const changeDeleteModalVisible = isDelete => {
-        if (isDelete == true) {
-          setIsDeleteAccountVisible(!isDeleteAccountVisible);
-        } else {
-          setIsDeleteAccountVisible(!isDeleteAccountVisible);
-        }
-      };
-    const tableData = [
-        ['', 'Batting Position', 'Bowling Quota'],
-        ['Player 1', '000', '000'],
-        ['Player 2', '000', '000'],
-        ['Player 3', '000', '000'],
-        ['Player 4', '000', '000'],
-        ['Player 5', '000', '000'],
-        ['Player 6', '000', '000'],
-        ['Player 7', '000', '000'],
-        ['Player 8', '000', '000'],
-        ['Player 9', '000', '000'],
-        ['Player 10', '000', '000'],
-        ['Player 11', '000', '000'],
-        ['Player 12', '000', '000']
-    ];
+        setIsDeleteAccountVisible(!isDeleteAccountVisible);
+    };
+
+    // Extracting bat_pos and ovrs_qta from managerData and constructing tableData
+    const tableData = managerData?.data?.map((player, index) => [
+        `Player ${index + 1}`,
+        player.bat_pos || '000',
+        player.ovrs_qta || '000'
+    ]) || [];
+
+    // Inserting headings as the first row of tableData
+    tableData.unshift(["Players", "Batting Position", "Bowling Quota"]);
+
     return (
         <View style={styles.todayPlayerAttendanceWrapper}>
-                   <ButtonView onPress={()=>setIsDeleteAccountVisible(true)} style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',borderWidth:1,borderColor:Colors.Colors.DARK_BLUE,padding:12,borderRadius:20}} >
-                <H6 text="06 Feb, Tournament, Team, Game"  style={{color:Colors.Colors.WHITE}}/>
-                <FaqsIcon/>
+            <ButtonView onPress={() => setIsDeleteAccountVisible(true)} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', borderWidth: 1, borderColor: Colors.Colors.DARK_BLUE, padding: 12, borderRadius: 20 }}>
+                <H6 text="06 Feb, Tournament, Team, Game" style={{ color: Colors.Colors.WHITE }} />
+                <FaqsIcon />
             </ButtonView>
             <H2 text="Players Allocation in Game" style={styles.todayPlayerAttendancTitle} />
             <View style={styles.container}>
@@ -63,15 +60,17 @@ const PlayerAllocationInGame = () => {
                 ))}
             </View>
             <TeamSelectionModal
-            changeDeleteModalVisible={changeDeleteModalVisible}
-            setIsDeleteAccountVisible={setIsDeleteAccountVisible}
-            isDeleteAccountVisible={isDeleteAccountVisible}
-            title={'Logout'}
-            desc={'Are you sure you want to logout?'}
-          />
+                changeDeleteModalVisible={changeDeleteModalVisible}
+                setIsDeleteAccountVisible={setIsDeleteAccountVisible}
+                isDeleteAccountVisible={isDeleteAccountVisible}
+                title={'Logout'}
+                desc={'Are you sure you want to logout?'}
+            />
         </View>
     );
 };
+
+
 
 export default TeamAllocation
 

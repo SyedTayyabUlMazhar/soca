@@ -145,3 +145,43 @@ export const getCoachActivity = async (params: any) => {
   });
   return data;
 };
+
+export const getPlayerProfile = async (params: any) => {
+  
+  const {data} = await apiRequest({
+    url: `${SERVICE_CONFIG_URLS.PLAYER.GET_PLAYER_PROFILE}${params?.playerId}/profile`,
+    method: API_CONFIG.GET,
+    params,
+    showLoader: false,
+  });
+  return data;
+};
+
+export const getPlayerPerformance = async (params: any) => {
+  
+  const {data} = await apiRequest({
+    url: `${SERVICE_CONFIG_URLS.PLAYER.GET_PLAYER_PERFORMANCE}1/performance/2024?playerId=ASH-216`,
+    method: API_CONFIG.GET,
+    params,
+    showLoader: false,
+  });
+  return data;
+};
+
+
+
+export const getManager = async (params: any) => {
+  const {data} = await apiRequest({
+    url: `${SERVICE_CONFIG_URLS.MANAGER.MANAGER_INFO}zohaib?date=4/6/2024&team=soca strikers&tournament=wycl&opponent=ssca knights`,
+    method: API_CONFIG.GET,
+    params,
+    showLoader: false,
+  });
+  return data;
+};
+
+
+
+
+
+
