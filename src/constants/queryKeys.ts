@@ -23,5 +23,7 @@ export const STORAGE_KEYS = {
   COACH_ACTIVITY:'getCoachActivity',
   GET_PROFILE:'getPlayerProfie',
   GET_ALL_PERFORMANCE:'getAllPerformance',
-  GET_MANAGER:'getManager'
+  GET_MANAGER:'getManager',
+  GET_AGE_GROUP:'getAgeGroup',
+  GET_LOCATION: 'getLocation',
 };

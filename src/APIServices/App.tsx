@@ -152,6 +152,13 @@ export const getPlayerProfile = async (params: any) => {
     url: `${SERVICE_CONFIG_URLS.PLAYER.GET_PLAYER_PROFILE}${params?.playerId}/profile`,
     method: API_CONFIG.GET,
     params,
+  })
+}   
+
+export const getAgeGroup = async () => {
+  const {data} = await apiRequest({
+    url: SERVICE_CONFIG_URLS.COACH.AGE_GROUP,
+    method: API_CONFIG.GET,
     showLoader: false,
   });
   return data;
@@ -180,8 +187,11 @@ export const getManager = async (params: any) => {
   return data;
 };
 
-
-
-
-
-
+export const getLocation = async () => {
+  const {data} = await apiRequest({
+    url: SERVICE_CONFIG_URLS.COACH.LOCATION,
+    method: API_CONFIG.GET,
+    showLoader: false,
+  });
+  return data;
+};

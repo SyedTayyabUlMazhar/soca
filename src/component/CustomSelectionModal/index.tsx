@@ -42,13 +42,13 @@ const CustomSelectionModal = ({
         backdropTransitionOutTiming={0}>
         <View style={styles.modal}>
           <Text style={{ ...Fonts.Medium(Fonts.Size.medium, Colors.DARK_BLUE),alignSelf:'center',marginBottom:Metrics.baseMargin}}>{title}</Text>
-          {modalData.map((item) => (
+          {modalData?.map((item) => (
             <TouchableOpacity
-              key={item.id}
+              key={item?.age_grp_id || item?.id || item?.location_id}
               
-              onPress={() => handleSelection(item.name)}>
+              onPress={() => handleSelection(item?.name || item["Coaching Age Group"] || item["Coaching Locations"])}>
                 
-              <Text style={{ ...Fonts.Medium(Fonts.Size.small, Colors.WHITE),marginVertical:Metrics.smallMargin}}>{item.name}</Text>
+              <Text style={{ ...Fonts.Medium(Fonts.Size.small, Colors.WHITE),marginVertical:Metrics.smallMargin}}>{item?.name || item["Coaching Age Group"] || item["Coaching Locations"]}</Text>
             </TouchableOpacity>
           ))}
         </View>

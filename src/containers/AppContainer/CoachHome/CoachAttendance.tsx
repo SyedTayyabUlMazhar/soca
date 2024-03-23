@@ -22,7 +22,6 @@ import TeamSelectionModal from '@Component/TeamSelectionModal';
 const CoachAttendance = () => {
     return (
         <View style={{ backgroundColor: Colors.Colors.APP_BACKGROUND, flex: 1 }}>
-            
             <ScrollView
                 contentContainerStyle={{ paddingHorizontal: 15, paddingVertical: Metrics.scale(23) }}>
                 <TodayPlayerAttendance />
@@ -33,14 +32,14 @@ const CoachAttendance = () => {
 
 const TodayPlayerAttendance = () => {
     const [isDeleteAccountVisible, setIsDeleteAccountVisible] =
-    React.useState(false);
+        React.useState(false);
     const changeDeleteModalVisible = isDelete => {
         if (isDelete == true) {
-          setIsDeleteAccountVisible(!isDeleteAccountVisible);
+            setIsDeleteAccountVisible(!isDeleteAccountVisible);
         } else {
-          setIsDeleteAccountVisible(!isDeleteAccountVisible);
+            setIsDeleteAccountVisible(!isDeleteAccountVisible);
         }
-      };
+    };
     const renderPlayerAttendance = ({ item }: any) => {
         return (
             <View style={styles.playerAttendanceRenderWrapper}>
@@ -80,10 +79,10 @@ const TodayPlayerAttendance = () => {
 
     return (
         <View style={styles.todayPlayerAttendanceWrapper}>
-            
-            <ButtonView onPress={()=>setIsDeleteAccountVisible(true)} style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',borderWidth:1,borderColor:Colors.Colors.DARK_BLUE,padding:12,borderRadius:20}} >
-                <H6 text="06 Feb, Tournament, Team, Game"  style={{color:Colors.Colors.WHITE}}/>
-                <FaqsIcon/>
+
+            <ButtonView onPress={() => setIsDeleteAccountVisible(true)} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', borderWidth: 1, borderColor: Colors.Colors.DARK_BLUE, padding: 12, borderRadius: 20 }} >
+                <H6 text="06 Feb, Tournament, Team, Game" style={{ color: Colors.Colors.WHITE }} />
+                <FaqsIcon />
             </ButtonView>
             <H2 text="Today’s Players Attendance" style={styles.todayPlayerAttendancTitle} />
             <View style={styles.playerWrapper}>
@@ -93,12 +92,12 @@ const TodayPlayerAttendance = () => {
                 />
             </View>
             <TeamSelectionModal
-            changeDeleteModalVisible={changeDeleteModalVisible}
-            setIsDeleteAccountVisible={setIsDeleteAccountVisible}
-            isDeleteAccountVisible={isDeleteAccountVisible}
-            title={'Logout'}
-            desc={'Are you sure you want to logout?'}
-          />
+                changeDeleteModalVisible={changeDeleteModalVisible}
+                setIsDeleteAccountVisible={setIsDeleteAccountVisible}
+                isDeleteAccountVisible={isDeleteAccountVisible}
+                title={'Logout'}
+                desc={'Are you sure you want to logout?'}
+            />
         </View>
     );
 };
@@ -113,7 +112,7 @@ const styles = StyleSheet.create({
     todayPlayerAttendancTitle: {
         ...Fonts.SemiBold(Fonts.Size.xSmall, '#98D8FA'),
         marginBottom: Metrics.scale(13),
-        marginTop:Metrics.doubleBaseMargin
+        marginTop: Metrics.doubleBaseMargin
     },
     playerName: {
         ...Fonts.Medium(Fonts.Size.xSmall, Colors.Colors.WHITE),
