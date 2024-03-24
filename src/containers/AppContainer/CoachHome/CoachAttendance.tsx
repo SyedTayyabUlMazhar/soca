@@ -18,19 +18,25 @@ import Metrics from '@Utility/Metrics';
 import { Text } from 'react-native-svg';
 import H6 from '@Component/Headings/H6';
 import TeamSelectionModal from '@Component/TeamSelectionModal';
+import useCoachContainer from './CoachContainer';
+import { useBoundStore } from '@Store/index';
 
 const CoachAttendance = () => {
-    return (
+    const coachAttendacnZustand = useBoundStore(
+        (state: any) => state.coachAttendacnZustand,
+      );
+    const {getCoachAttendacneList, updateCoachAttendanceListMutate}=useCoachContainer()
+   return (
         <View style={{ backgroundColor: Colors.Colors.APP_BACKGROUND, flex: 1 }}>
             <ScrollView
                 contentContainerStyle={{ paddingHorizontal: 15, paddingVertical: Metrics.scale(23) }}>
-                <TodayPlayerAttendance />
+                <TodayPlayerAttendance getCoachAttendacneList={coachAttendacnZustand} updateCoachAttendanceListMutate={updateCoachAttendanceListMutate}/>
             </ScrollView>
         </View>
     )
 }
 
-const TodayPlayerAttendance = () => {
+const TodayPlayerAttendance = ({getCoachAttendacneList, updateCoachAttendanceListMutate}:any) => {
     const [isDeleteAccountVisible, setIsDeleteAccountVisible] =
         React.useState(false);
     const changeDeleteModalVisible = isDelete => {
@@ -40,19 +46,29 @@ const TodayPlayerAttendance = () => {
             setIsDeleteAccountVisible(!isDeleteAccountVisible);
         }
     };
+    const handlePressMarkAttendance = (isPresent, playerData) => {
+        console.log(isPresent,playerData?.Coach_Id,playerData?.Player_id, "isPresentisPresentisPresentisPresent")
+        const payload = {
+            attendance: isPresent,
+            coachId: playerData?.Coach_Id,
+            playerId: playerData?.Player_id
+        }
+        updateCoachAttendanceListMutate(payload)
+    
+    }
     const renderPlayerAttendance = ({ item }: any) => {
         return (
             <View style={styles.playerAttendanceRenderWrapper}>
-                <H3 text={item?.playerName} style={styles.playerName} />
+                <H3 text={item?.plyr_name} style={styles.playerName} />
                 <View style={styles.playerAttendanceActionWrapper}>
-                    {item?.isPresent == COACH_PLAYER_TODAY_ATTENDANCE.PRESENT ?
+                    {item["Attendance (Y/N)"] == COACH_PLAYER_TODAY_ATTENDANCE.PRESENT ?
                         (
                             <View style={styles.presentWrapper}>
                                 <PresentIcon />
                                 <H5 style={styles.presentText} text='Present Marked' />
                             </View>
                         ) :
-                        item?.isPresent == COACH_PLAYER_TODAY_ATTENDANCE.ABSENT ? (
+                        item["Attendance (Y/N)"] == COACH_PLAYER_TODAY_ATTENDANCE.ABSENT ? (
                             <View style={styles.presentWrapper}>
                                 <CancelSmallIcon />
                                 <H5 style={styles.presentText} text='Absent Marked' />
@@ -61,11 +77,11 @@ const TodayPlayerAttendance = () => {
                             :
                             (
                                 <View style={styles.actionBtnWrapper}>
-                                    <ButtonView style={styles.actionBtn}>
+                                    <ButtonView style={styles.actionBtn} onPress={() => handlePressMarkAttendance(COACH_PLAYER_TODAY_ATTENDANCE.PRESENT,item)}>
                                         <PresentIcon />
                                         <H5 text='Present' style={styles.actionBtnText} />
-                                    </ButtonView>
-                                    <ButtonView style={styles.actionBtn}>
+                                    </ButtonView> 
+                                    <ButtonView style={styles.actionBtn} onPress={() => handlePressMarkAttendance(COACH_PLAYER_TODAY_ATTENDANCE.ABSENT,item)}>
                                         <CancelSmallIcon />
                                         <H5 text='Absent' style={styles.actionBtnText} />
                                     </ButtonView>
@@ -87,7 +103,8 @@ const TodayPlayerAttendance = () => {
             <H2 text="Today’s Players Attendance" style={styles.todayPlayerAttendancTitle} />
             <View style={styles.playerWrapper}>
                 <FlatListHandler
-                    data={PLAYER_ATTENDANCE_SHEET}
+                    // data={PLAYER_ATTENDANCE_SHEET}
+                    data={getCoachAttendacneList?.data}
                     renderItem={renderPlayerAttendance}
                 />
             </View>

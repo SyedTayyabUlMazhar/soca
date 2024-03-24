@@ -5,7 +5,7 @@ export interface LoginFormType {
 }
 
 export type ForgotPasswordPayload = {
-    email: string,
+    parentId: string,
 }
 
 export type LoginResponse = {

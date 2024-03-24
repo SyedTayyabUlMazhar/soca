@@ -13,6 +13,7 @@ import React, { useState } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import ReactNativeModal from 'react-native-modal';
 import useTeamSelectionModalContainer from './TeamSelectionModalContainer';
+import useCoachContainer from '@Container/AppContainer/CoachHome/CoachContainer';
 
 interface ICustomModal {
   title?: string;
@@ -38,7 +39,7 @@ const TeamSelectionModal = ({
   const refForm = React.useRef();
 
   const { getAgeGroupList,getLocationList }  = useTeamSelectionModalContainer();
-
+  const {getCoachAttendacneList} = useCoachContainer()
   const [isTourneyModalVisible, setIsTourneyModalVisible] = useState(false);
   const [isTeamModalVisible,setIsTeamModalVisible]=useState(false)
   const [selectedTourney, setSelectedTourney] = useState('');
@@ -74,15 +75,16 @@ const TeamSelectionModal = ({
 
   const handlePressConfirmSelection = () => {
     const selectedDate = refForm?.current?.getInputRef('dob').getValue()
-    if(selectedDate && selectedTourney && selectedTeam){
+    // if(selectedDate && selectedTourney && selectedTeam){
       let payload = {
         dob: selectedDate,
         tourney: selectedTourney,
         team: selectedTeam
       }
       console.log(payload,"payload")
+      getCoachAttendacneList({coachId: 2})
       setIsDeleteAccountVisible(false);
-    }
+    // }
   }
 
 

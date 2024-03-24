@@ -91,3 +91,14 @@ export const deleteUser = async (params: any) => {
   
   return data;
 };
+
+export const forgotPassword = async (params: any) => {
+  console.log(params, "params forgotPassword")
+  const { data } = await apiRequest({
+    url: `${SERVICE_CONFIG_URLS.AUTH.FORGOT_PASSWORD}` ,
+    method: API_CONFIG.PUT,
+    params,
+  });
+  
+  return data;
+};

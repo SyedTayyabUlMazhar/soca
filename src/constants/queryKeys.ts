@@ -30,5 +30,6 @@ export const STORAGE_KEYS = {
   GET_DIVISION:'getDivision',
   GET_TEAMS:'getTeam',
   GET_DATE:'getDate',
-  GET_ALLOCATION:'getAllocation'
+  GET_ALLOCATION:'getAllocation',
+  GET_COACH_ATTENDACNE_LIST: 'getCoachAttendacneList'
 };

@@ -14,6 +14,7 @@ export const SERVICE_CONFIG_URLS = {
     REQUEST_OTP: `${driver}/tokens/request-otp`,
     VERIFY_OTP: `${driver}/tokens/verify-otp`,
     PRIVACY_POLICY: `${driver}/personal/privacy-policy`,
+    FORGOT_PASSWORD: `${auth}/forget`
   },
   PLAYER: {
     REQUEST_OTP: `${student}/tokens/request-otp`,
@@ -40,7 +41,8 @@ export const SERVICE_CONFIG_URLS = {
     COACH_BATCH:'/coach-batch/',
     COACH_ACTIVITY:'/coach-activites/',
     AGE_GROUP:'/age-group',
-    LOCATION: '/location'
+    LOCATION: '/location',
+    GET_COACH_ATTENDANCE_LIST: '/coach-attendance'
   },
   MANAGER:{
     MANAGER_INFO:'/team-rooster/',
@@ -48,6 +50,8 @@ export const SERVICE_CONFIG_URLS = {
     GET_DIVISION:'/division',
     GET_TEAM:'/team',
     GET_DATE:'/team-rooster-date/',
-    GET_TEAM_ALLOCATION:'/team-rooster/'
+    GET_TEAM_ALLOCATION:'/team-rooster/',
+    LOCATION: '/location',
+ 
   }
 };

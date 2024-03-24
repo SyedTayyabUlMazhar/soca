@@ -18,6 +18,6 @@ export default function useTeamSelectionModalContainer() {
 
     return {
         getAgeGroupList,
-        getLocationList
+        getLocationList,
     }
 }

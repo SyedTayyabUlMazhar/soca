@@ -27,6 +27,7 @@ async function post(url: string, data: object, config?: ApisauceConfig) {
 
 async function put(url: string, data: object, config?: ApisauceConfig) {
   const response = await apiSauceInstance.put(url, data, config);
+  console.log(url, "url PUT")
   return handleResponse(response);
 }
 
