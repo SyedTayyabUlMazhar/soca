@@ -8,6 +8,7 @@ import Metrics from '@Utility/Metrics';
 import * as React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import useManagerContainer from './ManagerContainer';
+import ManagerModal from './ManagerModal';
 
 const TeamAllocation = () => {
     const {managerData}=useManagerContainer()
@@ -26,13 +27,18 @@ const TeamAllocation = () => {
 const PlayerAllocationInGame = () => {
     const { managerData } = useManagerContainer();
     const [isDeleteAccountVisible, setIsDeleteAccountVisible] = React.useState(false);
-
+    const [data,setData]=React.useState()
+    console.log(data,'datadatadatadatadatadatadatadatadata');
+    
+const cbFunc=(item)=>{
+    setData(item)
+}
     const changeDeleteModalVisible = isDelete => {
         setIsDeleteAccountVisible(!isDeleteAccountVisible);
     };
 
     // Extracting bat_pos and ovrs_qta from managerData and constructing tableData
-    const tableData = managerData?.data?.map((player, index) => [
+    const tableData = data?.data?.map((player, index) => [
         `Player ${index + 1}`,
         player.bat_pos || '000',
         player.ovrs_qta || '000'
@@ -59,9 +65,10 @@ const PlayerAllocationInGame = () => {
                     </View>
                 ))}
             </View>
-            <TeamSelectionModal
+            <ManagerModal
                 changeDeleteModalVisible={changeDeleteModalVisible}
                 setIsDeleteAccountVisible={setIsDeleteAccountVisible}
+                cbFunc={cbFunc}
                 isDeleteAccountVisible={isDeleteAccountVisible}
                 title={'Logout'}
                 desc={'Are you sure you want to logout?'}

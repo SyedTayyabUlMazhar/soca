@@ -21,9 +21,14 @@ export const STORAGE_KEYS = {
   GET_PARENT_DATA:'getParentData',
   COACH_BATCH:'getCoachBatch',
   COACH_ACTIVITY:'getCoachActivity',
-  GET_PROFILE:'getPlayerProfie',
+  GET_PROFILE:'getPlayerProfile',
   GET_ALL_PERFORMANCE:'getAllPerformance',
   GET_MANAGER:'getManager',
   GET_AGE_GROUP:'getAgeGroup',
   GET_LOCATION: 'getLocation',
+  GET_TOURNAMENT:'getTournament',
+  GET_DIVISION:'getDivision',
+  GET_TEAMS:'getTeam',
+  GET_DATE:'getDate',
+  GET_ALLOCATION:'getAllocation'
 };

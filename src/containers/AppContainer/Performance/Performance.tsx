@@ -32,6 +32,7 @@ const {player_reg_no}=playerData||{}
 
 const {getProfileData}=useProfileContainer(player_reg_no)
 
+console.log(getProfileData,'getProfileDatagetProfileDatagetProfileData');
 
 
   return (
@@ -50,7 +51,7 @@ const {getProfileData}=useProfileContainer(player_reg_no)
 
 const PlayerInfo = ({playerData}) => {
   
-  const {Player_Name,Tier,usacid}=playerData?.data||{}
+  const {Name,Tier,usacid}=playerData?.data||{}
   return (
     <View style={styles.PlayerInfoContainer}>
       <Image source={GirlPlayer} style={styles.image} />
@@ -59,9 +60,9 @@ const PlayerInfo = ({playerData}) => {
         <AgeIcon />
         <H3 text="19" style={styles.ageText} />
       </View>
-      <H3 text={Player_Name} style={styles.nameText} />
+      <H3 text={Name} style={styles.nameText} />
       <H3 text="USACID" style={styles.solganText} />
-      <H3 text={usacid} style={styles.solganText}/>
+      <H3 text={usacid ? usacid : "N/A"} style={styles.solganText}/>
       <View style={styles.cupWrapper}>
         <SilverSmallCup />
         <H3 text={Tier} style={styles.cupText} />
@@ -72,14 +73,16 @@ const PlayerInfo = ({playerData}) => {
 };
 
 const TotlaGamePlayed = ({playerData}) => {
-  const {Runs}=playerData?.data||{}
+  const {totalRuns,totalCatches,totalWickets}=playerData?.data||{}
+  console.log(playerData?.data,'playerData?.dataplayerData?.dataplayerData?.dataplayerData?.data');
+  
   return (
     <View style={styles.totalGamePlayedWrapper}>
       <H2 text="Total games played" style={styles.totalGamePlayedTitle} />
       <View style={styles.totalGameBoxesWrapper}>
         <View style={styles.totalGameBoxesInnerWrapper}>
         <TourneyIcon />
-          <H4 text={Runs} style={styles.totalGameBoxePrice} />
+          <H4 text={totalRuns} style={styles.totalGameBoxePrice} />
           <H4 text="Total Runs" style={styles.totalGameBoxeTitle} />
         </View>
         <View
@@ -88,12 +91,12 @@ const TotlaGamePlayed = ({playerData}) => {
             {marginHorizontal: Metrics.scale(13)},
           ]}>
           <LeaguesIcon />
-          <H4 text={playerData?.['Total Wkts']} style={styles.totalGameBoxePrice} />
+          <H4 text={totalWickets} style={styles.totalGameBoxePrice} />
           <H4 text="Total Wickets" style={styles.totalGameBoxeTitle} />
         </View>
         <View style={styles.totalGameBoxesInnerWrapper}>
           <TotalCatches />
-          <H4 text={playerData?.['Total Catches']} style={styles.totalGameBoxePrice} />
+          <H4 text={totalCatches} style={styles.totalGameBoxePrice} />
           <H4 text="Total Catches" style={styles.totalGameBoxeTitle} />
         </View>
       </View>
@@ -113,7 +116,7 @@ const Attendance = ({playerData}) => {
         </View>
         <View style={styles.rightSect}>
            <H4 text={coaching_attendance} style={styles.rightTitle}/>
-           <DummyCircle />
+           {/* <DummyCircle /> */}
         </View>
       </View>
     </View>

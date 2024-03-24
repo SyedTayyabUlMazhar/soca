@@ -153,6 +153,7 @@ export const getPlayerProfile = async (params: any) => {
     method: API_CONFIG.GET,
     params,
   })
+  return data;
 }   
 
 export const getAgeGroup = async () => {
@@ -191,6 +192,56 @@ export const getLocation = async () => {
   const {data} = await apiRequest({
     url: SERVICE_CONFIG_URLS.COACH.LOCATION,
     method: API_CONFIG.GET,
+    showLoader: false,
+  });
+  return data;
+};
+
+
+export const getTournament = async () => {
+  const {data} = await apiRequest({
+    url: SERVICE_CONFIG_URLS.MANAGER.GET_TOURNAMENT,
+    method: API_CONFIG.GET,
+    showLoader: false,
+  });
+  return data;
+};
+
+export const getDivision = async () => {
+  const {data} = await apiRequest({
+    url: SERVICE_CONFIG_URLS.MANAGER.GET_DIVISION,
+    method: API_CONFIG.GET,
+    showLoader: false,
+  });
+  return data;
+};
+
+export const getTeam = async () => {
+  const {data} = await apiRequest({
+    url: SERVICE_CONFIG_URLS.MANAGER.GET_TEAM,
+    method: API_CONFIG.GET,
+    showLoader: false,
+  });
+  return data;
+};
+
+export const getDate = async (params: any) => {
+ 
+  const {data} = await apiRequest({
+    url: `${SERVICE_CONFIG_URLS.MANAGER.GET_DATE}zohaib?team=soca strikers&tournament=wycl&opponent=ssca knights&division=1`,
+    method: API_CONFIG.GET,
+    params,
+    showLoader: false,
+  });
+  return data;
+};
+
+export const getTeamAllocation = async (params: any) => {
+  console.log(params,"This is params")
+  const {data} = await apiRequest({
+    url: `${SERVICE_CONFIG_URLS.MANAGER.GET_TEAM_ALLOCATION}zohaib?date=4/6/2024&team=soca strikers&tournament=wycl&opponent=ssca knights`,
+    method: API_CONFIG.GET,
+    params,
     showLoader: false,
   });
   return data;

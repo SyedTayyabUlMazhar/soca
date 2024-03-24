@@ -59,6 +59,9 @@ const RoleSelectionScreen = () => {
                             if (selectedRole == "coach") {
                                 navigate(NavigationRoutes.APP_STACK.COACH_HOME,{parentId})
                             }
+                            if (selectedRole == "team_mgr"){
+                                navigate(NavigationRoutes.APP_STACK.MANAGER_HOME,{parentId})
+                            }
                         } else {
                             // Handle case where no role is selected
                             console.log("Please select a role");

@@ -7,6 +7,7 @@ import { Colors, Fonts } from '@Theme/index';
 import Metrics from '@Utility/Metrics';
 import * as React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import ManagerModal from './ManagerModal';
 
 const FieldingSession = () => {
     return (
@@ -62,13 +63,13 @@ const PlayerAllocationInGame = () => {
                     </View>
                 ))}
             </View>
-            <TeamSelectionModal
-            changeDeleteModalVisible={changeDeleteModalVisible}
-            setIsDeleteAccountVisible={setIsDeleteAccountVisible}
-            isDeleteAccountVisible={isDeleteAccountVisible}
-            title={'Logout'}
-            desc={'Are you sure you want to logout?'}
-          />
+            <ManagerModal
+                changeDeleteModalVisible={changeDeleteModalVisible}
+                setIsDeleteAccountVisible={setIsDeleteAccountVisible}
+                // cbFunc={cbFunc}
+                isDeleteAccountVisible={isDeleteAccountVisible}
+       
+            />
         </View>
     );
 };

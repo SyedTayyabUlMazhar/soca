@@ -43,6 +43,11 @@ export const SERVICE_CONFIG_URLS = {
     LOCATION: '/location'
   },
   MANAGER:{
-    MANAGER_INFO:'/team-rooster/'
+    MANAGER_INFO:'/team-rooster/',
+    GET_TOURNAMENT:'/tournament',
+    GET_DIVISION:'/division',
+    GET_TEAM:'/team',
+    GET_DATE:'/team-rooster-date/',
+    GET_TEAM_ALLOCATION:'/team-rooster/'
   }
 };
