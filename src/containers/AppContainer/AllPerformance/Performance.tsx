@@ -22,7 +22,6 @@ const {getFamilyplayerData,refetchPlayerPerformanceData}=useAllPerformanceContai
     const { Player_Name, player_reg_no } = getFamilyplayerData?.data?.[0] || {};
   const [playerName, setPlayerName] = useState(Player_Name);
   const [playerId,setPlayerId]=useState(player_reg_no)
-console.log(playerId, "playerIdplayerIdplayerIdplayerIdplayerIdplayerIdplayerIdplayerIdplayerId")
 
 // setPlayerName(Player_Name);
 // setPlayerId(player_reg_no);

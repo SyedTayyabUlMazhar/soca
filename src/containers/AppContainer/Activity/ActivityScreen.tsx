@@ -24,8 +24,8 @@ const ActivityScreen = ({route}) => {
   const {getFamilyplayerData,earned_crt_yr,missed_rwds_crt_yr}=route?.params || {}
   const {player_reg_no}=getFamilyplayerData?.data[0]
   const {getActivityData} =useActivityContainer(player_reg_no)
-  console.log(player_reg_no,'getActivityDatagetActivityDatagetActivityDatagetActivityData');
- 
+ console.log(getActivityData?.data?.totalCashEarned,'getActivityDatagetActivityDatagetActivityData');
+ const {totalCashEarned,totalPointsEarned}=getActivityData?.data||{}
   const renderItem = ({ item }:any) => (
     <View style={styles.row}>
       <Text style={styles.cell}>{item?.['Payment date']=== "" ? "N/A" : item?.['Payment date']}</Text>
@@ -52,8 +52,8 @@ const ActivityScreen = ({route}) => {
           backgroundColor:Colors.FAMILY_BACKGROUND
         }}>
         <EarnedSvg />
-        <H7 text={"Cash Rewards"} style={{color: Colors.ICE_BLUE}} />
-        <H6 text={earned_crt_yr} style={{color: Colors.WHITE}} />
+        <H7 text={"Cash Reward"} style={{color: Colors.ICE_BLUE}} />
+        <H6 text={`$${totalCashEarned}`} style={{color: Colors.WHITE}} />
 
       </View>
       <View
@@ -68,14 +68,14 @@ const ActivityScreen = ({route}) => {
         }}>
         <MisRewards />
         
-        <H7 text={"Mis Rewards"} style={{color: Colors.ICE_BLUE}} />
-        <H6 text={missed_rwds_crt_yr} style={{color: Colors.WHITE}} />
+        <H7 text={"Points Reward"} style={{color: Colors.ICE_BLUE}} />
+        <H6 text={totalPointsEarned} style={{color: Colors.WHITE}} />
       </View>
       </View>
       <H2 text="Transaction History" style={styles.coachingTxt} />
       <View style={styles.playerWrapper}>
                 <FlatListHandler
-                    data={getActivityData?.data}
+                    data={getActivityData?.data?.user}
                     renderItem={renderItem}
                     ListHeaderComponent={() => (
                         <View style={styles.row}>
