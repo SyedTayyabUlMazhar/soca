@@ -24,6 +24,7 @@ interface ICustomModal {
   isShowDesc?: boolean;
   isNetConnection?: boolean;
   primaryBtnTxt?: string;
+
 }
 
 const TeamSelectionModal = ({
@@ -35,6 +36,7 @@ const TeamSelectionModal = ({
   isShowDesc = true,
   isNetConnection = true,
   primaryBtnTxt = 'yes',
+ 
 }: ICustomModal) => {
   const refForm = React.useRef();
 
@@ -84,9 +86,9 @@ const TeamSelectionModal = ({
       console.log(payload,"payload")
       getCoachAttendacneList({coachId: 2})
       setIsDeleteAccountVisible(false);
+      changeDeleteModalVisible(payload)
     // }
   }
-
 
   return (
     <ReactNativeModal
@@ -105,10 +107,9 @@ const TeamSelectionModal = ({
                 <FormDataInput
                   {...SCHEMAS.dob('dob')}
                   mode="date"
-                  minimumDate={new Date()}
+                  minimumDate={ new Date()}
                   placeholder={"Select Date"}
                   label="Select Date"
-
                 />
                 <H6 text="Select Age Group" style={{ ...Fonts.Medium(Fonts.Size.xSmall, Colors.DARK_BLUE) }} />
                 <TouchableOpacity onPress={toggleTourneyModal}>

@@ -76,10 +76,19 @@ const RoleSelectionScreen = () => {
 };
 
 const RoleButtonView = ({ role, icon, selected, onPress }) => {
+    const roleMap = {
+        'coach': 'Coach',
+        'team_mgr': 'Manager',
+        // Add more role mappings here if needed
+    };
+
+    // Get the mapped role name or keep it as it is if not found in the mapping
+    const roleName = roleMap[role.toLowerCase()] || role;
+    
     return (
         <ButtonView style={{ flexDirection: 'row', alignItems: 'center', marginTop: Metrics.verticalScale(50), padding: 20, borderWidth: selected ? 1 : 0, borderColor: selected ? Colors.DARK_BLUE : 'transparent', borderRadius: selected ? 20 : null }} onPress={onPress}>
             {icon}
-            <H1 text={role} style={{ ...Fonts.Regular(Fonts.Size.xxxLarge, Colors.WHITE), marginHorizontal: Metrics.baseMargin }} />
+            <H1 text={roleName} style={{ ...Fonts.Regular(Fonts.Size.xxxLarge, Colors.WHITE), marginHorizontal: Metrics.baseMargin }} />
         </ButtonView>
     );
 };

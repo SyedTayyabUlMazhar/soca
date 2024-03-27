@@ -12,7 +12,7 @@ const ManagerHome = () => {
         title="Home"
         backButton={false}
         subText={'Welcome Back'}
-        desc={"Norman Osborn"}
+        desc={"Zohaib"}
       />
          <TopTabs component={managerTabs} />
     </View>

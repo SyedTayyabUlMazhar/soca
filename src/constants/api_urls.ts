@@ -34,7 +34,8 @@ export const SERVICE_CONFIG_URLS = {
     DELETE_ACCOUNT:'user',
     PARENT_DATA:'/parent/',
     GET_PLAYER_PROFILE:`/player/`,
-    GET_PLAYER_PERFORMANCE:'/player/'
+    GET_PLAYER_PERFORMANCE:'/player/',
+    GET_SPONSORS:'/sponsors'
   },
   COACH:{
     COACH_INFO:'/coach-info/',
@@ -52,6 +53,7 @@ export const SERVICE_CONFIG_URLS = {
     GET_DATE:'/team-rooster-date/',
     GET_TEAM_ALLOCATION:'/team-rooster/',
     LOCATION: '/location',
- 
+    GET_FIELDING:'/team-players/',
+    UPDATE_GET_FIELDING:'/fielding-errors/'
   }
 };

@@ -1,39 +1,25 @@
 import {
-  AwardGoldSvg,
-  AwardPlatinumSvg,
-  AwardSilverSvg,
-  AwardSvg,
-  FaqsIcon,
-  FaqsIcon2,
   GoldTrophy,
   PlatiniumTrophy,
   SelectedPackage,
   SilverTrophy
 } from '@Asset/logo';
-import ButtonView from '@Component/ButtonView';
-import FlatListHandler from '@Component/FlatlistHandler';
-import H1 from '@Component/Headings/H1';
-import H5 from '@Component/Headings/H5';
+import Header from '@Component/AppHeader';
+import H2 from '@Component/Headings/H2';
+import H3 from '@Component/Headings/H3';
+import H4 from '@Component/Headings/H4';
 import H6 from '@Component/Headings/H6';
-import SpinnerLoader from '@Component/SmallLoader';
-import { FaqsList } from '@Constants/dummyData';
 import Fonts from '@Theme/Fonts';
+import { Colors } from '@Theme/index';
 import Metrics from '@Utility/Metrics';
 import React from 'react';
 import {
-  LayoutAnimation,
   ScrollView,
   StyleSheet,
   Text,
   View
 } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 import useTierContainer from './TierContainer';
-import Header from '@Component/AppHeader';
-import H3 from '@Component/Headings/H3';
-import H4 from '@Component/Headings/H4';
-import { Colors } from '@Theme/index';
-import H2 from '@Component/Headings/H2';
 
 const TierScreen = () => {
   const { getTierData, isLoading } = useTierContainer();
@@ -47,7 +33,7 @@ const PlatinumData=getTierData?.message[3]
       <Header backButton={false} desc={"Tiers"} />
       <ScrollView
         contentContainerStyle={{ paddingHorizontal: 15, paddingVertical: Metrics.scale(23) }}>
-        <TiersInfoWrapper />
+        {/* <TiersInfoWrapper /> */}
         <SilverPkg SilverData={SilverData}/>
         <GoldPkg GoldData={GoldData}/>
         <PlatinumPkg PlatinumData={PlatinumData}/>

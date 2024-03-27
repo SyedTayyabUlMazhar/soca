@@ -15,13 +15,24 @@ const ForgotPasswordForm = ({ refForm }: IForgotPasswordForm) => {
       <FormHandler ref={refForm} validateOnChange>
         {(SCHEMAS: any) => {
           return (
-          <Input
+            <>
+               <Input
           {...SCHEMAS.text('parentId')}
           placeholder="Enter your Email"
           returnKeyType={'next'}
           placeholderTextColor={'#fff'}
           rightIcon={<Email/>}
         />
+            <Input
+                {...SCHEMAS.password('password')}
+                placeholder="Enter your password"
+                returnKeyType={'done'}
+                secureTextEntry={true}
+                isPassword={true}
+                placeholderTextColor={'#fff'}
+              />
+            </>
+       
           );
         }}
       </FormHandler>

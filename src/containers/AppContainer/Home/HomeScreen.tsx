@@ -71,7 +71,6 @@ elem?.pndg_inv_amt
 );
 const userData = getItem(STORAGE_KEYS.GET_PARENT_USER_DETAILS)
   
-console.log(getFamilyplayerData,'getFamilyplayerDatagetFamilyplayerDatagetFamilyplayerData');
 
 
 const handlePressRegisterEvent = () => {
@@ -110,6 +109,7 @@ const handlePressRegisterEvent = () => {
               style={{
                 alignSelf: 'flex-end',
                 marginTop: Metrics.verticalScale(-20),
+                marginRight:-10
               }}>
               <PerformanceButtonSvg />
             </ButtonView>

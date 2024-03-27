@@ -147,6 +147,13 @@ export default function AppStack() {
           require('@Container/AppContainer/Faqs/Faqs').default
         }
       />
+                <Stack.Screen
+        options={{title: 'Sponsors', headerShown: false}}
+        name={NavigationRoutes.APP_STACK.SPONSORS}
+        getComponent={() =>
+          require('@Container/AppContainer/Sponsors/Sponsors').default
+        }
+      />
         
     </Stack.Navigator>
   );

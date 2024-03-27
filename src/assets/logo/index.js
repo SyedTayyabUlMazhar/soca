@@ -208,6 +208,8 @@ import MalePlayer from './MalePlayerSvg.png'
 import FemalePlayer from './FemalePlayerSvg.png'
 import MisRewards from './MisRewards.svg'
 import TotalCatches from './TotalCatches.svg'
+import PlusSign from './PlusSign.svg'
+import MinusSign from './MinusSign.svg'
 
 export {
   PresentIcon,
@@ -416,5 +418,7 @@ CancelSmallIcon,
   MalePlayer,
   FemalePlayer,
   MisRewards,
-  TotalCatches
+  TotalCatches,
+  PlusSign,
+  MinusSign
 };

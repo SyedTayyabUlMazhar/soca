@@ -35,7 +35,6 @@ const CustomSelectionDateModal = ({
 }: ICustomModal) => {
   const refForm = React.useRef();
   const Sample=({item})=>{
-    console.log(item,'itemitemitemitemitem');
     
     return(
         <TouchableOpacity

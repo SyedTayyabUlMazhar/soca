@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
-import { ImageBackground, StyleSheet, View } from 'react-native';
+import { ImageBackground, ScrollView, StyleSheet, View, FlatList } from 'react-native';
 import ReactNativeModal from 'react-native-modal';
-import { FemalePlayer, MalePlayer } from '@Asset/logo';
 import ButtonView from '@Component/ButtonView';
 import H4 from '@Component/Headings/H4';
 import H5 from '@Component/Headings/H5';
 import { Colors } from '@Theme/Colors';
 import Metrics from '@Utility/Metrics';
 import Fonts from '@Theme/Fonts';
+import { FemalePlayer, MalePlayer } from '@Asset/logo';
 
 const PlayerSelectionModal = ({
   changeDeleteModalVisible,
   setIsDeleteAccountVisible,
   isDeleteAccountVisible,
+  players // Array of players
+  
 }) => {
   const [selectedPlayer, setSelectedPlayer] = useState(null);
 
-  const handleSubmit = (bool) => {
+  const handleSubmit = () => {
     changeDeleteModalVisible(selectedPlayer);
     setIsDeleteAccountVisible(false);
   };
@@ -29,35 +31,35 @@ const PlayerSelectionModal = ({
     setSelectedPlayer(player);
   };
 
+  const renderItem = ({ item }) => (
+    <ButtonView style={{  margin: 8, borderColor: selectedPlayer === item ? 'white' : 'transparent', borderWidth: 1 }} onPress={() => handlePlayerSelect(item)}>
+      <ImageBackground
+        source={item.player_gender === "Female" ? FemalePlayer : MalePlayer} // Assuming each player object has an 'image' property
+        style={{ height: 150, justifyContent: 'flex-end', width: 150 }}
+      >
+        <H5 text={item.Player_Name} style={{ alignSelf: 'center', color: Colors.WHITE, marginBottom: Metrics.baseMargin }} />
+      </ImageBackground>
+    </ButtonView>
+  );
+
   return (
     <ReactNativeModal
       animationIn={'fadeIn'}
       animationOut={'fadeOut'}
       backdropOpacity={0.5}
-      onBackdropPress={()=>handleBackDrop(false)}
+      onBackdropPress={() => handleBackDrop(false)}
       isVisible={isDeleteAccountVisible}
       backdropTransitionOutTiming={0}
     >
       <View style={styles.modal}>
         <H4 text="Select Player" style={{ color: Colors.WHITE }} />
-        <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-evenly', marginTop: Metrics.doubleBaseMargin }}>
-          <ButtonView style={{ borderColor: selectedPlayer === 'Stacy Gwen' ? 'white' : 'transparent', borderWidth: 1 }} onPress={() => handlePlayerSelect('Stacy Gwen')}>
-            <ImageBackground
-              source={FemalePlayer}
-              style={{ height: 150, width: 120, justifyContent: 'flex-end' }}
-            >
-              <H5 text="Stacy Gwen" style={{ alignSelf: 'center', color: Colors.WHITE, marginBottom: Metrics.baseMargin }} />
-            </ImageBackground>
-          </ButtonView>
-          <ButtonView style={{ borderColor: selectedPlayer === 'Mary Jane' ? 'white' : 'transparent', borderWidth: 1 }} onPress={() => handlePlayerSelect('Mary Jane')}>
-            <ImageBackground
-              source={MalePlayer}
-              style={{ height: 150, width: 120, justifyContent: 'flex-end' }}
-            >
-              <H5 text="Mary Jane" style={{ alignSelf: 'center', color: Colors.WHITE, marginBottom: Metrics.baseMargin }} />
-            </ImageBackground>
-          </ButtonView>
-        </View>
+        <FlatList
+        horizontal
+          data={players}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => index.toString()}
+          contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', marginTop: Metrics.doubleBaseMargin }}
+        />
         <ButtonView onPress={handleSubmit} style={{ alignItems: "center", backgroundColor: Colors.DARK_BLUE, padding: 10, marginTop: Metrics.doubleBaseMargin, borderRadius: Metrics.smallMargin, width: '85%' }}>
           <H4 text="Confirm Selection" style={{ ...Fonts.Medium(Fonts.Size.medium, Colors.DARK_BLACK), }} />
         </ButtonView>

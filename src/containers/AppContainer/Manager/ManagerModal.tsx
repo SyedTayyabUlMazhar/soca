@@ -1,4 +1,4 @@
-import { FaqsIcon } from '@Asset/logo';
+import {FaqsIcon} from '@Asset/logo';
 import ButtonView from '@Component/ButtonView';
 import FormDataInput from '@Component/FormDateInput';
 import FormHandler from '@Component/FormHandler';
@@ -6,19 +6,19 @@ import H4 from '@Component/Headings/H4';
 import H6 from '@Component/Headings/H6';
 import Input from '@Component/Input';
 import useTeamSelectionModalContainer from '@Component/TeamSelectionModal/TeamSelectionModalContainer';
-import { Colors } from '@Theme/Colors';
+import {Colors} from '@Theme/Colors';
 import Fonts from '@Theme/Fonts';
 import Metrics from '@Utility/Metrics';
-import React, { useState } from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import ReactNativeModal from 'react-native-modal';
 import useManagerContainer from './ManagerContainer';
 import CustomSelectionModal from './CustomSelectionModal';
 import CustomSelectionDateModal from './CustomSelectionDateModal';
-import { STORAGE_KEYS } from '@Constants/queryKeys';
-import { useQuery } from '@tanstack/react-query';
-import { getTeamAllocation } from '@Api/App';
-import { navigate } from '@Service/navigationService';
+import {STORAGE_KEYS} from '@Constants/queryKeys';
+import {useQuery} from '@tanstack/react-query';
+import {getTeamAllocation} from '@Api/App';
+import {navigate} from '@Service/navigationService';
 
 interface ICustomModal {
   title?: string;
@@ -29,7 +29,7 @@ interface ICustomModal {
   isShowDesc?: boolean;
   isNetConnection?: boolean;
   primaryBtnTxt?: string;
-  cbFunc?:any
+  cbFunc?: any;
 }
 
 const ManagerModal = ({
@@ -41,68 +41,63 @@ const ManagerModal = ({
   isShowDesc = true,
   isNetConnection = true,
   primaryBtnTxt = 'yes',
-  cbFunc
+  cbFunc,
 }: ICustomModal) => {
   const refForm = React.useRef();
 
-
-  
-
   const [isTourneyModalVisible, setIsTourneyModalVisible] = useState(false);
-  const [isTeamModalVisible,setIsTeamModalVisible]=useState(false)
-  const [isDivisionModalVisible,setIsDivisionModalVisible]=useState(false)
-  const [isOpponentModalVisible,setIsOpponentModalVisible]=useState(false)
-  const [isDateModalVisible,setIsDateModalVisible]=useState(false)
+  const [isTeamModalVisible, setIsTeamModalVisible] = useState(false);
+  const [isDivisionModalVisible, setIsDivisionModalVisible] = useState(false);
+  const [isOpponentModalVisible, setIsOpponentModalVisible] = useState(false);
+  const [isDateModalVisible, setIsDateModalVisible] = useState(false);
   const [selectedTourney, setSelectedTourney] = useState('');
-  const [selectedTeam,setIsSelectedTeam]=useState('')
-  const [selectedDivision,setIsSelectedDivision]=useState('')
-  const [selectedOpponent,setIsSelectedOpponent]=useState('')
-  const [selectedDate,setIsSelectedDate]=useState('')
-
- 
+  const [selectedTeam, setIsSelectedTeam] = useState('');
+  const [selectedDivision, setIsSelectedDivision] = useState('');
+  const [selectedOpponent, setIsSelectedOpponent] = useState('');
+  const [selectedDate, setIsSelectedDate] = useState('');
 
   const toggleTourneyModal = () => {
     setIsTourneyModalVisible(!isTourneyModalVisible);
   };
 
-  const toggleTeamModal=()=>{
-    setIsTeamModalVisible(!isTeamModalVisible)
-  }
+  const toggleTeamModal = () => {
+    setIsTeamModalVisible(!isTeamModalVisible);
+  };
 
-  const toggleDivisionModal=()=>{
-    setIsDivisionModalVisible(!isDivisionModalVisible)
-  }
+  const toggleDivisionModal = () => {
+    setIsDivisionModalVisible(!isDivisionModalVisible);
+  };
 
-  const toggleOpponentModal=()=>{
-    setIsOpponentModalVisible(!isOpponentModalVisible)
-  }
+  const toggleOpponentModal = () => {
+    setIsOpponentModalVisible(!isOpponentModalVisible);
+  };
 
-  const toggleDateModal=()=>{
-    setIsDateModalVisible(!isDateModalVisible)
-  }
+  const toggleDateModal = () => {
+    setIsDateModalVisible(!isDateModalVisible);
+  };
 
-  const handleTourneySelection = (tourney) => {
+  const handleTourneySelection = tourney => {
     setSelectedTourney(tourney);
     setIsTourneyModalVisible(false);
   };
 
-  const handleTeamSelection=(team)=>{
-    setIsSelectedTeam(team)
-    setIsTeamModalVisible(false)
-  }
+  const handleTeamSelection = team => {
+    setIsSelectedTeam(team);
+    setIsTeamModalVisible(false);
+  };
 
-  const handleDivisionSelection=(division)=>{
-    setIsSelectedDivision(division)
-    setIsDivisionModalVisible(false)
-  }
-  const handleOpponentSelection=(opponent)=>{
-    setIsSelectedOpponent(opponent)
-    setIsOpponentModalVisible(false)
-  }
-  const handleDateSelection=(date)=>{
-    setIsSelectedDate(date)
-    setIsDateModalVisible(false)
-  }
+  const handleDivisionSelection = division => {
+    setIsSelectedDivision(division);
+    setIsDivisionModalVisible(false);
+  };
+  const handleOpponentSelection = opponent => {
+    setIsSelectedOpponent(opponent);
+    setIsOpponentModalVisible(false);
+  };
+  const handleDateSelection = date => {
+    setIsSelectedDate(date);
+    setIsDateModalVisible(false);
+  };
 
   const handleBackDrop = (bool: boolean) => {
     setIsDeleteAccountVisible(bool);
@@ -110,37 +105,54 @@ const ManagerModal = ({
   const handleTourneyDrop = (bool: boolean) => {
     setIsTourneyModalVisible(bool);
   };
-  const handleTeamDrop=(bool: boolean)=>{
-      setIsTeamModalVisible(bool)
-  }
-  const handleDivisionDrop=(bool: boolean)=>{
-    setIsDivisionModalVisible(bool)
-}
+  const handleTeamDrop = (bool: boolean) => {
+    setIsTeamModalVisible(bool);
+  };
+  const handleDivisionDrop = (bool: boolean) => {
+    setIsDivisionModalVisible(bool);
+  };
 
-const handleOpponenentDrop=(bool: boolean)=>{
-    setIsOpponentModalVisible(bool)
-}
+  const handleOpponenentDrop = (bool: boolean) => {
+    setIsOpponentModalVisible(bool);
+  };
 
-const handleDateDrop=(bool: boolean)=>{
-    setIsDateModalVisible(bool)
-}
+  const handleDateDrop = (bool: boolean) => {
+    setIsDateModalVisible(bool);
+  };
 
-const {getTournamentData,getDivisionData,getTeamData,getDateData,getAllocationData}=useManagerContainer(selectedTourney,selectedDate,selectedDivision,selectedTeam,selectedOpponent)
+  const {
+    getTournamentData,
+    getDivisionData,
+    getTeamData,
+    getDateData,
+    getAllocationData,
+    AllocationRefetch,
+    fieldingSessionRefetch
+  } = useManagerContainer(
+    selectedTourney,
+    selectedDivision,
+    selectedTeam,
+    selectedOpponent,
+    selectedDate,
+  );
 
   const handlePressConfirmSelection = () => {
     setIsDeleteAccountVisible(false);
-    cbFunc(getAllocationData)
-    // if(selectedDate && selectedTourney && selectedTeam){
-    //   let payload = {
-    //     dob: selectedDate,
-    //     tourney: selectedTourney,
-    //     team: selectedTeam
-    //   }
-    //   console.log(payload,"payload")
-    //   setIsDeleteAccountVisible(false);
-    // }
-  }
-
+    cbFunc(getAllocationData);
+    let payload = {
+      date: selectedDate,
+      tourney: selectedTourney,
+      team: selectedTeam,
+      div: selectedDivision,
+      opponent: selectedOpponent,
+    };
+    console.log(payload, 'payload');
+    changeDeleteModalVisible(payload);
+    setIsDeleteAccountVisible(false);
+    AllocationRefetch();
+    fieldingSessionRefetch()
+    
+  };
 
   return (
     <ReactNativeModal
@@ -151,43 +163,157 @@ const {getTournamentData,getDivisionData,getTeamData,getDateData,getAllocationDa
       isVisible={isDeleteAccountVisible}
       backdropTransitionOutTiming={0}>
       <View style={styles.modal}>
-        <H4 text="Select Game" style={{ ...Fonts.Medium(Fonts.Size.medium, Colors.WHITE), alignSelf: 'center' }} />
+        <H4
+          text="Select Game"
+          style={{
+            ...Fonts.Medium(Fonts.Size.medium, Colors.WHITE),
+            alignSelf: 'center',
+            marginBottom: 10,
+          }}
+        />
         <FormHandler ref={refForm} validateOnChange>
           {SCHEMAS => {
             return (
               <>
-              
-                <H6 text="Select Tournament" style={{ ...Fonts.Medium(Fonts.Size.xSmall, Colors.DARK_BLUE) }} />
+                <H6
+                  text="Select Tournament"
+                  style={{...Fonts.Medium(Fonts.Size.xSmall, Colors.DARK_BLUE)}}
+                />
                 <TouchableOpacity onPress={toggleTourneyModal}>
-                  <Input rightIcon={<FaqsIcon />}  placeholder={"Select tournament"} placeholderTextColor={Colors.WHITE} value={selectedTourney} isDisabled={true} style={{ backgroundColor: 'transparent', borderColor: Colors.DARK_BLUE, borderWidth: 1, borderRadius: 10, ...Fonts.Medium(Fonts.Size.xSmall, Colors.WHITE), paddingHorizontal: Metrics.scale(15), marginVertical: Metrics.verticalScale(10), }} />
+                  <Input
+                    rightIcon={<FaqsIcon />}
+                    placeholder={'Select tournament'}
+                    placeholderTextColor={Colors.WHITE}
+                    value={selectedTourney}
+                    isDisabled={true}
+                    style={{
+                      backgroundColor: 'transparent',
+                      borderColor: Colors.DARK_BLUE,
+                      borderWidth: 1,
+                      borderRadius: 10,
+                      ...Fonts.Medium(Fonts.Size.xSmall, Colors.WHITE),
+                      paddingHorizontal: Metrics.scale(15),
+                      marginVertical: Metrics.verticalScale(10),
+                    }}
+                  />
                 </TouchableOpacity>
-                <H6 text="Select Division" style={{ ...Fonts.Medium(Fonts.Size.xSmall, Colors.DARK_BLUE) }} />
+                <H6
+                  text="Select Division"
+                  style={{...Fonts.Medium(Fonts.Size.xSmall, Colors.DARK_BLUE)}}
+                />
                 <TouchableOpacity onPress={toggleDivisionModal}>
-                  <Input rightIcon={<FaqsIcon />} placeholder={"Select Division"} placeholderTextColor={Colors.WHITE} value={selectedDivision} isDisabled={true} style={{ backgroundColor: 'transparent', borderColor: Colors.DARK_BLUE, borderWidth: 1, borderRadius: 10, ...Fonts.Medium(Fonts.Size.xSmall, Colors.WHITE), paddingHorizontal: Metrics.scale(15), marginVertical: Metrics.verticalScale(10), }} />
+                  <Input
+                    rightIcon={<FaqsIcon />}
+                    placeholder={'Select Division'}
+                    placeholderTextColor={Colors.WHITE}
+                    value={selectedDivision}
+                    isDisabled={true}
+                    style={{
+                      backgroundColor: 'transparent',
+                      borderColor: Colors.DARK_BLUE,
+                      borderWidth: 1,
+                      borderRadius: 10,
+                      ...Fonts.Medium(Fonts.Size.xSmall, Colors.WHITE),
+                      paddingHorizontal: Metrics.scale(15),
+                      marginVertical: Metrics.verticalScale(10),
+                    }}
+                  />
                 </TouchableOpacity>
-                <H6 text="Select Team" style={{ ...Fonts.Medium(Fonts.Size.xSmall, Colors.DARK_BLUE) }} />
+                <H6
+                  text="Select Team"
+                  style={{...Fonts.Medium(Fonts.Size.xSmall, Colors.DARK_BLUE)}}
+                />
                 <TouchableOpacity onPress={toggleTeamModal}>
-                  <Input rightIcon={<FaqsIcon />} placeholder={"Select Team"} placeholderTextColor={Colors.WHITE} value={selectedTeam} isDisabled={true} style={{ backgroundColor: 'transparent', borderColor: Colors.DARK_BLUE, borderWidth: 1, borderRadius: 10, ...Fonts.Medium(Fonts.Size.xSmall, Colors.WHITE), paddingHorizontal: Metrics.scale(15), marginVertical: Metrics.verticalScale(10), }} />
+                  <Input
+                    rightIcon={<FaqsIcon />}
+                    placeholder={'Select Team'}
+                    placeholderTextColor={Colors.WHITE}
+                    value={selectedTeam}
+                    isDisabled={true}
+                    style={{
+                      backgroundColor: 'transparent',
+                      borderColor: Colors.DARK_BLUE,
+                      borderWidth: 1,
+                      borderRadius: 10,
+                      ...Fonts.Medium(Fonts.Size.xSmall, Colors.WHITE),
+                      paddingHorizontal: Metrics.scale(15),
+                      marginVertical: Metrics.verticalScale(10),
+                    }}
+                  />
                 </TouchableOpacity>
-                <H6 text="Select Opponent Team" style={{ ...Fonts.Medium(Fonts.Size.xSmall, Colors.DARK_BLUE) }} />
+                <H6
+                  text="Select Opponent Team"
+                  style={{...Fonts.Medium(Fonts.Size.xSmall, Colors.DARK_BLUE)}}
+                />
                 <TouchableOpacity onPress={toggleOpponentModal}>
-                  <Input rightIcon={<FaqsIcon />} placeholder={"Select Opponent"} placeholderTextColor={Colors.WHITE} value={selectedOpponent} isDisabled={true} style={{ backgroundColor: 'transparent', borderColor: Colors.DARK_BLUE, borderWidth: 1, borderRadius: 10, ...Fonts.Medium(Fonts.Size.xSmall, Colors.WHITE), paddingHorizontal: Metrics.scale(15), marginVertical: Metrics.verticalScale(10), }} />
+                  <Input
+                    rightIcon={<FaqsIcon />}
+                    placeholder={'Select Opponent'}
+                    placeholderTextColor={Colors.WHITE}
+                    value={selectedOpponent}
+                    isDisabled={true}
+                    style={{
+                      backgroundColor: 'transparent',
+                      borderColor: Colors.DARK_BLUE,
+                      borderWidth: 1,
+                      borderRadius: 10,
+                      ...Fonts.Medium(Fonts.Size.xSmall, Colors.WHITE),
+                      paddingHorizontal: Metrics.scale(15),
+                      marginVertical: Metrics.verticalScale(10),
+                    }}
+                  />
                 </TouchableOpacity>
-         
 
-            {selectedTourney && selectedTeam && selectedDivision && selectedOpponent && (<>
-                <H6 text="Select Date" style={{ ...Fonts.Medium(Fonts.Size.xSmall, Colors.DARK_BLUE) }} />
-                <TouchableOpacity onPress={toggleDateModal}>
-                  <Input rightIcon={<FaqsIcon />} placeholder={'Select Date'} placeholderTextColor={Colors.WHITE} value={selectedDate} isDisabled={true} style={{ backgroundColor: 'transparent', borderColor: Colors.DARK_BLUE, borderWidth: 1, borderRadius: 10, ...Fonts.Medium(Fonts.Size.xSmall, Colors.WHITE), paddingHorizontal: Metrics.scale(15), marginVertical: Metrics.verticalScale(10), }} />
-               </TouchableOpacity>
-            </>)}
-               
-        
-        
-        
-                <ButtonView onPress={handlePressConfirmSelection} style={{alignItems:"center",backgroundColor:Colors.DARK_BLUE, padding:10,marginTop:Metrics.doubleBaseMargin,borderRadius:Metrics.smallMargin}}>
-                    <H4 text="Confirm Selection" style={{...Fonts.Bold(Fonts.Size.medium, Colors.DARK_BLACK),}}/>
-                </ButtonView>
+                {selectedTourney &&
+                  selectedTeam &&
+                  selectedDivision &&
+                  selectedOpponent && (
+                    <>
+                      <H6
+                        text="Select Date"
+                        style={{
+                          ...Fonts.Medium(Fonts.Size.xSmall, Colors.DARK_BLUE),
+                        }}
+                      />
+                      <TouchableOpacity onPress={toggleDateModal}>
+                        <Input
+                          rightIcon={<FaqsIcon />}
+                          placeholder={'Select Date'}
+                          placeholderTextColor={Colors.WHITE}
+                          value={selectedDate}
+                          isDisabled={true}
+                          style={{
+                            backgroundColor: 'transparent',
+                            borderColor: Colors.DARK_BLUE,
+                            borderWidth: 1,
+                            borderRadius: 10,
+                            ...Fonts.Medium(Fonts.Size.xSmall, Colors.WHITE),
+                            paddingHorizontal: Metrics.scale(15),
+                            marginVertical: Metrics.verticalScale(10),
+                          }}
+                        />
+                      </TouchableOpacity>
+                    </>
+                  )}
+
+                {selectedDate && (
+                  <ButtonView
+                    onPress={handlePressConfirmSelection}
+                    style={{
+                      alignItems: 'center',
+                      backgroundColor: Colors.DARK_BLUE,
+                      padding: 10,
+                      marginTop: Metrics.doubleBaseMargin,
+                      borderRadius: Metrics.smallMargin,
+                    }}>
+                    <H4
+                      text="Confirm Selection"
+                      style={{
+                        ...Fonts.Bold(Fonts.Size.medium, Colors.DARK_BLACK),
+                      }}
+                    />
+                  </ButtonView>
+                )}
               </>
             );
           }}
@@ -196,40 +322,39 @@ const {getTournamentData,getDivisionData,getTeamData,getDateData,getAllocationDa
       <CustomSelectionModal
         isModalVisible={isTourneyModalVisible}
         handleSelection={handleTourneySelection}
-        title={"Select Tournament"}
+        title={'Select Tournament'}
         handleDropOffPress={handleTourneyDrop}
         modalData={getTournamentData?.data}
       />
-         <CustomSelectionModal
+      <CustomSelectionModal
         isModalVisible={isTeamModalVisible}
         handleSelection={handleTeamSelection}
-        title={"Select Team"}
+        title={'Select Team'}
         handleDropOffPress={handleTeamDrop}
         modalData={getTeamData?.data}
       />
-           <CustomSelectionModal
+      <CustomSelectionModal
         isModalVisible={isDivisionModalVisible}
         handleSelection={handleDivisionSelection}
-        title={"Select Division"}
+        title={'Select Division'}
         handleDropOffPress={handleDivisionDrop}
         modalData={getDivisionData?.data}
       />
-          <CustomSelectionModal
+      <CustomSelectionModal
         isModalVisible={isOpponentModalVisible}
         handleSelection={handleOpponentSelection}
-        title={"Select Opponent"}
+        title={'Select Opponent'}
         handleDropOffPress={handleOpponenentDrop}
         modalData={getTeamData?.data}
       />
-        <CustomSelectionDateModal
+      <CustomSelectionDateModal
         isModalVisible={isDateModalVisible}
         handleSelection={handleDateSelection}
-        title={"Select Date"}
+        title={'Select Date'}
         handleDropOffPress={handleDateDrop}
         modalData={getDateData?.data}
       />
     </ReactNativeModal>
-
   );
 };
 
@@ -266,7 +391,7 @@ const styles = StyleSheet.create({
     borderWidth: Metrics.scale(1),
     borderColor: Colors.GREY_BORDER,
     justifyContent: 'center',
-    backgroundColor: Colors.ICE_BLUE
+    backgroundColor: Colors.ICE_BLUE,
   },
   title: {
     ...Fonts.SemiBold(Fonts.Size.medium, Colors.WHITE),
