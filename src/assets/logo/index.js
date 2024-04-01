@@ -194,6 +194,7 @@ import SignoutSvg from './SignoutSvg.svg'
 import boy from './boy.png'
 import girl from './girl.png'
 import GirlPlayer from "./GirlPlayer.png"
+import BoyPlayer from "./BoyPlayer.png"
 import SilverSmallCup from './SilverSmallCup.svg'
 import DummyCircle from './DummyCircle.svg'
 import PresentIcon from './PresentIcon.svg'
@@ -420,5 +421,6 @@ CancelSmallIcon,
   MisRewards,
   TotalCatches,
   PlusSign,
-  MinusSign
+  MinusSign,
+  BoyPlayer
 };

@@ -53,6 +53,9 @@ const TodayPlayerAttendance = ({
   };
 
   const handlePressMarkAttendance = (isPresent, playerData) => {
+
+    console.log(playerData,'playerDataplayerDataplayerDataplayerData');
+    
     console.log(
       isPresent,
       playerData?.Coach_Id,
@@ -66,6 +69,7 @@ const TodayPlayerAttendance = ({
     };
     updateCoachAttendanceListMutate(payload);
   };
+  
   const renderPlayerAttendance = ({item}: any) => {
     return (
       <View style={styles.playerAttendanceRenderWrapper}>
@@ -129,7 +133,7 @@ const TodayPlayerAttendance = ({
         <H6
           text={
             state
-              ? `${moment(state?.dob).format('DD MMM')}, ${state?.tourney}, ${
+              ? `${state?.dob}, ${state?.tourney}, ${
                   state?.team
                 }`
               : 'Select Date, Tournament, Team'

@@ -7,7 +7,7 @@ export default function useProfileContainer(player_reg_no: any) {
 
 
 
-  const {data: getProfileData} = useQuery(
+  const {data: getProfileData,isLoading:PlayerProfileLoading} = useQuery(
     [STORAGE_KEYS.GET_PROFILE],
     () => getPlayerProfile({playerId: player_reg_no}),
     {cacheTime: 0, staleTime: 0},
@@ -15,6 +15,7 @@ export default function useProfileContainer(player_reg_no: any) {
 
 
   return {
-    getProfileData
+    getProfileData,
+    PlayerProfileLoading
   };
 }

@@ -33,5 +33,7 @@ export const STORAGE_KEYS = {
   GET_ALLOCATION:'getAllocation',
   GET_COACH_ATTENDACNE_LIST: 'getCoachAttendacneList',
   GET_FIELDING_SESSION:'getFieldingSession',
-  GET_SPONSORS:'getAllSponsors'
+  GET_SPONSORS:'getAllSponsors',
+  GET_COACH_ID:'getCoachId',
+  GET_ABOUT_US:'getAbout'
 };

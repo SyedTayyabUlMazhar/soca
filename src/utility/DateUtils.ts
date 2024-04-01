@@ -13,7 +13,8 @@ export const DATE_FORMATS = {
   BOOKING_DATE: 'dddd DD/MM/yy',
   NOTIFICATION_TIME: 'HH:mm:ss',
   ARRIVAL_TIME: 'h:mm A',
-  SCHEDULE_RIDE: "DD MMMM YYYY h:mm A"
+  SCHEDULE_RIDE: "DD MMMM YYYY h:mm A",
+  REVERSE_FORMAT:"MM/DD/YY"
 };
 
 export const TIME_ENUM = {

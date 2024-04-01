@@ -114,7 +114,10 @@ import useFaqsContainer from './FaqsContainer';
       <>
    <Header title="General FAQs"/>
         {getFaqsDataLoading ? (
-          <SpinnerLoader size={'large'} color={'#09203F'} />
+          <View style={{flex:1,backgroundColor:Colors.APP_BACKGROUND,justifyContent:'center'}}>
+          <SpinnerLoader size={'large'} color={Colors.WHITE} />
+            
+          </View>
         ) : (
           <ScrollView style={{backgroundColor:Colors.APP_BACKGROUND,flex:1}}> 
             <View

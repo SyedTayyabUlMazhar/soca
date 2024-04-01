@@ -13,6 +13,7 @@ import { Email } from '@Asset/logo';
 import AuthDefaultBottom from '@Component/AuthDefaultBottom/AuthDefaultBottom';
 import { navigate } from '@Service/navigationService';
 import NavigationRoutes from '@Navigator/NavigationRoutes';
+import { Colors } from '@Theme/Colors';
 
 export default function AuthLoginScreen() {
   const {handleOnForgotPassord, onSubmitForm, refForm, loginUserLoading} =
@@ -79,9 +80,10 @@ const LoginForm = ({refForm}: ILoginFormProps) => {
                 {...SCHEMAS.text('parentId')}
                 placeholder="Enter your Email"
                 returnKeyType={'next'}
-                placeholderTextColor={'#fff'}
-                value='zohaib'
+                placeholderTextColor={Colors.LIGHT_BORDER}
+                // value='zohaib'
                 rightIcon={<Email/>}
+                
               />
               <Input
                 {...SCHEMAS.password('password')}
@@ -89,8 +91,8 @@ const LoginForm = ({refForm}: ILoginFormProps) => {
                 returnKeyType={'done'}
                 secureTextEntry={true}
                 isPassword={true}
-                value='1234'
-                placeholderTextColor={'#fff'}
+                // value='1234'
+                placeholderTextColor={Colors.LIGHT_BORDER}
               />
             </>
           );

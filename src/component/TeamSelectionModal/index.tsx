@@ -14,6 +14,10 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import ReactNativeModal from 'react-native-modal';
 import useTeamSelectionModalContainer from './TeamSelectionModalContainer';
 import useCoachContainer from '@Container/AppContainer/CoachHome/CoachContainer';
+import { getItem } from '@Service/storageService';
+import { STORAGE_KEYS } from '@Constants/queryKeys';
+import moment from 'moment';
+import { DATE_FORMATS } from '@Utility/DateUtils';
 
 interface ICustomModal {
   title?: string;
@@ -46,7 +50,9 @@ const TeamSelectionModal = ({
   const [isTeamModalVisible,setIsTeamModalVisible]=useState(false)
   const [selectedTourney, setSelectedTourney] = useState('');
   const [selectedTeam,setIsSelectedTeam]=useState('')
-
+  const userData = getItem(STORAGE_KEYS.GET_COACH_ID)
+  console.log(userData,'userDatauserDatauserDatauserData');
+  
   const toggleTourneyModal = () => {
     setIsTourneyModalVisible(!isTourneyModalVisible);
   };
@@ -79,12 +85,12 @@ const TeamSelectionModal = ({
     const selectedDate = refForm?.current?.getInputRef('dob').getValue()
     // if(selectedDate && selectedTourney && selectedTeam){
       let payload = {
-        dob: selectedDate,
+        dob: moment(selectedDate).format(DATE_FORMATS.REVERSE_FORMAT),
         tourney: selectedTourney,
         team: selectedTeam
       }
       console.log(payload,"payload")
-      getCoachAttendacneList({coachId: 2})
+      getCoachAttendacneList({coachId: userData,payload})
       setIsDeleteAccountVisible(false);
       changeDeleteModalVisible(payload)
     // }

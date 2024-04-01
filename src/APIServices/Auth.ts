@@ -10,6 +10,8 @@ export const login = async (params: any) => {
     url: SERVICE_CONFIG_URLS.AUTH.LOGIN,
     method: API_CONFIG.POST,
     params,
+    showToast:true,
+    showSuccessToast:true
   });
   return data;
 };
@@ -19,13 +21,14 @@ export const signup = async (params: any) => {
   const { data } = await apiRequest({
     url: SERVICE_CONFIG_URLS.AUTH.SIGNUP,
     method: API_CONFIG.POST,
+    showToast:true,
+    showSuccessToast:true,
     params
   });
   return data;
 };
 
 export const getUserRoles = async (params: any) => {
-  console.log(params, "paramsparamsparamsparamsparamsparamsparamsparamsparams")
   const {data} = await apiRequest({
     url: `${SERVICE_CONFIG_URLS.AUTH.ROLES}/${params?.parentID}`,
     method: API_CONFIG.GET,
@@ -97,6 +100,8 @@ export const forgotPassword = async (params: any) => {
   const { data } = await apiRequest({
     url: `${SERVICE_CONFIG_URLS.AUTH.FORGOT_PASSWORD}` ,
     method: API_CONFIG.PUT,
+    showToast:true,
+    showSuccessToast:true,
     params,
   });
   

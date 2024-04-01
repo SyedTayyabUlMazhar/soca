@@ -9,7 +9,7 @@ import useTeamSelectionModalContainer from '@Component/TeamSelectionModal/TeamSe
 import {Colors} from '@Theme/Colors';
 import Fonts from '@Theme/Fonts';
 import Metrics from '@Utility/Metrics';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import ReactNativeModal from 'react-native-modal';
 import useManagerContainer from './ManagerContainer';
@@ -19,6 +19,7 @@ import {STORAGE_KEYS} from '@Constants/queryKeys';
 import {useQuery} from '@tanstack/react-query';
 import {getTeamAllocation} from '@Api/App';
 import {navigate} from '@Service/navigationService';
+import { queryClient } from '@Api/Client';
 
 interface ICustomModal {
   title?: string;
@@ -30,6 +31,7 @@ interface ICustomModal {
   isNetConnection?: boolean;
   primaryBtnTxt?: string;
   cbFunc?: any;
+  CallbackFuntion?:any
 }
 
 const ManagerModal = ({
@@ -42,6 +44,7 @@ const ManagerModal = ({
   isNetConnection = true,
   primaryBtnTxt = 'yes',
   cbFunc,
+  CallbackFuntion
 }: ICustomModal) => {
   const refForm = React.useRef();
 
@@ -56,6 +59,38 @@ const ManagerModal = ({
   const [selectedOpponent, setIsSelectedOpponent] = useState('');
   const [selectedDate, setIsSelectedDate] = useState('');
 
+
+
+  const {
+    getTournamentData,
+    getDivisionData,
+    getTeamData,
+    getDateData,
+    getAllocationData,
+    AllocationRefetch,
+    fieldingSessionRefetch,
+    getDateRefetch,
+    getSessionData
+  } = useManagerContainer(
+    selectedTourney,
+    selectedDivision,
+    selectedTeam,
+    selectedOpponent,
+    selectedDate,
+  );
+
+console.log(getAllocationData,'getAllocationDatagetAllocationDatagetAllocationDatagetAllocationData');
+
+  // useEffect(() => {
+  //   if (
+  //     selectedTourney &&
+  //     selectedTeam &&
+  //     selectedDivision &&
+  //     selectedOpponent
+  //   ) {
+  //     getDateRefetch()
+  //   }
+  // }, [selectedTourney, selectedTeam, selectedDivision, selectedOpponent]);
   const toggleTourneyModal = () => {
     setIsTourneyModalVisible(!isTourneyModalVisible);
   };
@@ -91,10 +126,12 @@ const ManagerModal = ({
     setIsDivisionModalVisible(false);
   };
   const handleOpponentSelection = opponent => {
+    // getDateRefetch()
     setIsSelectedOpponent(opponent);
     setIsOpponentModalVisible(false);
   };
   const handleDateSelection = date => {
+    
     setIsSelectedDate(date);
     setIsDateModalVisible(false);
   };
@@ -113,6 +150,7 @@ const ManagerModal = ({
   };
 
   const handleOpponenentDrop = (bool: boolean) => {
+
     setIsOpponentModalVisible(bool);
   };
 
@@ -120,25 +158,11 @@ const ManagerModal = ({
     setIsDateModalVisible(bool);
   };
 
-  const {
-    getTournamentData,
-    getDivisionData,
-    getTeamData,
-    getDateData,
-    getAllocationData,
-    AllocationRefetch,
-    fieldingSessionRefetch
-  } = useManagerContainer(
-    selectedTourney,
-    selectedDivision,
-    selectedTeam,
-    selectedOpponent,
-    selectedDate,
-  );
-
   const handlePressConfirmSelection = () => {
     setIsDeleteAccountVisible(false);
-    cbFunc(getAllocationData);
+
+      // CallbackFuntion(getSessionData)
+
     let payload = {
       date: selectedDate,
       tourney: selectedTourney,
@@ -150,9 +174,14 @@ const ManagerModal = ({
     changeDeleteModalVisible(payload);
     setIsDeleteAccountVisible(false);
     AllocationRefetch();
+
+    cbFunc(getAllocationData);
+
+
     fieldingSessionRefetch()
     
   };
+  
 
   return (
     <ReactNativeModal

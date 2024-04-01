@@ -39,17 +39,27 @@ const PlayerAllocationInGame = () => {
     const [isRunOutsModalVisible, setIsRunOutsModalVisible] = React.useState(false);
     const [isFullTossModalVisible, setIsFullTossModalVisible] = React.useState(false);
     const [isShortBallsModalVisible, setIsShortBallsModalVisible] = React.useState(false)
-  const changeDeleteModalVisible = isDelete => {
-    setIsDeleteAccountVisible(isDelete);
+    const [data, setData] = React.useState();
+  const changeDeleteModalVisible = value => {
+
+    setManagerFilterZustand(value)
   };
   const [isModalVisible, setIsModalVisible] = React.useState(false);
+  const setManagerFilterZustand = useBoundStore(
+    (state: any) => state.setManagerFilterZustand,
+  );
   const handleCallback = value => {
     setIsModalVisible(value);
+  
   };
   const managerFilterZustand = useBoundStore(
     (state: any) => state.managerFilterZustand,
   );
-  console.log(managerFilterZustand,'managerFilterZustandmanagerFilterZustandmanagerFilterZustandmanagerFilterZustandmanagerFilterZustand');
+
+  const CallbackFuntion = item => {
+    setData(item)
+  };
+
   
   const {getSessionData, updateSession} = useManagerContainer();
 
@@ -138,7 +148,7 @@ const PlayerAllocationInGame = () => {
           </Text>
         </View>
         {/* Render player data */}
-        {playerData?.map((player, index) => (
+        {data?.data?.map((player, index) => (
           <View key={index} style={styles.row}>
             <Text
               style={[
@@ -247,6 +257,7 @@ const PlayerAllocationInGame = () => {
         changeDeleteModalVisible={changeDeleteModalVisible}
         setIsDeleteAccountVisible={setIsDeleteAccountVisible}
         isDeleteAccountVisible={isDeleteAccountVisible}
+        CallbackFuntion={CallbackFuntion}
       />
     </View>
   );

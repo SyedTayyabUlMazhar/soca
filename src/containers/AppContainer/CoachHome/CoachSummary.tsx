@@ -21,9 +21,9 @@ import { STORAGE_KEYS } from '@Constants/queryKeys'
 import { getItem } from '@Service/storageService'
 
 const CoachSummary = ({route}) => {
+    
     const {grp_ssns_hrs,pvt_ssn_hrs}=route?.params || {}
     const parentId = getItem(STORAGE_KEYS.PARENTID);
-    console.log(route,'routerouterouterouterouterouteroute');
     
     const {coachActivityData}=useCoachContainer(parentId)
     
@@ -70,7 +70,7 @@ const TodayPlayerAttendance = ({groupHour,privateHour,coachActivityData}) => {
              <H7 text="Groups" style={{color:Colors.DARK_BLUE}}/>   
                 </View>
                 <View>
-                <ProgressCircleWithSVG progress={0.6} svg={<GroupSvg/>}/>
+                <ProgressCircleWithSVG progress={groupHour ? groupHour/100 : null} svg={<GroupSvg/>}/>
 
                 </View>
                 
@@ -81,7 +81,7 @@ const TodayPlayerAttendance = ({groupHour,privateHour,coachActivityData}) => {
              <H7 text="Private" style={{color:Colors.DARK_BLUE}}/>   
                 </View>
                 <View>
-                <ProgressCircleWithSVG progress={0.8} svg={<PrivateSvg/>}/>
+                <ProgressCircleWithSVG progress={privateHour ? privateHour/100 : null} svg={<PrivateSvg/>}/>
 
                 </View>
                 

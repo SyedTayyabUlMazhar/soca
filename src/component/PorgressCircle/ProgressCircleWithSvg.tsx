@@ -12,16 +12,7 @@ const ProgressCircleWithSVG = ({ progress,svg }) => {
   return (
     <View style={styles.container}>
       <Svg width={200} height={200}>
-        {/* Progress circle background
-        <Circle
-          cx={100}
-          cy={100}
-          r={radius}
-          fill="none"
-          stroke="#ccc"
-          strokeWidth={20}
-        /> */}
-        {/* Progress circle */}
+     
         <Circle
           cx={100}
           cy={100}
@@ -50,19 +41,20 @@ const ProgressCircleWithSVG = ({ progress,svg }) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    width:'70%'
+    width:'60%',
+    alignSelf:'flex-start'
   },
   text: {
     position: 'absolute',
     top: 90,
     left: 90,
-    color: '#007bff',
+    // color: '#007bff',
     fontSize: 24,
   },
   svgContainer: {
     position: 'absolute',
     top: 90,
-    left: 55,
+    left: 45,
   },
 });
 

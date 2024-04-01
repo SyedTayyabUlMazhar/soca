@@ -9,9 +9,16 @@ const Stack = createNativeStackNavigator();
 
 export default function AppStack() {
  const getUserRoles = getItem(STORAGE_KEYS.ROLES_LIST)
+//  console.log(getUserRoles[0]?.role,'getUserRolesgetUserRolesgetUserRolesgetUserRoles');
+ console.log(getUserRoles,'getUserRolesgetUserRolesgetUserRoles');
+ 
   return (
     <Stack.Navigator
-      initialRouteName={(getUserRoles[0]?.role == "coach" || getUserRoles[0]?.role == "manager") ? NavigationRoutes.APP_STACK.ROLE_SELECTION : NavigationRoutes.APP_STACK.BOTTOM_TABS}
+    initialRouteName={
+      (getUserRoles && (getUserRoles[0]?.role === "coach" || getUserRoles[0]?.role === "Team Manager" || getUserRoles[1]?.role === "coach" ||  getUserRoles[1]?.role === "Team Manager" || getUserRoles[0]?.role === "team_mgr")) 
+      ? NavigationRoutes.APP_STACK.ROLE_SELECTION 
+      : NavigationRoutes.APP_STACK.BOTTOM_TABS
+    }
       screenOptions={{
         header: props => {
           let state = props.navigation.getState();

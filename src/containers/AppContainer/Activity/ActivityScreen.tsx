@@ -21,14 +21,17 @@ import Header from '@Component/AppHeader';
 import H2 from '@Component/Headings/H2';
 
 const ActivityScreen = ({route}) => {
-  const {getFamilyplayerData,earned_crt_yr,missed_rwds_crt_yr}=route?.params || {}
-  const {player_reg_no}=getFamilyplayerData?.data[0]
-  const {getActivityData} =useActivityContainer(player_reg_no)
- console.log(getActivityData?.data?.totalCashEarned,'getActivityDatagetActivityDatagetActivityData');
- const {totalCashEarned,totalPointsEarned}=getActivityData?.data||{}
-  const renderItem = ({ item }:any) => (
+  const {getActivityData, isLoading} = useActivityContainer();
+  console.log(
+    getActivityData?.data?.totalCashEarned,
+    'getActivityDatagetActivityDatagetActivityData',
+  );
+  const {totalCashEarned, totalPointsEarned} = getActivityData?.data || {};
+  const renderItem = ({item}: any) => (
     <View style={styles.row}>
-      <Text style={styles.cell}>{item?.['Payment date']=== "" ? "N/A" : item?.['Payment date']}</Text>
+      <Text style={styles.cell}>
+        {item?.['Payment date'] === '' ? 'N/A' : item?.['Payment date']}
+      </Text>
       <Text style={styles.cell}>{item?.['Earned Cash']}</Text>
       <Text style={styles.cell}>{item?.['Txn Type']}</Text>
       <Text style={styles.cell}>{item?.['Points earned']}</Text>
@@ -36,61 +39,73 @@ const ActivityScreen = ({route}) => {
   );
 
   return (
-  <View style={{flex:1,backgroundColor:Colors.APP_BACKGROUND,}}>
-    <Header title={"Player Account Activity"}/>
-    <View style={{marginHorizontal:20}}>
-
-    <View style={{flexDirection:'row',alignSelf:'center',marginTop:Metrics.doubleBaseMargin}}>
-    <View
-        style={{
-          alignItems: 'center',
-          marginTop: Metrics.baseMargin,
-          padding: Metrics.scale(40),
-          marginHorizontal: Metrics.smallMargin,
-          borderRadius: 10,
-          paddingVertical: Metrics.doubleBaseMargin,
-          backgroundColor:Colors.FAMILY_BACKGROUND
-        }}>
-        <EarnedSvg />
-        <H7 text={"Cash Reward"} style={{color: Colors.ICE_BLUE}} />
-        <H6 text={`$${totalCashEarned}`} style={{color: Colors.WHITE}} />
-
-      </View>
-      <View
-        style={{
-          alignItems: 'center',
-          marginTop: Metrics.baseMargin,
-          padding: Metrics.scale(40),
-          marginHorizontal: Metrics.smallMargin,
-          borderRadius: 10,
-          paddingVertical: Metrics.doubleBaseMargin,
-          backgroundColor:Colors.FAMILY_BACKGROUND
-        }}>
-        <MisRewards />
-        
-        <H7 text={"Points Reward"} style={{color: Colors.ICE_BLUE}} />
-        <H6 text={totalPointsEarned} style={{color: Colors.WHITE}} />
-      </View>
-      </View>
-      <H2 text="Transaction History" style={styles.coachingTxt} />
-      <View style={styles.playerWrapper}>
-                <FlatListHandler
-                    data={getActivityData?.data?.user}
-                    renderItem={renderItem}
-                    ListHeaderComponent={() => (
-                        <View style={styles.row}>
-                          <Text style={styles.heading}>Date</Text>
-                          <Text style={styles.heading}>Transaction</Text>
-                          <Text style={styles.heading}>Type</Text>
-                          <Text style={styles.heading}>Points</Text>
-                        </View>
-                      )}
-                />
+    <View style={{flex: 1, backgroundColor: Colors.APP_BACKGROUND}}>
+      <Header title={'Player Account Activity'} />
+      {isLoading ? (
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: Colors.APP_BACKGROUND,
+            justifyContent: 'center',
+          }}>
+          <SpinnerLoader size={'large'} color={Colors.WHITE} />
+        </View>
+      ) : (
+        <ScrollView style={{marginHorizontal: 20,marginBottom:Metrics.baseMargin}} showsVerticalScrollIndicator={false}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignSelf: 'center',
+              marginTop: Metrics.doubleBaseMargin,
+            }}>
+            <View
+              style={{
+                alignItems: 'center',
+                marginTop: Metrics.baseMargin,
+                padding: Metrics.scale(40),
+                marginHorizontal: Metrics.smallMargin,
+                borderRadius: 10,
+                paddingVertical: Metrics.doubleBaseMargin,
+                backgroundColor: Colors.FAMILY_BACKGROUND,
+              }}>
+              <EarnedSvg />
+              <H7 text={'Cash Reward'} style={{color: Colors.ICE_BLUE}} />
+              <H6 text={`$${totalCashEarned}`} style={{color: Colors.WHITE}} />
             </View>
+            <View
+              style={{
+                alignItems: 'center',
+                marginTop: Metrics.baseMargin,
+                padding: Metrics.scale(40),
+                marginHorizontal: Metrics.smallMargin,
+                borderRadius: 10,
+                paddingVertical: Metrics.doubleBaseMargin,
+                backgroundColor: Colors.FAMILY_BACKGROUND,
+              }}>
+              <MisRewards />
+
+              <H7 text={'Points Reward'} style={{color: Colors.ICE_BLUE}} />
+              <H6 text={totalPointsEarned} style={{color: Colors.WHITE}} />
+            </View>
+          </View>
+          <H2 text="Transaction History" style={styles.coachingTxt} />
+          <View style={styles.playerWrapper}>
+            <FlatListHandler
+              data={getActivityData?.data?.user}
+              renderItem={renderItem}
+              ListHeaderComponent={() => (
+                <View style={styles.row}>
+                  <Text style={styles.heading}>Date</Text>
+                  <Text style={styles.heading}>Transaction</Text>
+                  <Text style={styles.heading}>Type</Text>
+                  <Text style={styles.heading}>Points</Text>
+                </View>
+              )}
+            />
+          </View>
+        </ScrollView>
+      )}
     </View>
-  </View>
-    
- 
   );
 };
 
@@ -101,30 +116,30 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.FAMILY_BACKGROUND,
     paddingVertical: Metrics.scale(16),
     borderRadius: 16,
-    marginTop:Metrics.doubleBaseMargin
-},
+    marginTop: Metrics.doubleBaseMargin,
+  },
 
-row: {
-  flexDirection: 'row',
-  // borderBottomWidth: 1,
-  // borderColor: '#ccc',
-  paddingVertical: 10,
-},
-heading: {
-  flex: 1,
-  fontWeight: 'bold',
-  textAlign: 'center',
-  color:Colors.DARK_BLUE
-},
-cell: {
-  flex: 1,
-  textAlign: 'center',
-  color:Colors.WHITE,
-  height:'150%'
-},
-coachingTxt: {
-  ...Fonts.SemiBold(Fonts.Size.xSmall, '#98D8FA'),
-  marginTop: Metrics.doubleBaseMargin,
-  marginBottom:Metrics.verticalScale(15)
-},
+  row: {
+    flexDirection: 'row',
+    // borderBottomWidth: 1,
+    // borderColor: '#ccc',
+    paddingVertical: 10,
+  },
+  heading: {
+    flex: 1,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: Colors.DARK_BLUE,
+  },
+  cell: {
+    flex: 1,
+    textAlign: 'center',
+    color: Colors.WHITE,
+    height: '150%',
+  },
+  coachingTxt: {
+    ...Fonts.SemiBold(Fonts.Size.xSmall, '#98D8FA'),
+    marginTop: Metrics.doubleBaseMargin,
+    marginBottom: Metrics.verticalScale(15),
+  },
 });

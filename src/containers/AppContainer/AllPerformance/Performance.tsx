@@ -16,7 +16,7 @@ import { useBoundStore } from '@Store/index';
 const Performance = ({route}) => {
   const setPlayerPerformanceIDZustand = useBoundStore(state => state.setPlayerPerformanceIDZustand);
 const {getFamilyplayerData,refetchPlayerPerformanceData}=useAllPerformanceContainer(playerId)
-    
+const [refreshKey, setRefreshKey] = useState(0); // State to trigger re-rende
   const [isDeleteAccountVisible, setIsDeleteAccountVisible] =
     React.useState(false);
     const { Player_Name, player_reg_no } = getFamilyplayerData?.data?.[0] || {};
@@ -31,25 +31,30 @@ const {getFamilyplayerData,refetchPlayerPerformanceData}=useAllPerformanceContai
 //     setPlayerName(Player_Name);
 //     setPlayerId(player_reg_no);
 //   }, [getFamilyplayerData]);
+const playerPerformanceID = useBoundStore(state => state.playerPerformanceID);
 
-// useEffect(() => {
-//   if(player_reg_no){
-//     setPlayerPerformanceIDZustand(player_reg_no)
-//   }
-// },[player_reg_no])
 
   const changeDeleteModalVisible = player => {
+console.log("11111111111111");
 
     refetchPlayerPerformanceData()
 
     setPlayerName(player?.Player_Name);
     setPlayerId(player?.player_reg_no);
     setPlayerPerformanceIDZustand(player?.player_reg_no)
+    setRefreshKey(prevKey => prevKey + 1);
   };
+  useEffect(() => {
+    if(playerPerformanceID ||playerId ==undefined ){
+      refetchPlayerPerformanceData()
 
+    }
+    // Your effect code here
+    // This effect will be triggered whenever refreshKey changes
+  }, [refreshKey]);
  
   return (
-    <ScrollView style={{backgroundColor: Colors.Colors.APP_BACKGROUND, flex: 1}} >
+    <ScrollView key={refreshKey}  style={{backgroundColor: Colors.Colors.APP_BACKGROUND, flex: 1}} >
       <Header
         backButton={false}
         desc={'Performance'}
@@ -96,10 +101,10 @@ const OverAllPerformance = () => {
     <View style={styles.overAllPerformanceWrapper}>
       <View style={styles.overAllPerformanceInnerWrapper}>
         <H2 text="Over all performance" style={styles.overAllPerformanceText} />
-        <ButtonView style={{flexDirection: 'row', alignItems: 'center'}}>
+        {/* <ButtonView style={{flexDirection: 'row', alignItems: 'center'}}>
           <H4 text="View All" style={styles.overAllPerformanceBtnText} />
           <ArrowDown />
-        </ButtonView>
+        </ButtonView> */}
       </View>
       <View style={styles.overAllPerformanceBoxWrapper}>
         <View style={styles.overAllPerformanceInnersingleBox}>
@@ -135,10 +140,10 @@ const OverAllPerformance = () => {
 
 const PlayerStatistics = ({playerId}) => {
     
-  const {playerPerformanceData} = useAllPerformanceContainer(playerId);
+  const {playerPerformanceData,refetchPlayerPerformanceData} = useAllPerformanceContainer(playerId);
 
 useEffect(() => {
-console.log(playerPerformanceData?.data?.data, "555555555555555555555555555555555555555555")
+// console.log(playerPerformanceData?.data?.data, "555555555555555555555555555555555555555555")
 },[playerPerformanceData?.data?.data])
 
   if (!playerPerformanceData || !playerPerformanceData?.data?.data) {
@@ -174,6 +179,7 @@ console.log(playerPerformanceData?.data?.data, "55555555555555555555555555555555
   );
 };
 const Metric = ({ metric, rowIndex, categories, playerPerformanceData }: any) => {
+  
     const metricAbbreviations: { [key: string]: string } = {
         'Wickets': 'Wkt',
         'Economy': 'Eco',

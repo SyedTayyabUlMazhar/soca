@@ -32,11 +32,14 @@ const Announcement = () => {
     <View style={{backgroundColor:Colors.APP_BACKGROUND,flex:1}}>
         <Header title="Announcements"/>
         {getAllAnnouncementsLoading ?  <SpinnerLoader size={'large'} color={'#09203F'} /> :
-        <FlatListHandler
+<View style={{marginHorizontal:Metrics.baseMargin,marginTop:Metrics.baseMargin}}>
+<FlatListHandler
             renderItem={renderItem}
             data={getAllAnnouncements?.data || {}}
             keyExtractor={item => item?.id}
           />
+  </View>
+
         }
     </View>
   )
@@ -47,7 +50,7 @@ const AnnouncementComp=({Announcement,Details,url}:any)=>{
         <ImageBackground
         source={ImageBackgroundPNG}
         resizeMode="cover"
-        style={{height: 100, marginTop: Metrics.baseMargin,padding:Metrics.baseMargin}}>
+        style={{height: 100, marginTop: Metrics.baseMargin,padding:Metrics.baseMargin,marginBottom:Metrics.baseMargin}}>
      <View style={{flexDirection:'row',justifyContent:'space-between',width:'100%',alignItems:'center'}}>
        <H5
         style={{color: Colors.WHITE}}

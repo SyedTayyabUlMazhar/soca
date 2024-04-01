@@ -9,13 +9,13 @@ import styles from "./style";
 import Metrics from "@Utility/Metrics";
 
 export default function ForgotPasswordScreen() {
-  const { onSubmitForm, refForm } = useForgotPasswordContainer();
+  const { onSubmitForm, refForm,forgotPasswordLoading } = useForgotPasswordContainer();
 
   return (
     <>
       <AuthWrapper wrapperStyle={{paddingTop: Metrics.verticalScale(120)}}>
         <AuthDefaultHeading
-          title={"Forget Password"}
+          title={"Forgot password"}
           desc={"Enter email address to reset your password"}
         />
         <View style={styles.innerWrapper}>
@@ -23,8 +23,9 @@ export default function ForgotPasswordScreen() {
           <ButtonWithInnerLoader
             onPress={onSubmitForm}
             buttonText={"Submit"}
-            loading={false}
+            loading={forgotPasswordLoading}
             btnStyle={styles.appBtnStyle}
+            
           />
         </View>
       </AuthWrapper>

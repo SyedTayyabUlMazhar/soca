@@ -1,10 +1,12 @@
 import { getAgeGroup, getCoachActivity, getCoachAttendanceList, getCoachBatch, getCoachInfo, updateCoachAttendanceList } from "@Api/App";
 import { STORAGE_KEYS } from "@Constants/queryKeys";
+import { getItem } from "@Service/storageService";
 import { useBoundStore } from "@Store/index";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
-export default function useCoachContainer(parentId) {
+export default function useCoachContainer(parentId: any) {
+  const userData = getItem(STORAGE_KEYS.GET_COACH_ID)
   const setCoachAttendacnZustand = useBoundStore(
     (state: any) => state.setCoachAttendacnZustand,
   );
@@ -16,12 +18,12 @@ export default function useCoachContainer(parentId) {
       );
       const {data: coachBatch} = useQuery(
         [STORAGE_KEYS.COACH_BATCH],
-        () => getCoachBatch({parentId}),
+        () => getCoachBatch({userData}),
         {cacheTime: 0, staleTime: 0},
       );
       const {data: coachActivityData} = useQuery(
         [STORAGE_KEYS.COACH_ACTIVITY],
-        () => getCoachActivity({parentId}),
+        () => getCoachActivity({userData}),
         {cacheTime: 0, staleTime: 0},
       );
 
@@ -38,14 +40,16 @@ export default function useCoachContainer(parentId) {
     // );
     const {mutate: getCoachAttendacneList} = useMutation(getCoachAttendanceList, {
       onSuccess: (data, payload) => {
+        console.log(payload,'payloadpayloadpayloadpayloadpayload');
+        
         setCoachAttendacnZustand(data)
       },
     });
 
     const {mutate: updateCoachAttendanceListMutate, isLoading: updateCoachAttendanceListMutateLoading} = useMutation(updateCoachAttendanceList, {
       onSuccess: (data, payload) => {
-        console.log(data,"updateCoachAttendanceList ON SUCCESS",payload)
-        getCoachAttendacneList({coachId: 2})
+        console.log(userData,"userDatauserDatauserDatauserDatauserData ON SUCCESS")
+        getCoachAttendacneList({coachId: userData})
         setCoachAttendacnZustand(data)
       },
     });

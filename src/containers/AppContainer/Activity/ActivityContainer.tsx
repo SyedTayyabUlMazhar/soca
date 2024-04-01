@@ -1,11 +1,14 @@
 import { getActivity } from '@Api/App';
 import { STORAGE_KEYS } from '@Constants/queryKeys';
+import { getItem } from '@Service/storageService';
 import { useQuery } from '@tanstack/react-query';
 
-export default function useActivityContainer(player_reg_no: any) {
+export default function useActivityContainer() {
+  const userData = getItem(STORAGE_KEYS.GET_PARENT_USER_DETAILS)
+  
   const {data: getActivityData, isLoading} = useQuery(
     [STORAGE_KEYS.GET_ACTIVITY],
-    () => getActivity({playerId: player_reg_no}),
+    () => getActivity({userData}),
     {
       cacheTime: 0,
       staleTime: 0,

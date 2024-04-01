@@ -8,6 +8,7 @@ import {navigate} from '@Service/navigationService';
 import NavigationRoutes from '@Navigator/NavigationRoutes';
 import {STORAGE_KEYS} from '@Constants/queryKeys';
 import {setItem} from '@Service/storageService';
+import Toast from 'react-native-toast-message';
 
 export default function useAuthLoginContainer() {
   const refForm = React.useRef();
@@ -44,6 +45,13 @@ export default function useAuthLoginContainer() {
       setItem(STORAGE_KEYS.TOKEN, data?.token);
       setItem(STORAGE_KEYS.GET_PARENT_USER_DETAILS, data?.parentId);
     },
+    onError:error=>{
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: error?.message,
+      });
+    }
   });
   const handleOnForgotPassord = useCallback(() => {
     navigate(NavigationRoutes.AUTH_STACK.FORGET_PASSWORD);

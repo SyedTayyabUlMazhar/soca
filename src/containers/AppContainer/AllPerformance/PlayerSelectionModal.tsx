@@ -8,6 +8,7 @@ import { Colors } from '@Theme/Colors';
 import Metrics from '@Utility/Metrics';
 import Fonts from '@Theme/Fonts';
 import { FemalePlayer, MalePlayer } from '@Asset/logo';
+import useAllPerformanceContainer from './AllPerformanceContainer';
 
 const PlayerSelectionModal = ({
   changeDeleteModalVisible,
@@ -17,7 +18,6 @@ const PlayerSelectionModal = ({
   
 }) => {
   const [selectedPlayer, setSelectedPlayer] = useState(null);
-
   const handleSubmit = () => {
     changeDeleteModalVisible(selectedPlayer);
     setIsDeleteAccountVisible(false);

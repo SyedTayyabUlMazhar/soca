@@ -8,6 +8,7 @@ import {navigate, pop} from '@Service/navigationService';
 import { setItem } from '@Service/storageService';
 import { STORAGE_KEYS } from '@Constants/queryKeys';
 import NavigationRoutes from '@Navigator/NavigationRoutes';
+import Toast from 'react-native-toast-message';
 
 export default function useAuthSignupContainer() {
   const refForm = React.useRef();
@@ -21,7 +22,16 @@ export default function useAuthSignupContainer() {
       // setItem(STORAGE_KEYS.PARENTID, data?.parentId);
       // setUserAuthentication(data);
       //   setUserAuthentication(data);
+     
     },
+    onError: error=>{
+        console.log(error,'errorerrorerrorerror');
+        Toast.show({
+          type: 'error',
+          text1: 'Error',
+          text2: error?.error,
+        });
+    }
   });
 
   const onSubmitForm = () => {

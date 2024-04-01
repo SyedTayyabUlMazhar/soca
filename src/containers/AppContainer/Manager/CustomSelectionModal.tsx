@@ -8,7 +8,7 @@ import { Colors } from '@Theme/Colors';
 import Fonts from '@Theme/Fonts';
 import Metrics from '@Utility/Metrics';
 import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ReactNativeModal from 'react-native-modal';
 import FormHandler from '@Component/FormHandler';
 import { DATE_FORMATS } from '@Utility/DateUtils';
@@ -53,11 +53,14 @@ const CustomSelectionModal = ({
         onBackdropPress={() => handleDropOffPress(false)}
         backdropTransitionOutTiming={0}>
         <View style={styles.modal}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+
           <Text style={{ ...Fonts.Medium(Fonts.Size.medium, Colors.DARK_BLUE),alignSelf:'center',marginBottom:Metrics.baseMargin}}>{title}</Text>
           {modalData?.map((item) => (
             <Sample item={item}/>
      
           ))}
+          </ScrollView>
         </View>
       </ReactNativeModal>
 
@@ -78,6 +81,8 @@ const styles = StyleSheet.create({
     borderRadius: Metrics.scale(15),
     justifyContent: 'center',
     // alignItems:'center'
+    height:420,
+    paddingVertical:20
   },
   buttonView: {
     flexDirection: 'row',

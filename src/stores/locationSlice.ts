@@ -14,16 +14,26 @@ interface ManagerFilterZustandSlice {
   setManagerFilterZustand: (data: any) => void;
   resetManagerFilterZustand: () => void;
 }
+
+interface ManagerAllocationSlice {
+  managerAllocationZustand: any | null;
+  setManagerAllocationZustand: (data: any) => void;
+  resetManagerAllocationZustand: () => void;
+}
 const initialLocationState: LocationSlice = {};
 const initialcoachAttendacnZustandState: Partial<CoachAttendacnZustandSlice> = {
   coachAttendacnZustand: {},
 };
 const initialManagerFilterZustandState: Partial<ManagerFilterZustandSlice> = {
-  managerFilterZustand: {},
+  managerFilterZustand: null,
 };
 
 const initialPlayerPerformanceZustandState: Partial<PlayerPerfomanceZustandSlice> = {
   playerPerformanceID: {},
+};
+
+const initialManagerAllocationState: Partial<ManagerAllocationSlice> = {
+  managerAllocationZustand: {},
 };
 
 
@@ -63,6 +73,17 @@ export const createPlayerPerformanceSlice = (set: any) => ({
       playerPerformanceID: data,
     })),
     resetPlayerPerformanceIDZustand: () => set(initialPlayerPerformanceZustandState),
+});
+
+
+export const createManagerAllocationSlice = (set: any) => ({
+  ...initialManagerAllocationState,
+  setManagerAllocationZustand: (data: any) =>
+    set(state => ({
+      ...state,
+      managerAllocationZustand: data,
+    })),
+    resetManagerAllocationZustand: () => set(initialManagerAllocationState),
 });
 
 

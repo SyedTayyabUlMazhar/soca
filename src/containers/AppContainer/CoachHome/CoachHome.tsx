@@ -5,10 +5,14 @@ import { coachTabs } from '@Constants/dummyData'
 import Header from '@Component/AppHeader'
 import { Colors } from '@Theme/index'
 import useCoachContainer from './CoachContainer'
+import { setItem } from '@Service/storageService'
+import { STORAGE_KEYS } from '@Constants/queryKeys'
 
 const CoachHome = ({route}) => {
   const {parentId}=route?.params|| {}
-  const {coachData,coachBatch}=useCoachContainer(parentId)
+  console.log(parentId,'This is player IOd');
+  setItem(STORAGE_KEYS.GET_COACH_ID,parentId);
+  const {coachData,coachBatch}=useCoachContainer()
   const coachParam=coachBatch?.data[0]
   const {Coach_name}=coachBatch?.data[0]||{}
   

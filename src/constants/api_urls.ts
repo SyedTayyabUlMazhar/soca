@@ -35,7 +35,8 @@ export const SERVICE_CONFIG_URLS = {
     PARENT_DATA:'/parent/',
     GET_PLAYER_PROFILE:`/player/`,
     GET_PLAYER_PERFORMANCE:'/player/',
-    GET_SPONSORS:'/sponsors'
+    GET_SPONSORS:'/sponsors',
+    ABOUT_US:'/about-us'
   },
   COACH:{
     COACH_INFO:'/coach-info/',

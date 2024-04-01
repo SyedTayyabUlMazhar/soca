@@ -5,7 +5,8 @@ import {
   PerformanceButtonSvg,
   RedeemedSvg,
   SavedSvg,
-  boy
+  boy,
+  girl
 } from '@Asset/logo';
 import ButtonView from '@Component/ButtonView';
 import FlatListHandler from '@Component/FlatlistHandler';
@@ -34,6 +35,7 @@ import { navigate } from '@Service/navigationService';
 import useHomeScreenContainer from './HomeScreenContainer';
 import { STORAGE_KEYS } from '@Constants/queryKeys';
 import { getItem } from '@Service/storageService';
+import SpinnerLoader from '@Component/SmallLoader';
 
 const HomeScreen = ({route}) => {
   const {player_reg_no: PlayerID, Player_Name} = route?.params?.item || {};
@@ -69,7 +71,7 @@ elem?.lns_usg_crt_mth
 const pndg_inv_amt=  parentData?.map((elem) => 
 elem?.pndg_inv_amt
 );
-const userData = getItem(STORAGE_KEYS.GET_PARENT_USER_DETAILS)
+
   
 
 
@@ -78,6 +80,7 @@ const handlePressRegisterEvent = () => {
 }
 
   const renderItem = ({item}: any) => {
+    
     return (
       <View>
         <View
@@ -89,7 +92,7 @@ const handlePressRegisterEvent = () => {
             borderRadius: 10,
             marginTop: Metrics.baseMargin,
           }}>
-          <Image source={boy} />
+          <Image source={item?.player_gender==="Female" ? girl : boy} />
           <View style={{marginHorizontal: Metrics.baseMargin}}>
             <H5 text={item?.Player_Name} style={{color: Colors.WHITE}} />
             <View style={{flexDirection: 'row'}}>
@@ -126,7 +129,10 @@ const handlePressRegisterEvent = () => {
         subText={'Welcome Back'}
         desc={ParentName}
       />
-      <View
+      {getFamilyplayerDataLoading ?      <View style={{flex:1,backgroundColor:Colors.APP_BACKGROUND,justifyContent:'center',marginTop:Metrics.verticalScale(250)}}>
+          <SpinnerLoader size={'large'} color={Colors.WHITE} />
+            
+          </View> :    <View
         style={{
           backgroundColor: Colors.APP_BACKGROUND,
           flex: 1,
@@ -164,10 +170,12 @@ const handlePressRegisterEvent = () => {
           marginHorizontal: Metrics.smallMargin,
           borderRadius: 10,
           paddingVertical: Metrics.doubleBaseMargin,
+          width:"22%",
+          justifyContent:'center'
         }}>
         <View><SavedSvg /></View>
         <H6 text={saved_crt_yr} style={{color: Colors.WHITE}} />
-        <H7 text='Saved' style={{color: Colors.ICE_BLUE}} />
+        <H7 text='Saved' style={{color: Colors.ICE_BLUE,textAlign:'center'}} />
       </View>
       <View
         style={{
@@ -179,10 +187,12 @@ const handlePressRegisterEvent = () => {
           marginHorizontal: Metrics.smallMargin,
           borderRadius: 10,
           paddingVertical: Metrics.doubleBaseMargin,
+          width:"22%",
+          justifyContent:'center'
         }}>
         <View><EarnedSvg /></View>
         <H6 text={earned_crt_yr} style={{color: Colors.WHITE}} />
-        <H7 text='Earned' style={{color: Colors.ICE_BLUE}} />
+        <H7 text='Earned' style={{color: Colors.ICE_BLUE,textAlign:'center'}} />
       </View>
       <View
         style={{
@@ -194,10 +204,12 @@ const handlePressRegisterEvent = () => {
           marginHorizontal: Metrics.smallMargin,
           borderRadius: 10,
           paddingVertical: Metrics.doubleBaseMargin,
+          width:"22%",
+          justifyContent:'center'
         }}>
         <View><RedeemedSvg /></View>
         <H6 text={Avlbl_Redeem} style={{color: Colors.WHITE}} />
-        <H7 text='To Redeem' style={{color: Colors.ICE_BLUE}} />
+        <H7 text='To Redeem' style={{color: Colors.ICE_BLUE,textAlign:'center'}} />
       </View>
       <View
         style={{
@@ -209,16 +221,18 @@ const handlePressRegisterEvent = () => {
           marginHorizontal: Metrics.smallMargin,
           borderRadius: 10,
           paddingVertical: Metrics.doubleBaseMargin,
+          width:"22%",
+          justifyContent:'center'
         }}>
         <View><MisRewardSvg /></View>
         <H6 text={missed_rwds_crt_yr} style={{color: Colors.WHITE}} />
-        <H7 text= 'Mis Rwds' style={{color: Colors.ICE_BLUE}} />
+        <H7 text= 'Mis Rwds' style={{color: Colors.ICE_BLUE,textAlign:'center'}} />
       </View>
         </ScrollView>
      
         </View>
         <View>
-          <ScrollView horizontal style={{flexDirection: 'row'}}>
+          <ScrollView horizontal style={{flexDirection: 'row',marginTop:Metrics.baseMargin,marginBottom:Metrics.baseMargin}}>
             <View style={{marginTop: Metrics.baseMargin}}>
               <H6 text="This month you" style={{color: Colors.TEXT_COLOR}} />
               <View
@@ -259,7 +273,7 @@ const handlePressRegisterEvent = () => {
                   borderRadius: 10,
                   marginTop: Metrics.baseMargin,
                 }}>
-                <H6 text="Lane Usage" style={{color: Colors.WHITE}} />
+                <H6 text="Pending Payment" style={{color: Colors.WHITE}} />
                 <View style={{flexDirection: 'row'}}>
                   <H7
                     text="for the month of: "
@@ -323,7 +337,8 @@ const handlePressRegisterEvent = () => {
                 </View>
           </ImageBackground>
         </View>
-      </View>
+      </View>}
+   
     </ScrollView>
 
   );

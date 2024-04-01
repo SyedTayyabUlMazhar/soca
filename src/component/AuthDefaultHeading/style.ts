@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   desc: {
     textAlign: "center",
     color: Colors.Colors.WARM_GREY,
-    ...Fonts.Regular(Fonts.Size.large, Colors.Colors.WHITE),
+    ...Fonts.Regular(Fonts.Size.medium, Colors.Colors.WHITE),
     marginTop: Metrics.verticalScale(5),
   },
 });

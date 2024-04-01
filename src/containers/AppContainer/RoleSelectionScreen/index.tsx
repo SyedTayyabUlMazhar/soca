@@ -16,7 +16,6 @@ const RoleSelectionScreen = () => {
     const getUserRoles = getItem(STORAGE_KEYS.ROLES_LIST);
     const [selectedRole, setSelectedRole] = useState(null);
     const parentId = getItem(STORAGE_KEYS.PARENTID);
-    console.log(parentId,'parentIdparentIdparentIdparentIdparentId');
     
     const handleRoleSelection = (role) => {
         setSelectedRole(role);
@@ -59,7 +58,7 @@ const RoleSelectionScreen = () => {
                             if (selectedRole == "coach") {
                                 navigate(NavigationRoutes.APP_STACK.COACH_HOME,{parentId})
                             }
-                            if (selectedRole == "team_mgr"){
+                            if (selectedRole == "team_mgr" || selectedRole == "Team Manager"){
                                 navigate(NavigationRoutes.APP_STACK.MANAGER_HOME,{parentId})
                             }
                         } else {

@@ -33,15 +33,27 @@ const PlayerAllocationInGame = () => {
   const [isDeleteAccountVisible, setIsDeleteAccountVisible] =
     React.useState(false);
   const [data, setData] = React.useState();
-  const [state, setState] = React.useState();
+  // const [state, setState] = React.useState();
   const setManagerFilterZustand = useBoundStore(
     (state: any) => state.setManagerFilterZustand,
   );
+  const managerFilterZustand = useBoundStore(
+    (state: any) => state.managerFilterZustand,
+  );
+  const setManagerAllocationZustand = useBoundStore(
+    (state: any) => state.setManagerAllocationZustand,
+  );
+  const managerAllocationZustand = useBoundStore(
+    (state: any) => state.managerAllocationZustand,
+  );
+  console.log(managerAllocationZustand,'managerAllocationZustandmanagerAllocationZustandmanagerAllocationZustand');
+  console.log(data,'datadatadatadatadatadatadata');
+  
   const cbFunc = item => {
     setData(item);
+    setManagerAllocationZustand(item)
   };
   const changeDeleteModalVisible = value => {
-    setState(value);
     setManagerFilterZustand(value)
   };
 
@@ -71,12 +83,12 @@ const PlayerAllocationInGame = () => {
         }}>
         <H6
           text={
-            state
-              ? `${moment(state?.date, 'M/D/YYYY').format('DD MMM')}, ${
-                  state?.tourney
-                }, ${state?.team}, ${
-                  state?.opponent
-                }, ${`Division ${state?.div}`}`
+            managerFilterZustand
+              ? `${moment(managerFilterZustand?.date, 'M/D/YYYY').format('DD MMM')}, ${
+                managerFilterZustand?.tourney
+                }, ${managerFilterZustand?.team}, ${
+                  managerFilterZustand?.opponent
+                }, ${`Division ${managerFilterZustand?.div}`}`
               : 'Select Date, Tournament, Team, Opponent, Division'
           }
           style={{color: Colors.Colors.WHITE}}

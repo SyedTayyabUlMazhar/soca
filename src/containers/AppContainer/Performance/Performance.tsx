@@ -7,6 +7,7 @@ import {
   DummyCircle,
   GirlPlayer,
   LeaguesIcon,
+  MalePlayer,
   PlayerImage,
   SilverSmallCup,
   TotalCatches,
@@ -24,13 +25,14 @@ import {Colors, Fonts} from '@Theme/index';
 import Metrics from '@Utility/Metrics';
 import usePerformanceContainer from './PerformanceContainer';
 import useProfileContainer from './ProfileContainer';
+import SpinnerLoader from '@Component/SmallLoader';
 
 export default function Performance({route}) {
 
 const {playerData}=route?.params || {}
 const {player_reg_no}=playerData||{}
 
-const {getProfileData}=useProfileContainer(player_reg_no)
+const {getProfileData,PlayerProfileLoading}=useProfileContainer(player_reg_no)
 
 console.log(getProfileData,'getProfileDatagetProfileDatagetProfileData');
 
@@ -38,31 +40,42 @@ console.log(getProfileData,'getProfileDatagetProfileDatagetProfileData');
   return (
     <View style={{backgroundColor:Colors.Colors.APP_BACKGROUND, flex: 1}}>
       <Header title="Player Performance" />
-      <ScrollView
+      {PlayerProfileLoading?        <View style={{flex:1,backgroundColor:Colors.Colors.APP_BACKGROUND,justifyContent:'center'}}>
+          <SpinnerLoader size={'large'} color={Colors.Colors.WHITE} />
+            
+          </View> :      <ScrollView
         contentContainerStyle={{paddingHorizontal: 15, paddingVertical: Metrics.scale(23),}}>
         <PlayerInfo playerData={getProfileData}/>
         <TotlaGamePlayed playerData={getProfileData} />
         <Attendance playerData={getProfileData}/>
         <FieldingErrors playerData={getProfileData}/>
-      </ScrollView>
+      </ScrollView>}
+
     </View>
   );
 }
 
 const PlayerInfo = ({playerData}) => {
   
-  const {Name,Tier,usacid}=playerData?.data||{}
+  const {Name,Tier,usacid,ccid,gender}=playerData?.data||{}
   return (
     <View style={styles.PlayerInfoContainer}>
-      <Image source={GirlPlayer} style={styles.image} />
+      <Image source={gender === "Female" ? GirlPlayer : MalePlayer} style={styles.image} />
       <View style={styles.playerInfoInnerWrapper}>
       <View style={styles.ageWrapper}>
         <AgeIcon />
         <H3 text="19" style={styles.ageText} />
       </View>
       <H3 text={Name} style={styles.nameText} />
-      <H3 text="USACID" style={styles.solganText} />
-      <H3 text={usacid ? usacid : "N/A"} style={styles.solganText}/>
+      <View style={{flexDirection:'row'}}>
+      <H3 text="USACID: " style={styles.solganText} />
+      <H3 text={usacid ? usacid : 'N/A'} style={styles.solganTexts} />
+      </View>
+      <View style={{flexDirection:'row'}}>
+      <H3 text="CCID: " style={styles.solganText} />
+      <H3 text={ccid ?ccid : 'N/A' } style={styles.solganTexts}/>
+      </View>
+    
       <View style={styles.cupWrapper}>
         <SilverSmallCup />
         <H3 text={Tier} style={styles.cupText} />
@@ -124,6 +137,7 @@ const Attendance = ({playerData}) => {
 };
 
 const FieldingErrors = ({playerData}) => {
+  
   const {catch_drops,full_toss,mis_runouts,misfields,missed_stumpings,short_balls}=playerData?.data?.fieldingErrors || {}
 
   return (
@@ -230,9 +244,13 @@ const styles = StyleSheet.create({
   nameText: {
     ...Fonts.Bold(Fonts.Size.large, Colors.Colors.WHITE),
     marginBottom: Metrics.scale(8),
+    width:'70%'
   },
   solganText: {
     ...Fonts.Medium(Fonts.Size.xSmall, Colors.Colors.WHITE),
+  },
+  solganTexts: {
+    ...Fonts.Medium(Fonts.Size.xSmall, Colors.Colors.ICE_BLUE),
   },
   totalGameBoxesWrapper: {
     flexDirection: 'row',
