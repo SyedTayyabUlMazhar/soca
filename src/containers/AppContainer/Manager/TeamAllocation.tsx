@@ -47,20 +47,19 @@ const PlayerAllocationInGame = () => {
     (state: any) => state.managerAllocationZustand,
   );
   console.log(managerAllocationZustand,'managerAllocationZustandmanagerAllocationZustandmanagerAllocationZustand');
-  console.log(data,'datadatadatadatadatadatadata');
   
-  const cbFunc = item => {
-    setData(item);
-    setManagerAllocationZustand(item)
-  };
+  // const cbFunc = item => {
+  //   // setData(item);
+  //   setManagerAllocationZustand(item)
+  // };
   const changeDeleteModalVisible = value => {
     setManagerFilterZustand(value)
   };
 
   // Extracting bat_pos and ovrs_qta from managerData and constructing tableData
   const tableData =
-    data?.data?.map((player, index) => [
-      `Player ${index + 1}`,
+  managerAllocationZustand?.data?.map((player, index) => [
+      player.plyr_name,
       player.bat_pos || '000',
       player.ovrs_qta || '000',
     ]) || [];
@@ -122,7 +121,7 @@ const PlayerAllocationInGame = () => {
       <ManagerModal
         changeDeleteModalVisible={changeDeleteModalVisible}
         setIsDeleteAccountVisible={setIsDeleteAccountVisible}
-        cbFunc={cbFunc}
+        // cbFunc={cbFunc}
         isDeleteAccountVisible={isDeleteAccountVisible}
         title={'Logout'}
         desc={'Are you sure you want to logout?'}

@@ -20,6 +20,7 @@ import {useQuery} from '@tanstack/react-query';
 import {getTeamAllocation} from '@Api/App';
 import {navigate} from '@Service/navigationService';
 import { queryClient } from '@Api/Client';
+import { useBoundStore } from '@Store/index';
 
 interface ICustomModal {
   title?: string;
@@ -59,7 +60,9 @@ const ManagerModal = ({
   const [selectedOpponent, setIsSelectedOpponent] = useState('');
   const [selectedDate, setIsSelectedDate] = useState('');
 
-
+  const setManagerAllocationZustand = useBoundStore(
+    (state: any) => state.setManagerAllocationZustand,
+  );
 
   const {
     getTournamentData,
@@ -78,19 +81,21 @@ const ManagerModal = ({
     selectedOpponent,
     selectedDate,
   );
+  console.log(getAllocationData,'getAllocationDatagetAllocationDatagetAllocationDatagetAllocationData');
 
-console.log(getAllocationData,'getAllocationDatagetAllocationDatagetAllocationDatagetAllocationData');
+setManagerAllocationZustand(getAllocationData);
 
-  // useEffect(() => {
-  //   if (
-  //     selectedTourney &&
-  //     selectedTeam &&
-  //     selectedDivision &&
-  //     selectedOpponent
-  //   ) {
-  //     getDateRefetch()
-  //   }
-  // }, [selectedTourney, selectedTeam, selectedDivision, selectedOpponent]);
+
+  useEffect(() => {
+    if (
+      selectedTourney &&
+      selectedTeam &&
+      selectedDivision &&
+      selectedOpponent
+    ) {
+      getDateRefetch()
+    }
+  }, [selectedTourney, selectedTeam, selectedDivision, selectedOpponent]);
   const toggleTourneyModal = () => {
     setIsTourneyModalVisible(!isTourneyModalVisible);
   };
@@ -126,12 +131,11 @@ console.log(getAllocationData,'getAllocationDatagetAllocationDatagetAllocationDa
     setIsDivisionModalVisible(false);
   };
   const handleOpponentSelection = opponent => {
-    // getDateRefetch()
+    getDateRefetch()
     setIsSelectedOpponent(opponent);
     setIsOpponentModalVisible(false);
   };
   const handleDateSelection = date => {
-    
     setIsSelectedDate(date);
     setIsDateModalVisible(false);
   };
@@ -172,13 +176,13 @@ console.log(getAllocationData,'getAllocationDatagetAllocationDatagetAllocationDa
     };
     console.log(payload, 'payload');
     changeDeleteModalVisible(payload);
-    setIsDeleteAccountVisible(false);
     AllocationRefetch();
 
-    cbFunc(getAllocationData);
+    setIsDeleteAccountVisible(false);
 
 
-    fieldingSessionRefetch()
+
+    // fieldingSessionRefetch()
     
   };
   

@@ -182,11 +182,12 @@ export const getAgeGroup = async () => {
 };
 
 export const getPlayerPerformance = async (params: any) => {
+const {userData}=params || {}
 
   const getPlayerId= params?.playerId ? params?.playerId : params
   console.log(getPlayerId, "-----",params,'paramsparamsparamsparamsparamsparams getPlayerPerformancegetPlayerPerformancegetPlayerPerformancegetPlayerPerformance');
   const {data} = await apiRequest({
-    url: `${SERVICE_CONFIG_URLS.PLAYER.GET_PLAYER_PERFORMANCE}zohaib/performance/2024?playerId=${getPlayerId}`,
+    url: `${SERVICE_CONFIG_URLS.PLAYER.GET_PLAYER_PERFORMANCE}${userData}/performance/2023?playerId=${getPlayerId}`,
     method: API_CONFIG.GET,
     // params,
     showLoader: false,
@@ -227,7 +228,8 @@ export const getTournament = async () => {
   return data;
 };
 export const getCoachAttendanceList = async (params) => {
-  console.log(params, "params OF getCoachAttendanceList")
+  console.log(params,'paramsparamsparamsparams');
+  
   const {dob,team,tourney}=params?.payload || {}
   let apiURLDefeault = `${SERVICE_CONFIG_URLS.COACH.GET_COACH_ATTENDANCE_LIST}/${params?.coachId}`
   let apiURLParams = `${SERVICE_CONFIG_URLS.COACH.GET_COACH_ATTENDANCE_LIST}/${params?.coachId}?date=${dob}&location=${team}&age_grp=${tourney}`
@@ -263,7 +265,7 @@ export const getTeam = async () => {
 };
 
 export const getDate = async (params: any) => {
-  console.log(params,'paramsparamsparamsparams');
+
   
  const {selectedDivision,selectedOpponent,selectedTeam,selectedTourney,userData}=params || {}
   const {data} = await apiRequest({
@@ -278,7 +280,6 @@ export const getDate = async (params: any) => {
 
 export const getTeamAllocation = async (params: any) => {
   const {selectedDivision,selectedOpponent,selectedTeam,selectedTourney,userData,  selectedDate}=params || {}
-  console.log(params,"This is params")
   const {data} = await apiRequest({
     url: `${SERVICE_CONFIG_URLS.MANAGER.GET_TEAM_ALLOCATION}${userData}?date=${selectedDate}&team=${selectedTeam}&tournament=${selectedTourney}&opponent=${selectedOpponent}&division=${selectedDivision}`,
     method: API_CONFIG.GET,
@@ -300,11 +301,12 @@ export const updateCoachAttendanceList = async (params) => {
 }
 
 export const getFieldingSession = async (params: any) => {
-  console.log(params,"This is paramsss")
   const {selectedDivision,selectedOpponent,selectedTeam,selectedTourney,userData,  selectedDate}=params || {}
+  console.log(params,'Params of Sesssionssssssss');
   const {data} = await apiRequest({
-    // url: `${SERVICE_CONFIG_URLS.MANAGER.GET_FIELDING}1?date=4/6/2024&team=soca strikers&tournament=wycl&opponent=ssca knights&division=1`,
-    url: `${SERVICE_CONFIG_URLS.MANAGER.GET_FIELDING}${userData}?date=${selectedDate}&team=${selectedTeam}&tournament=${selectedTourney}&opponent=${selectedOpponent}&division=${selectedDivision}`,
+    url: `${SERVICE_CONFIG_URLS.MANAGER.GET_FIELDING}1?date=4/6/2024&team=soca strikers&tournament=wycl&opponent=ssca knights&division=1`,
+    // url: `${SERVICE_CONFIG_URLS.MANAGER.GET_FIELDING}${userData}?date=${selectedDate}&team=${selectedTeam}&tournament=${selectedTourney}&opponent=${selectedOpponent}&division=${selectedDivision}`,
+    
     method: API_CONFIG.GET,
     params,
     showLoader: false,

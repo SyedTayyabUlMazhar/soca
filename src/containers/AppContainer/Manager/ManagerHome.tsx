@@ -15,7 +15,6 @@ const ManagerHome = ({route}) => {
   const ParentName = parentData?.map((elem) => 
     elem?.Parent_Name
 );
-console.log(ParentName,'ParentNameParentNameParentNameParentName');
 
   return (
     <View style={{flex: 1, backgroundColor: Colors.Colors.APP_BACKGROUND}}>

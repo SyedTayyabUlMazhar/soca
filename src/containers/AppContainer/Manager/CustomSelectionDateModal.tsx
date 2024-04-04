@@ -1,21 +1,9 @@
-import { Email, FaqsIcon, LogoSvg, LogoutSvg } from '@Asset/logo';
-import ButtonView from '@Component/ButtonView';
-import FormDataInput from '@Component/FormDateInput';
-import H2 from '@Component/Headings/H2';
-import H4 from '@Component/Headings/H4';
-import Input from '@Component/Input';
 import { Colors } from '@Theme/Colors';
 import Fonts from '@Theme/Fonts';
 import Metrics from '@Utility/Metrics';
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ReactNativeModal from 'react-native-modal';
-import FormHandler from '@Component/FormHandler';
-import { DATE_FORMATS } from '@Utility/DateUtils';
-import SimpleModal from '@Component/SimpleModal/SimpleModal';
-import H6 from '@Component/Headings/H6';
-
-
 
 interface ICustomModal {
   title?: string;
@@ -23,44 +11,60 @@ interface ICustomModal {
   handleDropOffPress: Function;
   handleSelection: Function;
   isModalVisible: boolean;
-  modalData:any
+  modalData: any;
 }
 
 const CustomSelectionDateModal = ({
-    isModalVisible,
-    handleSelection,
-    title,
-    handleDropOffPress,
-    modalData
+  isModalVisible,
+  handleSelection,
+  title,
+  handleDropOffPress,
+  modalData,
 }: ICustomModal) => {
   const refForm = React.useRef();
-  const Sample=({item})=>{
-    
-    return(
-        <TouchableOpacity
-        key={item}
-        
-        onPress={() => handleSelection(item)}>
-          
-        <Text style={{ ...Fonts.Medium(Fonts.Size.small, Colors.WHITE),marginVertical:Metrics.smallMargin}}>{ item}</Text>
-      </TouchableOpacity>
-    )
-  }
-  return (
-      <ReactNativeModal isVisible={isModalVisible} animationIn={'fadeIn'}
-        animationOut={'fadeOut'}
-        backdropOpacity={0.7}
-        onBackdropPress={() => handleDropOffPress(false)}
-        backdropTransitionOutTiming={0}>
-        <View style={styles.modal}>
-          <Text style={{ ...Fonts.Medium(Fonts.Size.medium, Colors.DARK_BLUE),alignSelf:'center',marginBottom:Metrics.baseMargin}}>{title}</Text>
-          {modalData?.map((item) => (
-            <Sample item={item}/>
-     
-          ))}
-        </View>
-      </ReactNativeModal>
+  
+  // Function to filter out duplicate items
+  const filterUniqueItems = () => {
+    const uniqueItems = new Set(modalData); // Create a Set to store unique items
+    return Array.from(uniqueItems); // Convert the Set back to an array
+  };
 
+  const Sample = ({item}) => {
+    return (
+      <TouchableOpacity key={item} onPress={() => handleSelection(item)}>
+        <Text
+          style={{
+            ...Fonts.Medium(Fonts.Size.small, Colors.WHITE),
+            marginVertical: Metrics.smallMargin,
+          }}>
+          {item}
+        </Text>
+      </TouchableOpacity>
+    );
+  };
+
+  return (
+    <ReactNativeModal
+      isVisible={isModalVisible}
+      animationIn={'fadeIn'}
+      animationOut={'fadeOut'}
+      backdropOpacity={0.7}
+      onBackdropPress={() => handleDropOffPress(false)}
+      backdropTransitionOutTiming={0}>
+      <View style={styles.modal}>
+        <Text
+          style={{
+            ...Fonts.Medium(Fonts.Size.medium, Colors.DARK_BLUE),
+            alignSelf: 'center',
+            marginBottom: Metrics.baseMargin,
+          }}>
+          {title}
+        </Text>
+        {filterUniqueItems().map(item => ( // Render only unique items
+          <Sample item={item} />
+        ))}
+      </View>
+    </ReactNativeModal>
   );
 };
 
@@ -97,7 +101,7 @@ const styles = StyleSheet.create({
     borderWidth: Metrics.scale(1),
     borderColor: Colors.GREY_BORDER,
     justifyContent: 'center',
-    backgroundColor: Colors.ICE_BLUE
+    backgroundColor: Colors.ICE_BLUE,
   },
   title: {
     ...Fonts.SemiBold(Fonts.Size.medium, Colors.WHITE),

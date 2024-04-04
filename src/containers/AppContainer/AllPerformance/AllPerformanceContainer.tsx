@@ -6,11 +6,9 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 
 export default function useAllPerformanceContainer(playerId) {
-  console.log(playerId,'playerIdplayerIdplayerIdplayerId');
   
   const playerPerformanceID = useBoundStore(state => state.playerPerformanceID);
     const userData = getItem(STORAGE_KEYS.GET_PARENT_USER_DETAILS)
-    console.log(playerPerformanceID,'playerPerformanceIDplayerPerformanceIDplayerPerformanceID');
 
       const {data: getFamilyplayerData} = useQuery(
         [STORAGE_KEYS.GET_FAMILY_PLAYERS],
@@ -20,7 +18,7 @@ export default function useAllPerformanceContainer(playerId) {
 
     const {data: playerPerformanceData,refetch: refetchPlayerPerformanceData} = useQuery(
         [STORAGE_KEYS.GET_ALL_PERFORMANCE],
-        () => getPlayerPerformance({playerId: playerId ? playerId : playerPerformanceID}),
+        () => getPlayerPerformance({userData,playerId: playerId ? playerId : playerPerformanceID}),
         {cacheTime: 0, staleTime: 0, onSuccess(data) {
         },},
         

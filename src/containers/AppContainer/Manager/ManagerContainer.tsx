@@ -47,10 +47,15 @@ export default function useManagerContainer(
     cacheTime: 0,
     staleTime: 0,
   });
+console.log(selectedTourney,selectedDivision,selectedTeam,selectedOpponent,'selectedTourneyselectedTourneyselectedTourney');
 
   const {data: getDateData,refetch:getDateRefetch} = useQuery(
     [STORAGE_KEYS.GET_DATE],
     () =>
+    selectedTourney &&
+    selectedDivision &&
+    selectedTeam &&
+    selectedOpponent &&
       getDate({
         selectedTourney,
         selectedDivision,
@@ -64,11 +69,11 @@ export default function useManagerContainer(
   const {data: getAllocationData, refetch: AllocationRefetch} = useQuery(
     [STORAGE_KEYS.GET_ALLOCATION],
     () =>
-      selectedDate ||
-      selectedTourney ||
-      selectedDivision ||
-      selectedTeam ||
-      selectedOpponent ||
+      selectedDate &&
+      selectedTourney &&
+      selectedDivision &&
+      selectedTeam &&
+      selectedOpponent &&
       getTeamAllocation({
         selectedDate,
         selectedTourney,

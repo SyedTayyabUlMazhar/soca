@@ -35,7 +35,6 @@ const playerPerformanceID = useBoundStore(state => state.playerPerformanceID);
 
 
   const changeDeleteModalVisible = player => {
-console.log("11111111111111");
 
     refetchPlayerPerformanceData()
 
@@ -81,7 +80,7 @@ console.log("11111111111111");
       paddingVertical: Metrics.scale(23),
     }}
   >
-    <OverAllPerformance />
+    <OverAllPerformance  playerId={playerId}/>
     <PlayerStatistics playerId={playerId}/>
   </ScrollView>
       <PlayerSelectionModal
@@ -96,7 +95,10 @@ console.log("11111111111111");
   );
 };
 
-const OverAllPerformance = () => {
+const OverAllPerformance = ({playerId}) => {
+  const {playerPerformanceData} = useAllPerformanceContainer(playerId);
+  console.log(playerPerformanceData,'playerPerformanceDataplayerPerformanceDataplayerPerformanceDataplayerPerformanceData');
+  const {Higest,TotalRuns}=playerPerformanceData?.data||{}
   return (
     <View style={styles.overAllPerformanceWrapper}>
       <View style={styles.overAllPerformanceInnerWrapper}>
@@ -127,11 +129,11 @@ const OverAllPerformance = () => {
             text="Runs"
             style={styles.overAllPerformanceInnersingleBoxLabel}
           />
-          <H5 text="000" style={styles.overAllPerformanceInnersingleBoxDesc} />
+          <H5 text={TotalRuns} style={styles.overAllPerformanceInnersingleBoxDesc} />
         </View>
         <View style={styles.overAllPerformanceInnersingleBox}>
           <H2 text="HS" style={styles.overAllPerformanceInnersingleBoxLabel} />
-          <H5 text="000" style={styles.overAllPerformanceInnersingleBoxDesc} />
+          <H5 text={Higest} style={styles.overAllPerformanceInnersingleBoxDesc} />
         </View>
       </View>
     </View>
@@ -218,8 +220,8 @@ const Metric = ({ metric, rowIndex, categories, playerPerformanceData }: any) =>
             <View style={[styles.cell, styles.emptyCell]}>
                 <Text numberOfLines={2} style={[styles.checkingTexts, styles.metricText]}>
                     {abbreviation}
-                    {/* {firstLine}
-                    {shouldSplit && '\n' + secondLine} */}
+                     {/* {firstLine}
+                    {shouldSplit && '\n' + secondLine}  */}
                 </Text>
             </View>
             {categories.map((category, colIndex) => (
@@ -279,7 +281,7 @@ const styles = StyleSheet.create({
   },
   checkingTexts: {
     ...Fonts.Medium(Fonts.Size.xxxxSmall, Colors.Colors.ICE_BLUE),
-    
+    width:'120%'
   },
  
 

@@ -211,6 +211,11 @@ import MisRewards from './MisRewards.svg'
 import TotalCatches from './TotalCatches.svg'
 import PlusSign from './PlusSign.svg'
 import MinusSign from './MinusSign.svg'
+import Indus from './Indus.jpeg'
+import Gurus from './Gurus.png'
+import EJ from './EJ.png'
+import B from './B.jpeg'
+import Hermans from './Hermans.jpeg'
 
 export {
   PresentIcon,
@@ -422,5 +427,10 @@ CancelSmallIcon,
   TotalCatches,
   PlusSign,
   MinusSign,
-  BoyPlayer
+  BoyPlayer,
+  Indus,
+  Gurus,
+  EJ,
+  B,
+  Hermans
 };

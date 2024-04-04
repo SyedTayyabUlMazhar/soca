@@ -65,6 +65,7 @@ const PlayerAllocationInGame = () => {
 
 
   const playerData = getSessionData?.data; // Assuming there are multiple players' data
+console.log(getSessionData,'playerDataplayerDataplayerDataplayerData');
 
   return (
     <View style={styles.todayPlayerAttendanceWrapper}>
@@ -148,7 +149,7 @@ const PlayerAllocationInGame = () => {
           </Text>
         </View>
         {/* Render player data */}
-        {data?.data?.map((player, index) => (
+        {getSessionData?.data?.map((player, index) => (
           <View key={index} style={styles.row}>
             <Text
               style={[
