@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     borderRadius: Metrics.scale(15),
     justifyContent: 'center',
     // alignItems:'center'
-    height:420,
+    height:300,
     paddingVertical:20
   },
   buttonView: {

@@ -228,7 +228,7 @@ export const getTournament = async () => {
   return data;
 };
 export const getCoachAttendanceList = async (params) => {
-  console.log(params,'paramsparamsparamsparams');
+  console.log(params,'paramsparamsparams');
   
   const {dob,team,tourney}=params?.payload || {}
   let apiURLDefeault = `${SERVICE_CONFIG_URLS.COACH.GET_COACH_ATTENDANCE_LIST}/${params?.coachId}`
@@ -302,11 +302,10 @@ export const updateCoachAttendanceList = async (params) => {
 
 export const getFieldingSession = async (params: any) => {
   const {selectedDivision,selectedOpponent,selectedTeam,selectedTourney,userData,  selectedDate}=params || {}
-  console.log(params,'Params of Sesssionssssssss');
+  // console.log(params,'Params of Sesssionssssssss');
   const {data} = await apiRequest({
-    url: `${SERVICE_CONFIG_URLS.MANAGER.GET_FIELDING}1?date=4/6/2024&team=soca strikers&tournament=wycl&opponent=ssca knights&division=1`,
-    // url: `${SERVICE_CONFIG_URLS.MANAGER.GET_FIELDING}${userData}?date=${selectedDate}&team=${selectedTeam}&tournament=${selectedTourney}&opponent=${selectedOpponent}&division=${selectedDivision}`,
-    
+    // url: `${SERVICE_CONFIG_URLS.MANAGER.GET_FIELDING}1?date=4/6/2024&team=soca strikers&tournament=wycl&opponent=ssca knights&division=1`,
+    url: `${SERVICE_CONFIG_URLS.MANAGER.GET_FIELDING}${userData}?date=${selectedDate}&team=${selectedTeam}&tournament=${selectedTourney}&opponent=${selectedOpponent}&division=${selectedDivision}`,   
     method: API_CONFIG.GET,
     params,
     showLoader: false,
@@ -315,8 +314,10 @@ export const getFieldingSession = async (params: any) => {
   return data;
 };
 export const updateFieldingSession = async (params) => {
+  console.log(params,"THis is params of puttting fiedling");
+  const {div,gm_date,managerId,opp_team,playerId,soca_team,tourney}=params ||{}
   const {data} = await apiRequest({
-    url: `${SERVICE_CONFIG_URLS.MANAGER.UPDATE_GET_FIELDING}1/CLB-154?date=4/6/2024&team=soca strikers&tournament=wycl&opponent=ssca knights`,
+    url: `${SERVICE_CONFIG_URLS.MANAGER.UPDATE_GET_FIELDING}${managerId}/${playerId}?date=${gm_date}&team=${soca_team}&tournament=${tourney}&opponent=${opp_team}&division=${div}`,
     method: API_CONFIG.PUT,
     showLoader: false,
     params,

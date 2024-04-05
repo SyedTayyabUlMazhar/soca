@@ -20,6 +20,11 @@ interface ManagerAllocationSlice {
   setManagerAllocationZustand: (data: any) => void;
   resetManagerAllocationZustand: () => void;
 }
+interface FieldingZustandSlice {
+  fieldingZustand: any | null;
+  setFieldingZustand: (data: any) => void;
+  resetFieldingZustand: () => void;
+}
 const initialLocationState: LocationSlice = {};
 const initialcoachAttendacnZustandState: Partial<CoachAttendacnZustandSlice> = {
   coachAttendacnZustand: {},
@@ -34,6 +39,10 @@ const initialPlayerPerformanceZustandState: Partial<PlayerPerfomanceZustandSlice
 
 const initialManagerAllocationState: Partial<ManagerAllocationSlice> = {
   managerAllocationZustand: {},
+};
+
+const initialFieldingState: Partial<FieldingZustandSlice> = {
+  fieldingZustand: {},
 };
 
 
@@ -86,4 +95,14 @@ export const createManagerAllocationSlice = (set: any) => ({
     resetManagerAllocationZustand: () => set(initialManagerAllocationState),
 });
 
+
+export const createFieldingSlice = (set: any) => ({
+  ...initialFieldingState,
+  setFieldingZustand: (data: any) =>
+    set(state => ({
+      ...state,
+      fieldingZustand: data,
+    })),
+    resetFieldingZustand: () => set(initialFieldingState),
+});
 

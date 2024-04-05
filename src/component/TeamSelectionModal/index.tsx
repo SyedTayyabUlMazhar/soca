@@ -113,7 +113,7 @@ const TeamSelectionModal = ({
                 <FormDataInput
                   {...SCHEMAS.dob('dob')}
                   mode="date"
-                  minimumDate={ new Date()}
+                  isDob={true}
                   placeholder={"Select Date"}
                   label="Select Date"
                 />

@@ -46,7 +46,6 @@ const PlayerAllocationInGame = () => {
   const managerAllocationZustand = useBoundStore(
     (state: any) => state.managerAllocationZustand,
   );
-  console.log(managerAllocationZustand,'managerAllocationZustandmanagerAllocationZustandmanagerAllocationZustand');
   
   // const cbFunc = item => {
   //   // setData(item);

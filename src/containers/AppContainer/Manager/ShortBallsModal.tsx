@@ -5,7 +5,7 @@ import H6 from '@Component/Headings/H6';
 import { Colors } from '@Theme/Colors';
 import Fonts from '@Theme/Fonts';
 import Metrics from '@Utility/Metrics';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import ReactNativeModal from 'react-native-modal';
 import useManagerContainer from './ManagerContainer';
@@ -21,7 +21,10 @@ interface ICustomModal {
     primaryBtnTxt?: string;
     value?: number; // Assuming value is a number
     shortBalls?:number
- 
+    playerId?:any
+    managerId?:any
+    data?:any
+    selectedPlayer?:any
   }
   
   const ShortBallsModal = ({
@@ -30,10 +33,13 @@ interface ICustomModal {
     isDeleteAccountVisible,
     isNetConnection = true,
     shortBalls,
-
+    playerId,
+    managerId,
+    data,
+    selectedPlayer
   }: ICustomModal) => {
-    
-    const [count, setCount] = useState(shortBalls);
+    const {opp_team,soca_team,tourney,div,gm_date,team_mgr_1_id,player_reg_no}=selectedPlayer || {}
+    const [count, setCount] = useState(selectedPlayer ? selectedPlayer.short_balls : 0);
   const {updateFieldingSessionMutate}=useManagerContainer()
     const closeModal = (bool: boolean) => {
       changeDeleteModalVisible(bool);
@@ -42,7 +48,11 @@ interface ICustomModal {
     const handleBackDrop = (bool: boolean) => {
       setIsDeleteAccountVisible(bool);
     };
-  
+    useEffect(() => {
+      if (selectedPlayer) {
+          setCount(selectedPlayer.short_balls);
+      }
+  }, [selectedPlayer]);
     const increment = () => {
             setCount(prevCount => ++prevCount );
       };
@@ -56,6 +66,13 @@ interface ICustomModal {
       const handlePressSubmit = () => {
         const payload = {
             short_balls: count,
+            playerId:player_reg_no,
+            managerId:team_mgr_1_id,
+            opp_team,
+            soca_team,
+            tourney,
+            div,
+            gm_date
         }
         updateFieldingSessionMutate(payload)
         setIsDeleteAccountVisible(false);

@@ -5,7 +5,7 @@ import H6 from '@Component/Headings/H6';
 import { Colors } from '@Theme/Colors';
 import Fonts from '@Theme/Fonts';
 import Metrics from '@Utility/Metrics';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import ReactNativeModal from 'react-native-modal';
 import useManagerContainer from './ManagerContainer';
@@ -25,6 +25,10 @@ interface ICustomModal {
     misrunouts?: number; 
     fulltoss?: number; 
     shortballs?: number; 
+    playerId?:any
+    managerId?:any
+    data?:any
+    selectedPlayer?:any
   }
   
   const IncreamentModal = ({
@@ -32,16 +36,22 @@ interface ICustomModal {
     setIsDeleteAccountVisible,
     isDeleteAccountVisible,
     isNetConnection = true,
-    catchDrop,
-
+  
+    selectedPlayer
   }: ICustomModal) => {
+    const {opp_team,soca_team,tourney,div,gm_date,catch_drops,team_mgr_1_id,player_reg_no}=selectedPlayer || {}
     
-    const [count, setCount] = useState(catchDrop);
+    const [count, setCount] = useState(selectedPlayer ? selectedPlayer.catch_drops : 0);
   const {updateFieldingSessionMutate}=useManagerContainer()
     const closeModal = (bool: boolean) => {
       changeDeleteModalVisible(bool);
     };
-  
+  console.log(count,'countcountcountcountcount');
+  useEffect(() => {
+    if (selectedPlayer) {
+        setCount(selectedPlayer.catch_drops);
+    }
+}, [selectedPlayer]);
     const handleBackDrop = (bool: boolean) => {
       setIsDeleteAccountVisible(bool);
     };
@@ -59,6 +69,13 @@ interface ICustomModal {
       const handlePressSubmit = () => {
         const payload = {
           catch_drops: count,
+          playerId :player_reg_no,
+          managerId :team_mgr_1_id,
+          opp_team,
+          soca_team,
+          tourney,
+          div,
+          gm_date
         }
         updateFieldingSessionMutate(payload)
         setIsDeleteAccountVisible(false);

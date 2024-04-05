@@ -6,7 +6,7 @@ import TeamSelectionModal from '@Component/TeamSelectionModal';
 import {Colors, Fonts} from '@Theme/index';
 import Metrics from '@Utility/Metrics';
 import * as React from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ActivityIndicator, ScrollView, StyleSheet, Text, View} from 'react-native';
 import ManagerModal from './ManagerModal';
 import useManagerContainer from './ManagerContainer';
 import CustomModal from '@Component/CustomModal/CustomModal';
@@ -39,6 +39,29 @@ const PlayerAllocationInGame = () => {
     const [isRunOutsModalVisible, setIsRunOutsModalVisible] = React.useState(false);
     const [isFullTossModalVisible, setIsFullTossModalVisible] = React.useState(false);
     const [isShortBallsModalVisible, setIsShortBallsModalVisible] = React.useState(false)
+    const [selectedPlayer, setSelectedPlayer] = React.useState(null);
+
+    const handlePlayerSelection = (playerData) => {
+      
+      setSelectedPlayer(playerData);
+      setIsModalVisible(true); // Open the modal when player is selected
+    };
+    const handlePlayerMis = (playerData) => {
+      setIsMisfieldsModalVisible(true)
+      setSelectedPlayer(playerData);
+    };
+    const handlePlayerRO= (playerData) => {
+      setIsRunOutsModalVisible(true)
+      setSelectedPlayer(playerData);
+    };
+    const handlePlayerShortBall= (playerData) => {
+      setIsShortBallsModalVisible(true)
+      setSelectedPlayer(playerData);
+    };
+    const handlePlayerFullToss= (playerData) => {
+      setIsFullTossModalVisible(true)
+      setSelectedPlayer(playerData);
+    };
     const [data, setData] = React.useState();
   const changeDeleteModalVisible = value => {
 
@@ -56,16 +79,27 @@ const PlayerAllocationInGame = () => {
     (state: any) => state.managerFilterZustand,
   );
 
+  const setFieldingZustand = useBoundStore(
+    (state: any) => state.setFieldingZustand,
+  );
+
+  const fieldingZustand = useBoundStore(
+    (state: any) => state.fieldingZustand,
+  );
   const CallbackFuntion = item => {
     setData(item)
   };
+console.log(fieldingZustand,'fieldingZustandfieldingZustandfieldingZustandfieldingZustand');
 
   
-  const {getSessionData, updateSession} = useManagerContainer();
-
-
+  const {getSessionData, updateSession,fieldingSessionRefetch,getAllocationData} = useManagerContainer();
+  console.log(getSessionData,'getSessionDatagetSessionDatagetSessionDatagetSessionDatagetSessionData');
+  setFieldingZustand(getSessionData)
+  if (!getSessionData) {
+    return <ActivityIndicator />; // or any loading indicator
+  }
   const playerData = getSessionData?.data; // Assuming there are multiple players' data
-console.log(getSessionData,'playerDataplayerDataplayerDataplayerData');
+
 
   return (
     <View style={styles.todayPlayerAttendanceWrapper}>
@@ -149,7 +183,7 @@ console.log(getSessionData,'playerDataplayerDataplayerDataplayerData');
           </Text>
         </View>
         {/* Render player data */}
-        {getSessionData?.data?.map((player, index) => (
+        {managerFilterZustand && playerData?.map((player, index) => (
           <View key={index} style={styles.row}>
             <Text
               style={[
@@ -159,10 +193,10 @@ console.log(getSessionData,'playerDataplayerDataplayerDataplayerData');
                   ...Fonts.Medium(Fonts.Size.xxxxSmall, Colors.Colors.ICE_BLUE),
                   marginRight: 10,
                 },
-              ]}>{`Player ${index + 1}`}</Text>
+              ]}>{player.plyr_name}</Text>
 
             <Text
-              onPress={() => setIsModalVisible(true)}
+             onPress={() => handlePlayerSelection(player)}
               style={[
                 styles.cell,
                 {
@@ -174,7 +208,7 @@ console.log(getSessionData,'playerDataplayerDataplayerDataplayerData');
               {player.catch_drops}
             </Text>
             <Text
-            onPress={()=>setIsMisfieldsModalVisible(true)}
+            onPress={()=>handlePlayerMis(player)}
               style={[
                 styles.cell,
                 {
@@ -186,7 +220,7 @@ console.log(getSessionData,'playerDataplayerDataplayerDataplayerData');
               {player.misfields}
             </Text>
             <Text
-            onPress={()=>setIsRunOutsModalVisible(true)}
+            onPress={()=>handlePlayerRO(player)}
               style={[
                 styles.cell,
                 {
@@ -198,7 +232,7 @@ console.log(getSessionData,'playerDataplayerDataplayerDataplayerData');
               {player.mis_runouts}
             </Text>
             <Text
-            onPress={()=>setIsFullTossModalVisible(true)}
+            onPress={()=>handlePlayerFullToss(player)}
               style={[
                 styles.cell,
                 {
@@ -210,7 +244,7 @@ console.log(getSessionData,'playerDataplayerDataplayerDataplayerData');
               {player.full_toss}
             </Text>
             <Text
-            onPress={()=>{setIsShortBallsModalVisible(true)}}
+            onPress={()=>{handlePlayerShortBall(player)}}
               style={[
                 styles.cell,
                 {
@@ -226,30 +260,36 @@ console.log(getSessionData,'playerDataplayerDataplayerDataplayerData');
               setIsDeleteAccountVisible={setIsModalVisible}
               isDeleteAccountVisible={isModalVisible}
               catchDrop={player.catch_drops} 
+       
+              selectedPlayer={selectedPlayer}
             />
                 <MisfieldsModal
               changeDeleteModalVisible={handleCallback}
               setIsDeleteAccountVisible={setIsMisfieldsModalVisible}
               isDeleteAccountVisible={isMisfieldsModalVisible}
               misfields={player.misfields}
+              selectedPlayer={selectedPlayer}
             />
             <RunsOutModal
               changeDeleteModalVisible={handleCallback}
               setIsDeleteAccountVisible={setIsRunOutsModalVisible}
               isDeleteAccountVisible={isRunOutsModalVisible}
               misRunOuts={player.mis_runouts}
+              selectedPlayer={selectedPlayer}
             />
             <FullTossModal
               changeDeleteModalVisible={handleCallback}
               setIsDeleteAccountVisible={setIsFullTossModalVisible}
               isDeleteAccountVisible={isFullTossModalVisible}
               fullToss={player.full_toss}
+              selectedPlayer={selectedPlayer}
             />
             <ShortBallsModal
               changeDeleteModalVisible={handleCallback}
               setIsDeleteAccountVisible={setIsShortBallsModalVisible}
               isDeleteAccountVisible={isShortBallsModalVisible}
               shortBalls={player.short_balls}
+              selectedPlayer={selectedPlayer}
             />
           </View>
         ))}

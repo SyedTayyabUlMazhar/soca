@@ -8,7 +8,6 @@ import useHomeScreenContainer from '../Home/HomeScreenContainer'
 
 const ManagerHome = ({route}) => {
   const {parentId}=route?.params|| {}
-  console.log(parentId,'This is player IOd');
   const {
     parentData
   } = useHomeScreenContainer(parentId);

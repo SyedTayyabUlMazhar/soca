@@ -12,7 +12,7 @@ const MinAge = new Date();
 const MaxAge = new Date();
 const MaxSearchDate = new Date();
 MaxSearchDate.setFullYear(MaxSearchDate.getFullYear() + 100);
-MinAge.setFullYear(MinAge.getFullYear() - 5);
+MinAge.setFullYear(MinAge.getFullYear() - 0);
 MaxAge.setFullYear(MaxAge.getFullYear() - 100);
 const FormDataInput = React.forwardRef((props: any, ref) => {
   const { isDisabled } = props
