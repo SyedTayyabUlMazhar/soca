@@ -48,7 +48,7 @@ export default function useManagerContainer(
       getDate({ selectedTourney, selectedDivision, selectedTeam, selectedOpponent, userData }) : null,
     { cacheTime: 0, staleTime: 0 });
 
-  const { data: getAllocationData, refetch: AllocationRefetch } = useQuery([STORAGE_KEYS.GET_ALLOCATION], () =>
+  const { data: getAllocationData, refetch: AllocationRefetch,isLoading } = useQuery([STORAGE_KEYS.GET_ALLOCATION], () =>
     selectedDate && selectedTourney && selectedDivision && selectedTeam && selectedOpponent &&
       getTeamAllocation({ selectedDate, selectedTourney, selectedDivision, selectedTeam, selectedOpponent, userData }),
     { cacheTime: 0, staleTime: 0 },
@@ -66,6 +66,10 @@ export default function useManagerContainer(
     },
   });
 
+  useEffect(()=>{
+    setFieldingZustand()
+  },[getAllocationData])
+
 
   return {
     managerData,
@@ -78,6 +82,7 @@ export default function useManagerContainer(
     updateSession,
     AllocationRefetch,
     getDateRefetch,
-    getOpponentData
+    getOpponentData,
+    isLoading
   };
 }
