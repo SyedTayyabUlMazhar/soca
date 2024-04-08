@@ -81,9 +81,12 @@ const ManagerModal = ({
     selectedOpponent,
     selectedDate,
   );
-
+console.log(getAllocationData,'getAllocationDatagetAllocationDatagetAllocationDatagetAllocationData');
+const setFieldingZustand = useBoundStore(
+  (state: any) => state.setFieldingZustand,
+);
   setManagerAllocationZustand(getAllocationData);
-
+  setFieldingZustand(getAllocationData)
   useEffect(() => {
     if (
       selectedTourney &&

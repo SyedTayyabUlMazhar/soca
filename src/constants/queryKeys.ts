@@ -28,6 +28,7 @@ export const STORAGE_KEYS = {
   GET_LOCATION: 'getLocation',
   GET_TOURNAMENT:'getTournament',
   GET_DIVISION:'getDivision',
+  GET_OPPONENT:'getOpponent',
   GET_TEAMS:'getTeam',
   GET_DATE:'getDate',
   GET_ALLOCATION:'getAllocation',

@@ -52,6 +52,7 @@ export const SERVICE_CONFIG_URLS = {
     GET_DIVISION:'/division',
     GET_TEAM:'/team',
     GET_DATE:'/team-rooster-date/',
+    GET_OPPONENT:'/opponent-teams',
     GET_TEAM_ALLOCATION:'/team-rooster/',
     LOCATION: '/location',
     GET_FIELDING:'/team-players/',

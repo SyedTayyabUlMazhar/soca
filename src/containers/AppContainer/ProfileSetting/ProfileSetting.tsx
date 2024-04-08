@@ -13,6 +13,8 @@ import { FaqsIcon, NotificationIconNew, SignoutSvg } from '@Asset/logo';
 import CustomModal from '@Component/CustomModal/CustomModal';
 import loginContext from '@Context/loginContext';
 import { LoginContext } from '@Context/loginContext/types';
+import { navigate } from '@Service/navigationService';
+import NavigationRoutes from '@Navigator/NavigationRoutes';
 
 
 const ProfileSetting = () => {
@@ -113,10 +115,14 @@ const ReachOutUs = ({menuProfileSettingList}:any) => {
 const PrivicyPolicy = () => {
   return(
     <View style={styles.privicyPolicyWrapper}>
-      <ButtonView>
+      <ButtonView onPress={()=> navigate(NavigationRoutes.APP_STACK.WEB_VIEW, {
+        webviewUrl: 'https://creativedesignventure.com/privacy-policy/',
+      })}>
         <H4 text='Privacy Policy' style={styles.privicyPolicyText}/>
       </ButtonView>
-      <ButtonView>
+      <ButtonView onPress={()=> navigate(NavigationRoutes.APP_STACK.WEB_VIEW, {
+        webviewUrl: 'https://creativedesignventure.com/terms-and-conditions/',
+      })}>
         <H4 text='Terms of Services' style={styles.privicyPolicyText}/>
       </ButtonView>
     </View>

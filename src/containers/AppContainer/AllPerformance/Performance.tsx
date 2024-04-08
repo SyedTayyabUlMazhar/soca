@@ -12,6 +12,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import useAllPerformanceContainer from './AllPerformanceContainer';
 import PlayerSelectionModal from './PlayerSelectionModal';
 import { useBoundStore } from '@Store/index';
+import SpinnerLoader from '@Component/SmallLoader';
 
 const Performance = ({route}) => {
   const setPlayerPerformanceIDZustand = useBoundStore(state => state.setPlayerPerformanceIDZustand);
@@ -23,14 +24,7 @@ const [refreshKey, setRefreshKey] = useState(0); // State to trigger re-rende
   const [playerName, setPlayerName] = useState(Player_Name);
   const [playerId,setPlayerId]=useState(player_reg_no)
 
-// setPlayerName(Player_Name);
-// setPlayerId(player_reg_no);
-// useEffect(() => {
-//     // After getting player data, initialize playerName and playerId
-//     const { Player_Name, player_reg_no } = getFamilyplayerData?.data?.[0] || {};
-//     setPlayerName(Player_Name);
-//     setPlayerId(player_reg_no);
-//   }, [getFamilyplayerData]);
+
 const playerPerformanceID = useBoundStore(state => state.playerPerformanceID);
 
 
@@ -48,8 +42,7 @@ const playerPerformanceID = useBoundStore(state => state.playerPerformanceID);
       refetchPlayerPerformanceData()
 
     }
-    // Your effect code here
-    // This effect will be triggered whenever refreshKey changes
+
   }, [refreshKey]);
  
   return (
@@ -96,9 +89,9 @@ const playerPerformanceID = useBoundStore(state => state.playerPerformanceID);
 };
 
 const OverAllPerformance = ({playerId}) => {
-  const {playerPerformanceData} = useAllPerformanceContainer(playerId);
+  const {playerPerformanceData,isLoading} = useAllPerformanceContainer(playerId);
   console.log(playerPerformanceData,'playerPerformanceDataplayerPerformanceDataplayerPerformanceDataplayerPerformanceData');
-  const {Higest,TotalRuns}=playerPerformanceData?.data||{}
+  const {Higest,TotalRuns,Matches,TotalCatches,TotalWickets}=playerPerformanceData?.data||{}
   return (
     <View style={styles.overAllPerformanceWrapper}>
       <View style={styles.overAllPerformanceInnerWrapper}>
@@ -108,21 +101,18 @@ const OverAllPerformance = ({playerId}) => {
           <ArrowDown />
         </ButtonView> */}
       </View>
-      <View style={styles.overAllPerformanceBoxWrapper}>
+      {isLoading ?     <View style={{flex:1,backgroundColor:Colors.Colors.APP_BACKGROUND,justifyContent:'center',marginTop:Metrics.verticalScale(150)}}>
+          <SpinnerLoader size={'large'} color={Colors.Colors.WHITE} />
+            
+          </View> :   <View style={styles.overAllPerformanceBoxWrapper}>
         <View style={styles.overAllPerformanceInnersingleBox}>
           <H2 text="Mat" style={styles.overAllPerformanceInnersingleBoxLabel} />
-          <H5 text="000" style={styles.overAllPerformanceInnersingleBoxDesc} />
+          <H5 text={Matches} style={styles.overAllPerformanceInnersingleBoxDesc} />
         </View>
+ 
         <View style={styles.overAllPerformanceInnersingleBox}>
-          <H2
-            text="Inns"
-            style={styles.overAllPerformanceInnersingleBoxLabel}
-          />
-          <H5 text="000" style={styles.overAllPerformanceInnersingleBoxDesc} />
-        </View>
-        <View style={styles.overAllPerformanceInnersingleBox}>
-          <H2 text="MO" style={styles.overAllPerformanceInnersingleBoxLabel} />
-          <H5 text="000" style={styles.overAllPerformanceInnersingleBoxDesc} />
+          <H2 text="Wkts" style={styles.overAllPerformanceInnersingleBoxLabel} />
+          <H5 text={TotalWickets}style={styles.overAllPerformanceInnersingleBoxDesc} />
         </View>
         <View style={styles.overAllPerformanceInnersingleBox}>
           <H2
@@ -132,10 +122,18 @@ const OverAllPerformance = ({playerId}) => {
           <H5 text={TotalRuns} style={styles.overAllPerformanceInnersingleBoxDesc} />
         </View>
         <View style={styles.overAllPerformanceInnersingleBox}>
+          <H2
+            text="Cts"
+            style={styles.overAllPerformanceInnersingleBoxLabel}
+          />
+          <H5 text={TotalCatches} style={styles.overAllPerformanceInnersingleBoxDesc} />
+        </View>
+        {/* <View style={styles.overAllPerformanceInnersingleBox}>
           <H2 text="HS" style={styles.overAllPerformanceInnersingleBoxLabel} />
           <H5 text={Higest} style={styles.overAllPerformanceInnersingleBoxDesc} />
-        </View>
-      </View>
+        </View> */}
+      </View>}
+    
     </View>
   );
 };
@@ -262,7 +260,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: Metrics.scale(13),
   },
-  overAllPerformanceInnersingleBox: {},
+  overAllPerformanceInnersingleBox: {alignItems:'center'},
   overAllPerformanceInnersingleBoxLabel: {
     ...Fonts.Medium(Fonts.Size.normal, Colors.Colors.DARK_BLUE),
     marginBottom: Metrics.scale(11),

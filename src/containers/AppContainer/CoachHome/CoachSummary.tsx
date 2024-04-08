@@ -19,23 +19,30 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import useCoachContainer from './CoachContainer'
 import { STORAGE_KEYS } from '@Constants/queryKeys'
 import { getItem } from '@Service/storageService'
+import SpinnerLoader from '@Component/SmallLoader'
 
 const CoachSummary = ({route}) => {
     
     const {grp_ssns_hrs,pvt_ssn_hrs}=route?.params || {}
     const parentId = getItem(STORAGE_KEYS.PARENTID);
     
-    const {coachActivityData}=useCoachContainer(parentId)
+    const {coachActivityData,isLoading}=useCoachContainer(parentId)
     
-    
-    return (
-        <View style={{ backgroundColor: Colors.APP_BACKGROUND, flex: 1 }}>
+    const {groupedHours,privateHours}=coachActivityData?.data||{}
+    return (<>
+      {isLoading ?    <View style={{flex:1,backgroundColor:Colors.APP_BACKGROUND,justifyContent:'center'}}>
+        <SpinnerLoader size={'large'} color={Colors.WHITE} />
+          
+        </View> :    <View style={{ backgroundColor: Colors.APP_BACKGROUND, flex: 1 }}>
             
-            <ScrollView
-                contentContainerStyle={{ paddingHorizontal: 15, }}>
-                <TodayPlayerAttendance groupHour={grp_ssns_hrs} privateHour={pvt_ssn_hrs} coachActivityData={coachActivityData}/>
-            </ScrollView>
-        </View>
+        <ScrollView
+            contentContainerStyle={{ paddingHorizontal: 15, }}>
+            <TodayPlayerAttendance groupHour={groupedHours} privateHour={privateHours} coachActivityData={coachActivityData}/>
+        </ScrollView>
+    </View> }
+    </>
+      
+    
     )
 }
 
@@ -95,7 +102,7 @@ const TodayPlayerAttendance = ({groupHour,privateHour,coachActivityData}) => {
             <H2 text="Coaching Sessions Details" style={styles.coachingTxt} />
             <View style={styles.playerWrapper}>
                 <FlatListHandler
-                    data={coachActivityData?.data}
+                    data={coachActivityData?.data?.formattedCoachActivity}
                     renderItem={renderItem}
                     ListHeaderComponent={() => (
                         <View style={styles.row}>

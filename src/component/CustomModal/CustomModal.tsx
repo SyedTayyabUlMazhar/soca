@@ -102,7 +102,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: Metrics.scale(30),
     paddingVertical: Metrics.verticalScale(8),
     borderRadius: Metrics.scale(10),
-    borderWidth: Metrics.scale(1),
     borderColor: Colors.GREY_BORDER,
     justifyContent: 'center',
     backgroundColor:Colors.ICE_BLUE

@@ -16,7 +16,7 @@ export default function useAllPerformanceContainer(playerId) {
         {cacheTime: 0, staleTime: 0, enabled: userData ? true :false},
       );
 
-    const {data: playerPerformanceData,refetch: refetchPlayerPerformanceData} = useQuery(
+    const {data: playerPerformanceData,refetch: refetchPlayerPerformanceData,isLoading} = useQuery(
         [STORAGE_KEYS.GET_ALL_PERFORMANCE],
         () => getPlayerPerformance({userData,playerId: playerId ? playerId : playerPerformanceID}),
         {cacheTime: 0, staleTime: 0, onSuccess(data) {
@@ -29,6 +29,7 @@ export default function useAllPerformanceContainer(playerId) {
 return {
     playerPerformanceData,
     getFamilyplayerData,
-    refetchPlayerPerformanceData
+    refetchPlayerPerformanceData,
+    isLoading
 }
 }

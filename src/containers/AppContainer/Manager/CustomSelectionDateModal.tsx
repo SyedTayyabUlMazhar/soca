@@ -22,6 +22,7 @@ const CustomSelectionDateModal = ({
   modalData,
 }: ICustomModal) => {
   const refForm = React.useRef();
+  console.log(modalData,'modalDatamodalDatamodalDatamodalData');
   
   // Function to filter out duplicate items
   const filterUniqueItems = () => {
@@ -60,9 +61,16 @@ const CustomSelectionDateModal = ({
           }}>
           {title}
         </Text>
-        {filterUniqueItems().map(item => ( // Render only unique items
+        {modalData?.length > 0 ?   filterUniqueItems().map(item => ( // Render only unique items
           <Sample item={item} />
-        ))}
+        )):   <Text
+        style={{
+          ...Fonts.Medium(Fonts.Size.small, Colors.WHITE),
+          marginVertical: Metrics.smallMargin,
+        }}>
+          No Dates Available
+      </Text>}
+      
       </View>
     </ReactNativeModal>
   );

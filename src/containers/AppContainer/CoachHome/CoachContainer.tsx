@@ -21,7 +21,7 @@ export default function useCoachContainer(parentId: any) {
         () => getCoachBatch({userData}),
         {cacheTime: 0, staleTime: 0},
       );
-      const {data: coachActivityData} = useQuery(
+      const {data: coachActivityData, isLoading} = useQuery(
         [STORAGE_KEYS.COACH_ACTIVITY],
         () => getCoachActivity({userData}),
         {cacheTime: 0, staleTime: 0},
@@ -61,5 +61,6 @@ return{
     getAgeGroupList,
     getCoachAttendacneList,
     updateCoachAttendanceListMutate,
+    isLoading
 }
 }

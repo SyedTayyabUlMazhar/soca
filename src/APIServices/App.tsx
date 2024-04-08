@@ -264,6 +264,16 @@ export const getTeam = async () => {
   return data;
 };
 
+export const getOpponent = async () => {
+  const {data} = await apiRequest({
+    url: SERVICE_CONFIG_URLS.MANAGER.GET_OPPONENT,
+    method: API_CONFIG.GET,
+    showLoader: false,
+    showToast:false
+  });
+  return data;
+};
+
 export const getDate = async (params: any) => {
 
   

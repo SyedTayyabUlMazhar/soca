@@ -46,7 +46,6 @@ interface ICustomModal {
     const closeModal = (bool: boolean) => {
       changeDeleteModalVisible(bool);
     };
-  console.log(count,'countcountcountcountcount');
   useEffect(() => {
     if (selectedPlayer) {
         setCount(selectedPlayer.catch_drops);

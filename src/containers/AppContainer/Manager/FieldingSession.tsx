@@ -79,26 +79,18 @@ const PlayerAllocationInGame = () => {
     (state: any) => state.managerFilterZustand,
   );
 
-  const setFieldingZustand = useBoundStore(
-    (state: any) => state.setFieldingZustand,
-  );
-
   const fieldingZustand = useBoundStore(
     (state: any) => state.fieldingZustand,
   );
+
+
   const CallbackFuntion = item => {
     setData(item)
   };
-console.log(fieldingZustand,'fieldingZustandfieldingZustandfieldingZustandfieldingZustand');
 
   
-  const {getSessionData, updateSession,fieldingSessionRefetch,getAllocationData} = useManagerContainer();
-  console.log(getSessionData,'getSessionDatagetSessionDatagetSessionDatagetSessionDatagetSessionData');
-  setFieldingZustand(getSessionData)
-  if (!getSessionData) {
-    return <ActivityIndicator />; // or any loading indicator
-  }
-  const playerData = getSessionData?.data; // Assuming there are multiple players' data
+
+  const playerData = fieldingZustand?.data; // Assuming there are multiple players' data
 
 
   return (
@@ -339,6 +331,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
     marginHorizontal: 4,
+    marginVertical:4
   },
 
   todayPlayerAttendanceWrapper: {

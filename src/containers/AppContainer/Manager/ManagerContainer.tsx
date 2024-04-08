@@ -4,6 +4,7 @@ import {
   getDivision,
   getFieldingSession,
   getManager,
+  getOpponent,
   getPlayer,
   getTeam,
   getTeamAllocation,
@@ -31,7 +32,9 @@ export default function useManagerContainer(
   const { data: getTournamentData } = useQuery([STORAGE_KEYS.GET_TOURNAMENT], getTournament, { cacheTime: 0, staleTime: 0 });
 
   const { data: getDivisionData } = useQuery([STORAGE_KEYS.GET_DIVISION], getDivision, { cacheTime: 0, staleTime: 0 });
+  const { data: getOpponentData } = useQuery([STORAGE_KEYS.GET_OPPONENT], getOpponent, { cacheTime: 0, staleTime: 0 });
 
+   
   const { data: getTeamData } = useQuery([STORAGE_KEYS.GET_TEAMS], getTeam, { cacheTime: 0, staleTime: 0 });
   const managerFilterZustand = useBoundStore(
     (state: any) => state.managerFilterZustand,
@@ -42,21 +45,21 @@ export default function useManagerContainer(
     { cacheTime: 0, staleTime: 0 });
 
   const { data: getAllocationData, refetch: AllocationRefetch } = useQuery([STORAGE_KEYS.GET_ALLOCATION], () =>
-    selectedDate && selectedTourney && selectedDivision && selectedTeam && selectedOpponent ?
-      getTeamAllocation({ selectedDate, selectedTourney, selectedDivision, selectedTeam, selectedOpponent, userData }) : null,
+    selectedDate && selectedTourney && selectedDivision && selectedTeam && selectedOpponent &&
+      getTeamAllocation({ selectedDate, selectedTourney, selectedDivision, selectedTeam, selectedOpponent, userData }),
     { cacheTime: 0, staleTime: 0 },
  
     );
 
-  const { data: getSessionData, refetch: fieldingSessionRefetch } = useQuery([STORAGE_KEYS.GET_FIELDING_SESSION], () =>
-      getFieldingSession({ selectedDate, selectedTourney, selectedDivision, selectedTeam, selectedOpponent, userData }),
-    );
+  // const { data: getSessionData, refetch: fieldingSessionRefetch } = useQuery([STORAGE_KEYS.GET_FIELDING_SESSION], () =>
+  //     getFieldingSession({ selectedDate, selectedTourney, selectedDivision, selectedTeam, selectedOpponent, userData }),
+  //   );
 
   const { mutate: updateFieldingSessionMutate } = useMutation(updateFieldingSession, {
     onSuccess: (data, payload) => {
       console.log('payloadpayloadpayload',payload);
       setUpdateSession(data);
-      queryClient.invalidateQueries([STORAGE_KEYS.GET_FIELDING_SESSION]);
+      queryClient.invalidateQueries([STORAGE_KEYS.GET_ALLOCATION]);
     },
   });
 
@@ -74,11 +77,9 @@ export default function useManagerContainer(
     getTeamData,
     getDateData,
     getAllocationData,
-    getSessionData,
     updateFieldingSessionMutate,
     updateSession,
     AllocationRefetch,
-    fieldingSessionRefetch,
     getDateRefetch,
   };
 }

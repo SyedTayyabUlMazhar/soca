@@ -1,19 +1,9 @@
-import { Email, FaqsIcon, LogoSvg, LogoutSvg } from '@Asset/logo';
-import ButtonView from '@Component/ButtonView';
-import FormDataInput from '@Component/FormDateInput';
-import H2 from '@Component/Headings/H2';
-import H4 from '@Component/Headings/H4';
-import Input from '@Component/Input';
 import { Colors } from '@Theme/Colors';
 import Fonts from '@Theme/Fonts';
 import Metrics from '@Utility/Metrics';
-import React, { useState } from 'react';
+import React from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ReactNativeModal from 'react-native-modal';
-import FormHandler from '@Component/FormHandler';
-import { DATE_FORMATS } from '@Utility/DateUtils';
-import SimpleModal from '@Component/SimpleModal/SimpleModal';
-import H6 from '@Component/Headings/H6';
 
 
 

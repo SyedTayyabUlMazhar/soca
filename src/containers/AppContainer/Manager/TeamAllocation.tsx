@@ -13,7 +13,6 @@ import moment from 'moment';
 import { useBoundStore } from '@Store/index';
 
 const TeamAllocation = () => {
-  const {managerData} = useManagerContainer();
 
   return (
     <View style={{backgroundColor: Colors.Colors.APP_BACKGROUND, flex: 1}}>
@@ -29,20 +28,15 @@ const TeamAllocation = () => {
 };
 
 const PlayerAllocationInGame = () => {
-  const {managerData} = useManagerContainer();
   const [isDeleteAccountVisible, setIsDeleteAccountVisible] =
     React.useState(false);
-  const [data, setData] = React.useState();
-  // const [state, setState] = React.useState();
   const setManagerFilterZustand = useBoundStore(
     (state: any) => state.setManagerFilterZustand,
   );
   const managerFilterZustand = useBoundStore(
     (state: any) => state.managerFilterZustand,
   );
-  const setManagerAllocationZustand = useBoundStore(
-    (state: any) => state.setManagerAllocationZustand,
-  );
+ 
   const managerAllocationZustand = useBoundStore(
     (state: any) => state.managerAllocationZustand,
   );

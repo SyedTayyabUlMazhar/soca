@@ -161,6 +161,13 @@ export default function AppStack() {
           require('@Container/AppContainer/Sponsors/Sponsors').default
         }
       />
+        <Stack.Screen
+        options={{title: 'WebView',headerShown: false}}
+        name={NavigationRoutes.APP_STACK.WEB_VIEW}
+        getComponent={() =>
+          require('@Container/ContentTypePages/WebView').default
+        }
+      />
         
     </Stack.Navigator>
   );
