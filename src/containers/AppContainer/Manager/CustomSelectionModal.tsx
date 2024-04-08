@@ -25,14 +25,15 @@ const CustomSelectionModal = ({
 }: ICustomModal) => {
   const refForm = React.useRef();
   const Sample=({item})=>{
+    console.log(item?.["Opponent Teams"],"This is item");
     
     return(
         <TouchableOpacity
         key={item?.tournament_code || item?.id}
         
-        onPress={() => handleSelection(item?.tournament_code || item?.team_name || item?.div_name)}>
+        onPress={() => handleSelection(item?.tournament_code || item?.team_name || item?.["Opponent Teams"] ||item?.div_name)}>
           
-        <Text style={{ ...Fonts.Medium(Fonts.Size.small, Colors.WHITE),marginVertical:Metrics.smallMargin}}>{item?.tournament_code || item?.team_name || `Division ${item?.div_name}`|| item}</Text>
+        <Text style={{ ...Fonts.Medium(Fonts.Size.small, Colors.WHITE),marginVertical:Metrics.smallMargin}}>{item?.tournament_code || item?.team_name ||item?.["Opponent Teams"] || `Division ${item?.div_name}` || item}</Text>
       </TouchableOpacity>
     )
   }

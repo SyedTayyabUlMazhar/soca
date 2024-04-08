@@ -25,6 +25,10 @@ export default function useManagerContainer(
   selectedOpponent: string | undefined,
   selectedDate: any,
 ) {
+
+  const setFieldingZustand = useBoundStore(
+    (state: any) => state.setFieldingZustand,
+  );
   const userData = getItem(STORAGE_KEYS.GET_PARENT_USER_DETAILS);
   const [updateSession, setUpdateSession] = useState();
   const { data: managerData } = useQuery([STORAGE_KEYS.GET_MANAGER], () => getManager({}), { cacheTime: 0, staleTime: 0 });
@@ -51,24 +55,17 @@ export default function useManagerContainer(
  
     );
 
-  // const { data: getSessionData, refetch: fieldingSessionRefetch } = useQuery([STORAGE_KEYS.GET_FIELDING_SESSION], () =>
-  //     getFieldingSession({ selectedDate, selectedTourney, selectedDivision, selectedTeam, selectedOpponent, userData }),
-  //   );
+
 
   const { mutate: updateFieldingSessionMutate } = useMutation(updateFieldingSession, {
     onSuccess: (data, payload) => {
-      console.log('payloadpayloadpayload',payload);
-      setUpdateSession(data);
-      queryClient.invalidateQueries([STORAGE_KEYS.GET_ALLOCATION]);
+      console.log('payloadpayloadpayload',data);
+      setFieldingZustand(data);
+   
+      // queryClient.invalidateQueries([STORAGE_KEYS.GET_ALLOCATION]);
     },
   });
 
-  // This useEffect ensures that getFieldingSession is called when getTeamAllocation is successfully fetched
-  // useEffect(() => {
-  //   if (getAllocationData) {
-  //     fieldingSessionRefetch();
-  //   }
-  // }, [getAllocationData]);
 
   return {
     managerData,
@@ -81,5 +78,6 @@ export default function useManagerContainer(
     updateSession,
     AllocationRefetch,
     getDateRefetch,
+    getOpponentData
   };
 }

@@ -71,9 +71,9 @@ const ManagerModal = ({
     getDateData,
     getAllocationData,
     AllocationRefetch,
-    fieldingSessionRefetch,
+    getOpponentData,
     getDateRefetch,
-    getSessionData,
+
   } = useManagerContainer(
     selectedTourney,
     selectedDivision,
@@ -81,12 +81,9 @@ const ManagerModal = ({
     selectedOpponent,
     selectedDate,
   );
-console.log(getAllocationData,'getAllocationDatagetAllocationDatagetAllocationDatagetAllocationData');
-const setFieldingZustand = useBoundStore(
-  (state: any) => state.setFieldingZustand,
-);
+
   setManagerAllocationZustand(getAllocationData);
-  setFieldingZustand(getAllocationData)
+ 
   useEffect(() => {
     if (
       selectedTourney &&
@@ -368,7 +365,7 @@ const setFieldingZustand = useBoundStore(
         handleSelection={handleOpponentSelection}
         title={'Select Opponent'}
         handleDropOffPress={handleOpponenentDrop}
-        modalData={getTeamData?.data}
+        modalData={getOpponentData?.data}
       />
       <CustomSelectionDateModal
         isModalVisible={isDateModalVisible}

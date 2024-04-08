@@ -83,14 +83,18 @@ const PlayerAllocationInGame = () => {
     (state: any) => state.fieldingZustand,
   );
 
-
+  const managerAllocationZustand = useBoundStore(
+    (state: any) => state.managerAllocationZustand,
+  );
+  
   const CallbackFuntion = item => {
     setData(item)
   };
 
-  
 
-  const playerData = fieldingZustand?.data; // Assuming there are multiple players' data
+
+
+  const playerData = fieldingZustand?.data?.length>0 ? fieldingZustand?.data : managerAllocationZustand?.data; // Assuming there are multiple players' data
 
 
   return (
