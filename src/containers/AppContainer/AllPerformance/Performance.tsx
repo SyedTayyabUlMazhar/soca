@@ -93,7 +93,7 @@ const OverAllPerformance = ({playerId}) => {
 
   
  
-  const {playerPerformanceData, isLoading,refetchPlayerPerformanceData} =
+  const {playerPerformanceData, isLoading,refetchPlayerPerformanceData,year} =
     useAllPerformanceContainer(playerId);
   console.log(
     playerPerformanceData,
@@ -102,6 +102,7 @@ const OverAllPerformance = ({playerId}) => {
   const setYear = useBoundStore(
     state => state.setYearZustand,
   );
+ 
   const handleCallbackFunc = item => {
     setYear(item);
   };
@@ -116,7 +117,7 @@ const OverAllPerformance = ({playerId}) => {
         <ButtonView
           style={{flexDirection: 'row', alignItems: 'center'}}
           onPress={() => setIsModalVisible(true)}>
-          <H4 text="View All" style={styles.overAllPerformanceBtnText} />
+          <H4 text={year===new Date().getFullYear() ? "Current Year" : "Last Year"} style={styles.overAllPerformanceBtnText} />
           <ArrowDown />
         </ButtonView>
       </View>

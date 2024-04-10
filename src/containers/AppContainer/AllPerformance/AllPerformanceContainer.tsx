@@ -27,14 +27,15 @@ export default function useAllPerformanceContainer(playerId) {
         
       );
 
-      useEffect(()=>{
-        refetchPlayerPerformanceData()
-       },[year])
+      // useEffect(()=>{
+      //   refetchPlayerPerformanceData()
+      //  },[year])
  
 return {
     playerPerformanceData,
     getFamilyplayerData,
     refetchPlayerPerformanceData,
     isLoading,
+    year
 }
 }
