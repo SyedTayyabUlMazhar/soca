@@ -31,7 +31,7 @@ export default function AuthLoginScreen() {
             <LoginForm refForm={refForm} />
             <View style={styles.forgotText}>
               <AuthRouting
-                forgotText={'Forget Password?'}
+                forgotText={'Forgot Password?'}
                 onPress={handleOnForgotPassord}
               />
             </View>

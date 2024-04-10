@@ -182,12 +182,13 @@ export const getAgeGroup = async () => {
 };
 
 export const getPlayerPerformance = async (params: any) => {
-const {userData}=params || {}
+const {userData,year}=params || {}
+console.log(year,"This is years from params");
 
   const getPlayerId= params?.playerId ? params?.playerId : params
   console.log(getPlayerId, "-----",params,'paramsparamsparamsparamsparamsparams getPlayerPerformancegetPlayerPerformancegetPlayerPerformancegetPlayerPerformance');
   const {data} = await apiRequest({
-    url: `${SERVICE_CONFIG_URLS.PLAYER.GET_PLAYER_PERFORMANCE}${userData}/performance/2023?playerId=${getPlayerId}`,
+    url: `${SERVICE_CONFIG_URLS.PLAYER.GET_PLAYER_PERFORMANCE}${userData}/performance/${year}?playerId=${getPlayerId}`,
     method: API_CONFIG.GET,
     // params,
     showLoader: false,

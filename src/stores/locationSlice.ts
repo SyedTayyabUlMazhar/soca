@@ -25,6 +25,12 @@ interface FieldingZustandSlice {
   setFieldingZustand: (data: any) => void;
   resetFieldingZustand: () => void;
 }
+
+interface YearZustandSlice {
+  YearZustand: any | null;
+  setYearZustand: (data: any) => void;
+  resetYearZustand: () => void;
+}
 const initialLocationState: LocationSlice = {};
 const initialcoachAttendacnZustandState: Partial<CoachAttendacnZustandSlice> = {
   coachAttendacnZustand: {},
@@ -43,6 +49,10 @@ const initialManagerAllocationState: Partial<ManagerAllocationSlice> = {
 
 const initialFieldingState: Partial<FieldingZustandSlice> = {
   fieldingZustand: {},
+};
+
+const initialYearState: Partial<YearZustandSlice> = {
+  YearZustand: new Date().getFullYear(),
 };
 
 
@@ -104,5 +114,15 @@ export const createFieldingSlice = (set: any) => ({
       fieldingZustand: data,
     })),
     resetFieldingZustand: () => set(initialFieldingState),
+});
+
+export const createYearSlice = (set: any) => ({
+  ...initialYearState,
+  setYearZustand: (data: any) =>
+    set(state => ({
+      ...state,
+      YearZustand: data,
+    })),
+    resetYearZustand: () => set(initialYearState),
 });
 

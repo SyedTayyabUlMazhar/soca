@@ -37,7 +37,7 @@ export default function AuthStack() {
         }
       />
           <Stack.Screen
-        options={{title: 'Forget Password', headerShown: false}}
+        options={{title: 'Forgot Password', headerShown: false}}
         name={NavigationRoutes.AUTH_STACK.FORGET_PASSWORD}
         getComponent={() =>
           require('@Container/AuthContainer/ForgotPasswordContainer').default
