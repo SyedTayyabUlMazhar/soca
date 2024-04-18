@@ -112,7 +112,7 @@ const handlePressRegisterEvent = () => {
               style={{
                 alignSelf: 'flex-end',
                 marginTop: Metrics.verticalScale(-20),
-                marginRight:-10
+                marginRight:-20
               }}>
               <PerformanceButtonSvg />
             </ButtonView>

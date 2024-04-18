@@ -36,5 +36,6 @@ export const STORAGE_KEYS = {
   GET_FIELDING_SESSION:'getFieldingSession',
   GET_SPONSORS:'getAllSponsors',
   GET_COACH_ID:'getCoachId',
-  GET_ABOUT_US:'getAbout'
+  GET_ABOUT_US:'getAbout',
+  GET_ID_BY_EMAIL:'getParentIdByEmail'
 };

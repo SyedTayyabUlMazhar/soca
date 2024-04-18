@@ -1,5 +1,5 @@
-import {getUserRoles, login} from '@Api/Auth';
-import {useMutation, useQuery} from '@tanstack/react-query';
+import {getParentIdByEmail, getUserRoles, login} from '@Api/Auth';
+import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query';
 import React, {useCallback, useContext, useState} from 'react';
 import {AuthLoginResponse} from './types';
 import loginContext from '@Context/loginContext';
@@ -24,6 +24,7 @@ export default function useAuthLoginContainer() {
     {
       enabled: parentID ? true : false,
       onSuccess: data => {
+
         console.log(data, 'data OF USER ROLES');
         if(data?.data?.length > 0){
           setItem(STORAGE_KEYS.ROLES_LIST, data?.data)
@@ -38,21 +39,36 @@ export default function useAuthLoginContainer() {
     },
   );
 
+ 
+  const queryClient = useQueryClient();
 
-  const {mutate: loginMutation, isLoading: loginUserLoading} = useMutation(login, {
+ const { mutate: loginMutation, isLoading: loginUserLoading } = useMutation(login, {
     onSuccess: (data: AuthLoginResponse, payload) => {
-      setParentID(data?.parentId)
+      
       setItem(STORAGE_KEYS.TOKEN, data?.token);
-      setItem(STORAGE_KEYS.GET_PARENT_USER_DETAILS, data?.parentId);
+     
+      console.log(payload,'payloadpayloadpayload',data);
+      const {parentId}=payload||{}
+      // Manually trigger the getParentIdByEmail query on success of loginMutation
+      queryClient.fetchQuery([STORAGE_KEYS.GET_ID_BY_EMAIL], () => getParentIdByEmail({email:parentId}), {
+        cacheTime: 0,
+      }).then((parentIdByEmail) => {
+        console.log(parentIdByEmail, 'parentIdByEmailparentIdByEmailparentIdByEmail');
+        setParentID(parentIdByEmail?.parentId);
+        setItem(STORAGE_KEYS.GET_PARENT_USER_DETAILS, parentIdByEmail?.parentId);
+        // Handle the result of getParentIdByEmail here
+      });
+
+
     },
-    onError:error=>{
+    onError: (error) => {
       Toast.show({
         type: 'error',
         text1: 'Error',
         text2: error?.message,
       });
-    }
-  });
+    },
+ });
   const handleOnForgotPassord = useCallback(() => {
     navigate(NavigationRoutes.AUTH_STACK.FORGET_PASSWORD);
   }, []);

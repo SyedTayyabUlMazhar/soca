@@ -18,7 +18,7 @@ const ForgotPasswordForm = ({refForm}: IForgotPasswordForm) => {
           return (
             <>
               <Input
-                {...SCHEMAS.text('parentId')}
+                {...SCHEMAS.email('parentId')}
                 placeholder="Enter your Email"
                 returnKeyType={'next'}
                 placeholderTextColor={Colors.LIGHT_BORDER}
@@ -26,7 +26,7 @@ const ForgotPasswordForm = ({refForm}: IForgotPasswordForm) => {
               />
               <Input
                 {...SCHEMAS.password('password')}
-                placeholder="Enter your password"
+                placeholder="Enter your new password"
                 returnKeyType={'done'}
                 secureTextEntry={true}
                 isPassword={true}

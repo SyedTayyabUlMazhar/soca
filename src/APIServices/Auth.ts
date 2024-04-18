@@ -107,3 +107,17 @@ export const forgotPassword = async (params: any) => {
   
   return data;
 };
+
+
+
+export const getParentIdByEmail = async (params: any) => {
+  console.log(params,'paramsparamsparamsparams');
+  
+  const {data} = await apiRequest({
+    url: `${SERVICE_CONFIG_URLS.AUTH.EMAIL}${params.email}`,
+    method: API_CONFIG.GET,
+    params,
+    showLoader: false,
+  });
+  return data;
+};

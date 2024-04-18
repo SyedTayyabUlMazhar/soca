@@ -64,8 +64,8 @@ const LoginForm = ({refForm}: ILoginFormProps) => {
           return (
             <>
               <Input
-                 {...SCHEMAS.text('parentId')}
-                placeholder="Enter your Email"
+                 {...SCHEMAS.email('parentId')}
+                placeholder="Enter your email"
                 // value='test@test.com'
                 returnKeyType={'next'}
                 placeholderTextColor={Colors.LIGHT_BORDER}
@@ -73,7 +73,7 @@ const LoginForm = ({refForm}: ILoginFormProps) => {
               />
                  <Input
                  {...SCHEMAS.text('parentName')}
-                placeholder="Enter your Parent Name"
+                placeholder="Enter your parent name"
                 // value='Ahmed'
                 returnKeyType={'next'}
                 placeholderTextColor={Colors.LIGHT_BORDER}

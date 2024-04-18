@@ -33,7 +33,7 @@ const REGEX = {
 const SCHEMAS = (refCollector, onSubmitEditing, validate) => ({
   email: (id = 'email') => {
     const schema = yup.object().shape({
-      [id]: yup.string().email().required('Email address is required'),
+      [id]: yup.string().email().required('Email address is required').matches(REGEX.VALID_EMAIL,'Email should be valid')
     });
     return {
       schema,
