@@ -71,6 +71,7 @@ elem?.lns_usg_crt_mth
 const pndg_inv_amt=  parentData?.map((elem) => 
 elem?.pndg_inv_amt
 );
+console.log(parentData,'parentData');
 
   
 
@@ -251,7 +252,7 @@ const handlePressRegisterEvent = () => {
                   <H7 text="Feb, 2024" style={{color: Colors.WHITE}} />
                 </View>
                 <H5
-                  text={lns_usg_crt_mth}
+                  text={lns_usg_crt_mth?`$${lns_usg_crt_mth}`:'$0'}
                   style={{
                     color: Colors.WHITE,
                     marginTop: Metrics.doubleBaseMargin,
@@ -282,7 +283,7 @@ const handlePressRegisterEvent = () => {
                   <H7 text="Feb, 2024" style={{color: Colors.WHITE}} />
                 </View>
                 <H5
-                  text={pndg_inv_amt}
+                  text={pndg_inv_amt ? `$${pndg_inv_amt}`: '$0'}
                   style={{
                     color: Colors.WHITE,
                     marginTop: Metrics.doubleBaseMargin,

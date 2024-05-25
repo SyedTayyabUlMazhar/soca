@@ -34,7 +34,6 @@ const {player_reg_no}=playerData||{}
 
 const {getProfileData,PlayerProfileLoading}=useProfileContainer(player_reg_no)
 
-console.log(getProfileData,'getProfileDatagetProfileDatagetProfileData');
 
 
   return (
@@ -56,15 +55,16 @@ console.log(getProfileData,'getProfileDatagetProfileDatagetProfileData');
 }
 
 const PlayerInfo = ({playerData}) => {
+  console.log(playerData,'playerDataplayerDataplayerDataplayerData');
   
-  const {Name,Tier,usacid,ccid,gender}=playerData?.data||{}
+  const {Name,Tier,usacid,ccid,gender,player_age}=playerData?.data||{}
   return (
     <View style={styles.PlayerInfoContainer}>
       <Image source={gender === "Female" ? GirlPlayer : MalePlayer} style={styles.image} />
       <View style={styles.playerInfoInnerWrapper}>
       <View style={styles.ageWrapper}>
         <AgeIcon />
-        <H3 text="19" style={styles.ageText} />
+        <H3 text={player_age} style={styles.ageText} />
       </View>
       <H3 text={Name} style={styles.nameText} />
       <View style={{flexDirection:'row'}}>
@@ -87,7 +87,6 @@ const PlayerInfo = ({playerData}) => {
 
 const TotlaGamePlayed = ({playerData}) => {
   const {totalRuns,totalCatches,totalWickets}=playerData?.data||{}
-  console.log(playerData?.data,'playerData?.dataplayerData?.dataplayerData?.dataplayerData?.data');
   
   return (
     <View style={styles.totalGamePlayedWrapper}>
@@ -219,7 +218,7 @@ const styles = StyleSheet.create({
   },
   ageWrapper: {
     flexDirection: 'row',
-    alignItems: 'flex-end',
+    alignItems: 'center',
   },
   cupWrapper:{
     borderWidth: 1,

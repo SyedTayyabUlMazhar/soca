@@ -23,7 +23,7 @@ import H2 from '@Component/Headings/H2';
 const ActivityScreen = ({route}) => {
   const {getActivityData, isLoading} = useActivityContainer();
   console.log(
-    getActivityData?.data?.totalCashEarned,
+    getActivityData?.data?.user,
     'getActivityDatagetActivityDatagetActivityData',
   );
   const {totalCashEarned, totalPointsEarned} = getActivityData?.data || {};
@@ -35,6 +35,7 @@ const ActivityScreen = ({route}) => {
       <Text style={styles.cell}>{item?.['Earned Cash']}</Text>
       <Text style={styles.cell}>{item?.['Txn Type']}</Text>
       <Text style={styles.cell}>{item?.['Points earned']}</Text>
+      <Text style={styles.cell}>{item?.['Notes']}</Text>
     </View>
   );
 
@@ -99,6 +100,7 @@ const ActivityScreen = ({route}) => {
                   <Text style={styles.heading}>Transaction</Text>
                   <Text style={styles.heading}>Type</Text>
                   <Text style={styles.heading}>Points</Text>
+                  <Text style={styles.heading}>Notes</Text>
                 </View>
               )}
             />
@@ -117,6 +119,7 @@ const styles = StyleSheet.create({
     paddingVertical: Metrics.scale(16),
     borderRadius: 16,
     marginTop: Metrics.doubleBaseMargin,
+    // padding: Metrics.baseMargin,
   },
 
   row: {
@@ -130,12 +133,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     color: Colors.DARK_BLUE,
+    fontSize:12
   },
   cell: {
     flex: 1,
     textAlign: 'center',
     color: Colors.WHITE,
     height: '150%',
+    fontSize:12
   },
   coachingTxt: {
     ...Fonts.SemiBold(Fonts.Size.xSmall, '#98D8FA'),

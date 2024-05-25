@@ -45,7 +45,7 @@ const Performance = ({route}) => {
   }, [refreshKey]);
 
   return (
-    <ScrollView
+    <View
       key={refreshKey}
       style={{backgroundColor: Colors.Colors.APP_BACKGROUND, flex: 1}}>
       <Header
@@ -68,14 +68,15 @@ const Performance = ({route}) => {
         }
       />
 
-      <ScrollView
-        contentContainerStyle={{
+      <View
+        style={{
           paddingHorizontal: 15,
           paddingVertical: Metrics.scale(23),
         }}>
         <OverAllPerformance playerId={playerId} />
         <PlayerStatistics playerId={playerId} />
-      </ScrollView>
+
+      </View>
       <PlayerSelectionModal
         changeDeleteModalVisible={changeDeleteModalVisible}
         setIsDeleteAccountVisible={setIsDeleteAccountVisible}
@@ -84,29 +85,24 @@ const Performance = ({route}) => {
         title={'Logout'}
         desc={'Are you sure you want to logout?'}
       />
-    </ScrollView>
+    </View>
   );
 };
 
 const OverAllPerformance = ({playerId}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  
- 
-  const {playerPerformanceData, isLoading,refetchPlayerPerformanceData,year} =
+  const {playerPerformanceData, isLoading, refetchPlayerPerformanceData, year} =
     useAllPerformanceContainer(playerId);
   console.log(
     playerPerformanceData,
     'playerPerformanceDataplayerPerformanceDataplayerPerformanceDataplayerPerformanceData',
   );
-  const setYear = useBoundStore(
-    state => state.setYearZustand,
-  );
- 
+  const setYear = useBoundStore(state => state.setYearZustand);
+
   const handleCallbackFunc = item => {
     setYear(item);
   };
- 
 
   const {Higest, TotalRuns, Matches, TotalCatches, TotalWickets} =
     playerPerformanceData?.data || {};
@@ -117,7 +113,12 @@ const OverAllPerformance = ({playerId}) => {
         <ButtonView
           style={{flexDirection: 'row', alignItems: 'center'}}
           onPress={() => setIsModalVisible(true)}>
-          <H4 text={year===new Date().getFullYear() ? "Current Year" : "Last Year"} style={styles.overAllPerformanceBtnText} />
+          <H4
+            text={
+              year === new Date().getFullYear() ? 'Current Year' : 'Last Year'
+            }
+            style={styles.overAllPerformanceBtnText}
+          />
           <ArrowDown />
         </ButtonView>
       </View>
@@ -191,11 +192,11 @@ const OverAllPerformance = ({playerId}) => {
 };
 
 const PlayerStatistics = ({playerId}) => {
-  const {playerPerformanceData, refetchPlayerPerformanceData,year} =
+  const {playerPerformanceData, refetchPlayerPerformanceData, year} =
     useAllPerformanceContainer(playerId);
 
   useEffect(() => {}, [playerPerformanceData?.data?.data]);
- 
+
   if (!playerPerformanceData || !playerPerformanceData?.data?.data) {
     return null; // Handle case when data is not available
   }
@@ -206,9 +207,8 @@ const PlayerStatistics = ({playerId}) => {
   ).slice(2);
 
   return (
-    <View>
+    <>
       <H2 text="Player statistics" style={styles.overAllPerformanceText} />
-      <View>
         <View style={styles.row}>
           <View style={[styles.cell, styles.emptyCell]} />
           {categories?.map((category, index) => (
@@ -220,6 +220,7 @@ const PlayerStatistics = ({playerId}) => {
             </View>
           ))}
         </View>
+        <ScrollView>
         {metrics?.map((metric, rowIndex) => (
           <Metric
             metric={metric}
@@ -228,8 +229,9 @@ const PlayerStatistics = ({playerId}) => {
             playerPerformanceData={playerPerformanceData}
           />
         ))}
-      </View>
-    </View>
+        </ScrollView>
+   
+    </>
   );
 };
 const Metric = ({metric, rowIndex, categories, playerPerformanceData}: any) => {
@@ -267,7 +269,8 @@ const Metric = ({metric, rowIndex, categories, playerPerformanceData}: any) => {
   const secondLine = shouldSplit ? abbreviation.substring(4) : '';
 
   return (
-    <View key={rowIndex} style={styles.row}>
+    <ScrollView style={{}}>
+  <View key={rowIndex} style={styles.row}>
       <View style={[styles.cell, styles.emptyCell]}>
         <Text
           numberOfLines={2}
@@ -285,6 +288,9 @@ const Metric = ({metric, rowIndex, categories, playerPerformanceData}: any) => {
         </View>
       ))}
     </View>
+
+    </ScrollView>
+  
   );
 };
 
