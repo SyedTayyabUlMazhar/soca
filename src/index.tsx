@@ -13,6 +13,7 @@ import ErrorBoundary from './component/ErrorBoundries/ErrorBoundries';
 import LoginProvider from './contexts/loginContext/loginProvider';
 import NetInfo from '@react-native-community/netinfo';
 import CustomModal from '@Component/CustomModal/CustomModal';
+import { FirebaseNotification } from '@Service/NotificationServices/NotificationServices';
 
 export default function App() {
   const [isAnimationFinished, setIsAnimationFinished] = React.useState(
@@ -60,6 +61,14 @@ export default function App() {
     } else {
     }
   };
+
+  React.useEffect(() => {
+    // varss
+    FirebaseNotification.requestPermission();
+    if (!FirebaseNotification.initiated) {
+      FirebaseNotification.createNotificationListeners();
+    }
+  }, []);
 
   return (
     <ErrorBoundary>

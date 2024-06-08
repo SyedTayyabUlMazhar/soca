@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "182192105422",
+    "project_id": "mysoca-5af08",
+    "storage_bucket": "mysoca-5af08.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:182192105422:android:5be8bd78dc22aa9c452d9f",
+        "android_client_info": {
+          "package_name": "com.evolvlmsapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWaH39nfhOYJdJgd6EMFg-61P_r8Z4Hz4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
