@@ -85,6 +85,8 @@ export const Colors = {
   TEXT_COLOR:'#98D8FA',
   FAMILY_BACKGROUND:'#0A182C',
   ICE_BLUE:'#00B2FF',
+  OTP_BG_COLOR: "#B3B3B3",
+  OTP_BORDER_COLOR: "#00B2FF",
 };
 
 export const TOAST_COLORS = {

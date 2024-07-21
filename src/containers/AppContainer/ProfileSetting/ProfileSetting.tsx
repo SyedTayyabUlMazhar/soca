@@ -9,12 +9,13 @@ import FlatListHandler from '@Component/FlatlistHandler';
 import RenderMenuItem from '@Component/RenderMenuItem/RenderMenuItem';
 import ButtonView from '@Component/ButtonView';
 import H4 from '@Component/Headings/H4';
-import { FaqsIcon, NotificationIconNew, SignoutSvg } from '@Asset/logo';
+import { FaqsIcon, NotificationIconNew, PerformanceButtonSvg, SampleAward, SignoutSvg } from '@Asset/logo';
 import CustomModal from '@Component/CustomModal/CustomModal';
 import loginContext from '@Context/loginContext';
 import { LoginContext } from '@Context/loginContext/types';
 import { navigate } from '@Service/navigationService';
 import NavigationRoutes from '@Navigator/NavigationRoutes';
+import H6 from '@Component/Headings/H6';
 
 
 const ProfileSetting = () => {
@@ -42,6 +43,18 @@ const ProfileSetting = () => {
           justifyContent: 'space-between',
         }}>
         <View >
+          <View style={{alignItems:'center',padding:Metrics.baseMargin,flexDirection:'row',backgroundColor:Colors.Colors.FAMILY_BACKGROUND,borderRadius:Metrics.scale(16),marginBottom:Metrics.doubleBaseMargin}}>
+            <SampleAward/>
+            <View style={{marginLeft:Metrics.scale(20)}}>
+              <H4 text="Silver Tier" style={{...Fonts.SemiBold(Fonts.Size.medium, Colors.Colors.WHITE),}}/>
+              <H6 text="3 Months"style={{color:Colors.Colors.WHITE}}/>
+              <H6 text="left to unlock Gold Tier" style={{color:Colors.Colors.WHITE}}/>
+            </View>
+            <ButtonView onPress={() => navigate(NavigationRoutes.APP_STACK.TIERS,)} style={{marginBottom:'auto',marginLeft:'auto'}}>
+            <PerformanceButtonSvg />
+
+            </ButtonView>
+          </View>
           <GeneralSetting />
           <ReachOutUs menuProfileSettingList={menuProfileSettingList}/>
         </View>

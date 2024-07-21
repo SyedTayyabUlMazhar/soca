@@ -24,14 +24,7 @@ const ForgotPasswordForm = ({refForm}: IForgotPasswordForm) => {
                 placeholderTextColor={Colors.LIGHT_BORDER}
                 rightIcon={<Email />}
               />
-              <Input
-                {...SCHEMAS.password('password')}
-                placeholder="Enter your new password"
-                returnKeyType={'done'}
-                secureTextEntry={true}
-                isPassword={true}
-                placeholderTextColor={Colors.LIGHT_BORDER}
-              />
+        
             </>
           );
         }}

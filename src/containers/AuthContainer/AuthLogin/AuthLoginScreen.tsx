@@ -9,11 +9,12 @@ import styles from './style';
 import useAuthLoginContainer from './AuthLoginContainer';
 import FormHandler from '@Component/FormHandler';
 import Input from '@Component/Input';
-import { Email } from '@Asset/logo';
+import {Email} from '@Asset/logo';
 import AuthDefaultBottom from '@Component/AuthDefaultBottom/AuthDefaultBottom';
-import { navigate } from '@Service/navigationService';
+import {navigate} from '@Service/navigationService';
 import NavigationRoutes from '@Navigator/NavigationRoutes';
-import { Colors } from '@Theme/Colors';
+import {Colors} from '@Theme/Colors';
+import Fonts from '@Theme/Fonts';
 
 export default function AuthLoginScreen() {
   const {handleOnForgotPassord, onSubmitForm, refForm, loginUserLoading} =
@@ -36,21 +37,27 @@ export default function AuthLoginScreen() {
               />
             </View>
           </View>
-         <View>
-         <ButtonWithInnerLoader
-            onPress={onSubmitForm}
-            buttonText={'Login'}
-            loading={loginUserLoading}
-            btnStyle={styles.appBtnStyle}
-          />
-           <AuthDefaultBottom
-                text={"Don't have an account?"}
-                btnText={'SignUp'}
-                action={() => {
-                  navigate(NavigationRoutes.AUTH_STACK.SIGNUP);
-                }}
-              />
-         </View>
+          <View>
+            <ButtonWithInnerLoader
+              onPress={onSubmitForm}
+              buttonText={'Login'}
+              loading={loginUserLoading}
+              btnStyle={styles.appBtnStyle}
+            />
+            <ButtonWithInnerLoader
+              onPress={() => navigate(NavigationRoutes.AUTH_STACK.GUEST)}
+              buttonText={'Continue as guest'}
+              btnStyle={styles.guestBtn}
+              btnTextStyle={{color: Colors.ICE_BLUE}}
+            />
+            <AuthDefaultBottom
+              text={"Don't have an account?"}
+              btnText={'SignUp'}
+              action={() => {
+                navigate(NavigationRoutes.AUTH_STACK.SIGNUP);
+              }}
+            />
+          </View>
         </View>
       </AuthWrapper>
     </>
@@ -74,7 +81,7 @@ const LoginForm = ({refForm}: ILoginFormProps) => {
                 placeholderTextColor={'#fff'}
                 rightIcon={<Email/>}
               /> */}
-             {/* ID: 753 
+              {/* ID: 753 
             Password: test */}
               <Input
                 {...SCHEMAS.email('parentId')}
@@ -82,8 +89,7 @@ const LoginForm = ({refForm}: ILoginFormProps) => {
                 returnKeyType={'next'}
                 placeholderTextColor={Colors.LIGHT_BORDER}
                 // value='zohaib'
-                rightIcon={<Email/>}
-                
+                rightIcon={<Email />}
               />
               <Input
                 {...SCHEMAS.password('password')}

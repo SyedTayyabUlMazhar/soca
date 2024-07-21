@@ -5,9 +5,11 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {
   Card1,
   Card2,
+  HOF,
   HomeIconBot,
   MalePng,
   RewardIcon,
+  Services,
   TiersIcon,
   account,
 } from '../assets/logo';
@@ -18,10 +20,11 @@ import HomeScreen from '@Container/AppContainer/Home/HomeScreen';
 import {Colors} from '@Theme/Colors';
 import TierScreen from '@Container/AppContainer/Tiers/TierScreen';
 import RewardScreen from '@Container/AppContainer/Rewards/RewardScreen';
-import AccountScreen from '@Container/AppContainer/Accounts/AccountScreen';
+import ServicesScreen from '@Container/AppContainer/Services/index';
 import H6 from '@Component/Headings/H6';
 import ProfileSetting from '@Container/AppContainer/ProfileSetting/ProfileSetting';
 import Performance from '@Container/AppContainer/AllPerformance/Performance';
+import HallOfFame from '@Container/AppContainer/HallOfFame';
 const Tab = createBottomTabNavigator();
 
 const RenderTabBarIcon = ({source, color, focused}) => {
@@ -68,13 +71,13 @@ const tabRoutes = [
     },
   },
   {
-    name: NavigationRoutes.APP_STACK.TIERS,
-    component: TierScreen,
+    name: NavigationRoutes.APP_STACK.HALL_OF_FAME,
+    component: HallOfFame,
     options: {
       tabBarIcon: ({color, focused}) => (
-        <RenderTabBarIcon source={TiersIcon} color={color} focused={focused} />
+        <RenderTabBarIcon source={HOF} color={color} focused={focused} />
       ),
-      title: 'Tiers',
+      title: 'Hall Of Fame',
     },
   },
 

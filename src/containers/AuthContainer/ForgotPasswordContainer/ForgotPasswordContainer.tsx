@@ -10,11 +10,11 @@ export default function useForgotPasswordContainer() {
 
   const {mutate: forgotPasswordMutate,isLoading:forgotPasswordLoading} = useMutation(forgotPassword, {
     onSuccess: (data, payload) => {
-      console.log(data,"updateCoachAttendanceList ON SUCCESS",payload)
-      navigate(NavigationRoutes.AUTH_STACK.LOGIN);
-      // navigate(NavigationRoutes.AUTH_STACK.LOGIN, {
-      //   userEmail: payload?.email,
-      // });
+      console.log(data,"This is data from forgot Password");
+      
+      navigate(NavigationRoutes.AUTH_STACK.OTP, {
+        payload
+      });
     },
   });
 
@@ -23,7 +23,6 @@ export default function useForgotPasswordContainer() {
     if (data != null) {
       let payload: ForgotPasswordPayload = {
         parentId: data?.parentId,
-        password: data?.password
       };
       console.log(payload, "payload of Forgot Password");
       forgotPasswordMutate(payload);

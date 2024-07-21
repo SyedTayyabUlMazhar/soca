@@ -1,3 +1,4 @@
+import { Colors } from "@Theme/Colors";
 import Metrics from "@Utility/Metrics";
 import { StyleSheet } from "react-native";
 
@@ -9,6 +10,13 @@ const styles = StyleSheet.create({
   appBtnStyle: {
     width: "100%",
     alignSelf: "center",
+  },
+  guestBtn:{
+    width: "100%",
+    alignSelf: "center",
+    backgroundColor:Colors.TRANSPARENT,
+    borderColor:Colors.ICE_BLUE,
+    borderWidth:1
   },
   innerWrapper: {
     width: "100%",

@@ -216,6 +216,25 @@ import Gurus from './Gurus.png'
 import EJ from './EJ.png'
 import B from './B.jpeg'
 import Hermans from './Hermans.jpeg'
+import HallOfFame from './HallOfFame.png'
+import Wickets from './Wickets.svg'
+import Runs from './Runs.svg'
+import WicketBackground from './WicketBackground.png'
+import RunsBackground from './RunsBackground.png'
+import RunsBig from './RunBig.svg'
+import WicketsBig from './WicketsBig.svg'
+import Services from './Services.png'
+import SampleAward from './SampleAward.svg'
+import HOF from './HOF.png'
+import onBoard from './onBoard.png'
+import GoldCup from './GoldCup.svg'
+import LandingPage from './LandingPage.png'
+import LandingService from './LandingServices.png'
+import Helmet from './Helmet.svg'
+import Academy from './Academy.svg'
+import Private from './Private.svg'
+import Search from './Search.svg'
+
 
 export {
   PresentIcon,
@@ -432,5 +451,23 @@ CancelSmallIcon,
   Gurus,
   EJ,
   B,
-  Hermans
+  Hermans,
+  HallOfFame,
+  Runs,
+  Wickets,
+  WicketBackground,
+  RunsBackground,
+  RunsBig,
+  WicketsBig,
+  Services,
+  SampleAward,
+  HOF,
+  onBoard,
+  GoldCup,
+  LandingPage,
+  LandingService,
+  Helmet,
+  Academy,
+  Private,
+  Search
 };

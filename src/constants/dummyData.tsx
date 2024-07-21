@@ -1,12 +1,19 @@
 import { EarnedSvg, MisRewardSvg, RedeemedSvg, SavedSvg, boy, girl } from "@Asset/logo";
 import CoachAttendance from "@Container/AppContainer/CoachHome/CoachAttendance";
 import CoachSummary from "@Container/AppContainer/CoachHome/CoachSummary";
+import Fiftees from "@Container/AppContainer/Fiftees";
+import FiveWkts from "@Container/AppContainer/FiveWkts";
+import Hundreds from "@Container/AppContainer/Hundreds";
 import FieldingSession from "@Container/AppContainer/Manager/FieldingSession";
 import TeamAllocation from "@Container/AppContainer/Manager/TeamAllocation";
 import Batting from "@Container/AppContainer/Performance/Batting";
 import Bowling from "@Container/AppContainer/Performance/Bowling";
 import Fielding from "@Container/AppContainer/Performance/Fielding";
 import TotalGames from "@Container/AppContainer/Performance/TotalGames";
+import Academy from "@Container/AppContainer/Services/Tabs/Academy";
+import Private from "@Container/AppContainer/Services/Tabs/Private";
+import Rentals from "@Container/AppContainer/Services/Tabs/Rentals";
+import ThreeWkts from "@Container/AppContainer/ThreeWkts";
 
 export const TransactionList = [
   {
@@ -259,6 +266,49 @@ export const managerTabs = [
     component: FieldingSession,
   },
 ];
+
+export const hallOfFameTabs = [
+  {
+    name:  `100's`,
+    title: `100's`,
+    component: Hundreds,
+  },
+  {
+    name:`50's`,
+    title: `50's`,
+    component: Fiftees,
+  },
+  {
+    name: '3 Wkts',
+    title: '3 Wkts',
+    component: ThreeWkts,
+  },
+  {
+    name: '5 Wkts',
+    title: '5 Wkts',
+    component: FiveWkts,
+  },
+];
+
+export const servicesTabs = [
+  {
+    name:  `Academy`,
+    title: `Academy`,
+    component: Academy,
+  },
+  {
+    name:`Private`,
+    title: `Private`,
+    component: Private,
+  },
+  {
+    name: 'Rentals',
+    title: 'Rentals',
+    component: Rentals,
+  },
+
+];
+
 
 export const SessionData = [
   { 

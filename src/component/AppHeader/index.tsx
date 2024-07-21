@@ -4,46 +4,86 @@ import {Colors, Fonts} from '../../themes';
 import Metrics from '../../utility/Metrics';
 import ImageViewer from '../ImageView/Index';
 import {useNavigation} from '@react-navigation/native';
-import { BackIconSvg, LogoSvg } from '@Asset/logo';
+import {
+  AppLogo,
+  BackIconSvg,
+  LOGOSVG,
+  LogoSvg,
+  SOCASvg,
+  SocaLogo,
+} from '@Asset/logo';
 import H7 from '@Component/Headings/H7';
 import H6 from '@Component/Headings/H6';
 import H4 from '@Component/Headings/H4';
 import H3 from '@Component/Headings/H3';
+import H5 from '@Component/Headings/H5';
 // import Icon from '../Icon/Icon';
 
 type IHeaderProps = {
   title?: string | null;
   actionButton?: JSX.Element;
   containerStyle?: object;
-  backButton?:boolean;
-  subText?:string | null
-  desc?:string | null
+  backButton?: boolean;
+  subText?: string | null;
+  desc?: string | null;
+  isLogo?: boolean;
 };
 
 export default function Header(props: IHeaderProps) {
   const navigation = useNavigation();
 
-  const {title = 'App Heading', actionButton, containerStyle,backButton=true,subText,desc} = props;
+  const {
+    title = 'App Heading',
+    actionButton,
+    containerStyle,
+    backButton = true,
+    subText,
+    desc,
+    isLogo = false,
+  } = props;
 
   return (
     <View style={[styles.container, containerStyle]}>
-      <View style={styles.innerContainer}>
-        {
-            backButton && 
-            <>
-            
-            <Pressable
-            style={styles.backWrapper}
-            onPress={() => navigation.goBack()}>
-            <BackIconSvg/>
-          </Pressable>
-             <Text style={styles.textStyle}>{title}</Text>
-            </>
-        }
-        <View style={{flexDirection:'column',marginTop:Metrics.baseMargin}}>
+      {isLogo && (
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginTop: Metrics.baseMargin,
+          }}>
+          <View style={styles.backWrapper}>
+            <LOGOSVG height={Metrics.verticalScale(70)} />
+          </View>
+          <View style={{marginHorizontal: 6}}>
+            <H5
+              text="SOCA"
+              style={{...Fonts.Medium(Fonts.Size.large, Colors.Colors.WHITE)}}
+            />
+            <H5
+              text="Superover Cricket Academy"
+              style={{
+                ...Fonts.Medium(Fonts.Size.xSmall, Colors.Colors.ICE_BLUE),
+              }}
+            />
+          </View>
+        </View>
+      )}
 
-        <H6 text={subText} style={{color:Colors.Colors.ICE_BLUE}}/>
-        <H3 text={desc} style={{color:Colors.Colors.WHITE}}/>
+      <View style={styles.innerContainer}>
+        {backButton && (
+          <>
+            <Pressable
+              style={styles.backWrapper}
+              onPress={() => navigation.goBack()}>
+              <BackIconSvg />
+            </Pressable>
+            <Text style={styles.textStyle}>{title}</Text>
+          </>
+        )}
+
+        <View style={{flexDirection: 'column', marginTop: Metrics.baseMargin}}>
+          <H6 text={subText} style={{color: Colors.Colors.ICE_BLUE}} />
+          <H3 text={desc} style={{color: Colors.Colors.WHITE}} />
         </View>
       </View>
       <View style={styles.iconStyle}>{actionButton}</View>
@@ -56,7 +96,7 @@ const styles = StyleSheet.create({
     padding: Metrics.scale(18),
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor:'#0A182C'
+    backgroundColor: '#0A182C',
   },
   innerContainer: {
     alignItems: 'center',
@@ -79,6 +119,6 @@ const styles = StyleSheet.create({
   },
   iconStyle: {
     flexDirection: 'row',
-    marginTop:Metrics.doubleBaseMargin
+    marginTop: Metrics.doubleBaseMargin,
   },
 });

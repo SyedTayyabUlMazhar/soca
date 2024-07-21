@@ -1,29 +1,36 @@
-import * as React from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
-import {CancelSmallIcon, FaqsIcon, PresentIcon} from '@Asset/logo';
-import Header from '@Component/AppHeader';
+import {CancelSmallIcon, FaqsIcon, PresentIcon, Search} from '@Asset/logo';
 import ButtonView from '@Component/ButtonView';
 import FlatListHandler from '@Component/FlatlistHandler';
 import H2 from '@Component/Headings/H2';
 import H3 from '@Component/Headings/H3';
 import H5 from '@Component/Headings/H5';
-import {COACH_PLAYER_TODAY_ATTENDANCE} from '@Constants/constants';
-import {PLAYER_ATTENDANCE_SHEET} from '@Constants/dummyData';
-import {Colors, Fonts} from '@Theme/index';
-import Metrics from '@Utility/Metrics';
-import {Text} from 'react-native-svg';
 import H6 from '@Component/Headings/H6';
 import TeamSelectionModal from '@Component/TeamSelectionModal';
-import useCoachContainer from './CoachContainer';
+import {COACH_PLAYER_TODAY_ATTENDANCE} from '@Constants/constants';
 import {useBoundStore} from '@Store/index';
-import moment from 'moment';
+import {Colors, Fonts} from '@Theme/index';
+import Metrics from '@Utility/Metrics';
+import * as React from 'react';
+import {ScrollView, StyleSheet, TextInput, View} from 'react-native';
+import useCoachContainer from './CoachContainer';
 
 const CoachAttendance = () => {
+  const [searchQuery, setSearchQuery] = React.useState('');
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
+ 
   const coachAttendacnZustand = useBoundStore(
     (state: any) => state.coachAttendacnZustand,
   );
   const {getCoachAttendacneList, updateCoachAttendanceListMutate} =
     useCoachContainer();
+    
+    const filteredPlayers = coachAttendacnZustand?.data?.filter(player =>
+      player.plyr_name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
   return (
     <View style={{backgroundColor: Colors.Colors.APP_BACKGROUND, flex: 1}}>
       <ScrollView
@@ -34,6 +41,9 @@ const CoachAttendance = () => {
         <TodayPlayerAttendance
           getCoachAttendacneList={coachAttendacnZustand}
           updateCoachAttendanceListMutate={updateCoachAttendanceListMutate}
+          searchQuery={searchQuery}
+          onSearch={handleSearch}
+          filteredPlayers={filteredPlayers}
         />
       </ScrollView>
     </View>
@@ -43,6 +53,9 @@ const CoachAttendance = () => {
 const TodayPlayerAttendance = ({
   getCoachAttendacneList,
   updateCoachAttendanceListMutate,
+  searchQuery,
+  onSearch,
+  filteredPlayers,
 }: any) => {
   const [isDeleteAccountVisible, setIsDeleteAccountVisible] =
     React.useState(false);
@@ -54,14 +67,6 @@ const TodayPlayerAttendance = ({
 
   const handlePressMarkAttendance = (isPresent, playerData) => {
 
-    console.log(playerData,'playerDataplayerDataplayerDataplayerData');
-    
-    console.log(
-      isPresent,
-      playerData?.Coach_Id,
-      playerData?.Player_id,
-      'isPresentisPresentisPresentisPresent',
-    );
     const payload = {
       attendance: isPresent,
       coachId: playerData?.Coach_Id,
@@ -69,7 +74,7 @@ const TodayPlayerAttendance = ({
     };
     updateCoachAttendanceListMutate(payload);
   };
-  
+
   const renderPlayerAttendance = ({item}: any) => {
     return (
       <View style={styles.playerAttendanceRenderWrapper}>
@@ -133,9 +138,7 @@ const TodayPlayerAttendance = ({
         <H6
           text={
             state
-              ? `${state?.dob}, ${state?.tourney}, ${
-                  state?.team
-                }`
+              ? `${state?.dob}, ${state?.tourney}, ${state?.team}`
               : 'Select Date, Tournament, Team'
           }
           style={{color: Colors.Colors.WHITE}}
@@ -146,10 +149,21 @@ const TodayPlayerAttendance = ({
         text="Today’s Players Attendance"
         style={styles.todayPlayerAttendancTitle}
       />
+      <View>
+      <TextInput
+        style={styles.searchInput}
+        placeholder="Search players..."
+        placeholderTextColor={Colors.Colors.GREY}
+        value={searchQuery}
+        onChangeText={onSearch}
+      />
+      <Search style={{position:'absolute', right:20, top:15}}/>
+      </View>
+ 
       <View style={styles.playerWrapper}>
+        
         <FlatListHandler
-          // data={PLAYER_ATTENDANCE_SHEET}
-          data={getCoachAttendacneList?.data}
+          data={filteredPlayers}
           renderItem={renderPlayerAttendance}
         />
       </View>
@@ -220,5 +234,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: Metrics.scale(13),
     paddingVertical: Metrics.scale(16),
     borderRadius: 16,
+  },
+  searchInput: {
+    ...Fonts.Medium(Fonts.Size.xxxSmall, Colors.Colors.WHITE),
+    borderColor: Colors.Colors.DARK_BLUE,
+    borderWidth: 1,
+    borderRadius: 40,
+    paddingHorizontal: Metrics.scale(10),
+    marginBottom: Metrics.scale(15),
   },
 });

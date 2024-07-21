@@ -37,5 +37,7 @@ export const STORAGE_KEYS = {
   GET_SPONSORS:'getAllSponsors',
   GET_COACH_ID:'getCoachId',
   GET_ABOUT_US:'getAbout',
-  GET_ID_BY_EMAIL:'getParentIdByEmail'
+  GET_ID_BY_EMAIL:'getParentIdByEmail',
+  HALL_OF_FAME:'getHallOfFame',
+  SUMMARY:'getSummary',
 };

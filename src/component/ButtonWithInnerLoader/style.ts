@@ -5,7 +5,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     btnText: {
         marginHorizontal: 10,
-        ...Fonts.Bold(Fonts.Size.medium, Colors.Colors.BUTTON_LIGHT_GREY),
+        ...Fonts.Medium(Fonts.Size.medium, Colors.Colors.BUTTON_LIGHT_GREY),
     },
     submitBtnStyle: {
         backgroundColor: Colors.Colors.DARK_BLUE,

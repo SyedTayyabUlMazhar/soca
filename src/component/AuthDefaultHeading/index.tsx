@@ -4,6 +4,7 @@ import Metrics from "@Utility/Metrics";
 import React from "react";
 import { View } from "react-native";
 import styles from "./style";
+import { Colors } from "@Theme/Colors";
 
 interface IAuthDefaultHeading {
   title?: string;
@@ -21,7 +22,7 @@ const AuthDefaultHeading = ({
       <H1 style={styles.textCenter} text={title} />
       {desc && (
         <H7
-          style={[styles.desc, isOtp ? { width: Metrics.scale(180) } : null]}
+          style={[styles.desc, isOtp ? { fontSize:14,color:Colors.WHITE_THREE } : null]}
           text={desc}
         />
       )}

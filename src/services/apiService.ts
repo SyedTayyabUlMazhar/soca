@@ -16,7 +16,6 @@ const apiSauceInstance = create({
 });
 async function get(url: string, queryParams?: {}, config?: {}) {
   const response = await apiSauceInstance.get(url, queryParams, config);
-  console.log(url, "get URL")
   return handleResponse(response);
 }
 

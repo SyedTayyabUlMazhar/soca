@@ -94,10 +94,7 @@ const OverAllPerformance = ({playerId}) => {
 
   const {playerPerformanceData, isLoading, refetchPlayerPerformanceData, year} =
     useAllPerformanceContainer(playerId);
-  console.log(
-    playerPerformanceData,
-    'playerPerformanceDataplayerPerformanceDataplayerPerformanceDataplayerPerformanceData',
-  );
+
   const setYear = useBoundStore(state => state.setYearZustand);
 
   const handleCallbackFunc = item => {

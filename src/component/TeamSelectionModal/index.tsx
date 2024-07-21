@@ -51,7 +51,6 @@ const TeamSelectionModal = ({
   const [selectedTourney, setSelectedTourney] = useState('');
   const [selectedTeam,setIsSelectedTeam]=useState('')
   const userData = getItem(STORAGE_KEYS.GET_COACH_ID)
-  console.log(userData,'userDatauserDatauserDatauserData');
   
   const toggleTourneyModal = () => {
     setIsTourneyModalVisible(!isTourneyModalVisible);

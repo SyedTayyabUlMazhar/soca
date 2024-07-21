@@ -58,6 +58,48 @@ export default function AuthStack() {
             .default
         }
       />
+      <Stack.Screen
+        options={{title: 'OTP', headerShown: false}}
+        name={NavigationRoutes.AUTH_STACK.OTP}
+        getComponent={() =>
+          require('@Container/AuthContainer/OTP').default
+        }
+      />
+          <Stack.Screen
+        options={{title: 'Reset Password', headerShown: false}}
+        name={NavigationRoutes.AUTH_STACK.RESET_PASSWORD}
+        getComponent={() =>
+          require('@Container/AuthContainer/ResetPassword').default
+        }
+      />
+               <Stack.Screen
+        options={{title: 'Guest', headerShown: false}}
+        name={NavigationRoutes.APP_STACK.GUEST}
+        getComponent={() =>
+          require('@Container/AppContainer/Guest').default
+        }
+      />
+            <Stack.Screen
+        options={{title: 'Hall Of Fame', headerShown: false}}
+        name={NavigationRoutes.APP_STACK.HALL_OF_FAME}
+        getComponent={() =>
+          require('@Container/AppContainer/HallOfFame').default
+        }
+      />
+         <Stack.Screen
+        options={{title: 'Services', headerShown: false}}
+        name={NavigationRoutes.APP_STACK.SERVICES}
+        getComponent={() =>
+          require('@Container/AppContainer/Services').default
+        }
+      />
+      <Stack.Screen
+        options={{title: 'About', headerShown: false}}
+        name={NavigationRoutes.APP_STACK.ABOUT}
+        getComponent={() =>
+          require('@Container/AppContainer/About/About').default
+        }
+      />
     </Stack.Navigator>
   );
 }

@@ -96,7 +96,6 @@ export const deleteUser = async (params: any) => {
 };
 
 export const forgotPassword = async (params: any) => {
-  console.log(params, "params forgotPassword")
   const { data } = await apiRequest({
     url: `${SERVICE_CONFIG_URLS.AUTH.FORGOT_PASSWORD}` ,
     method: API_CONFIG.PUT,
@@ -111,7 +110,6 @@ export const forgotPassword = async (params: any) => {
 
 
 export const getParentIdByEmail = async (params: any) => {
-  console.log(params,'paramsparamsparamsparams');
   
   const {data} = await apiRequest({
     url: `${SERVICE_CONFIG_URLS.AUTH.EMAIL}${params.email}`,
@@ -119,5 +117,29 @@ export const getParentIdByEmail = async (params: any) => {
     params,
     showLoader: false,
   });
+  return data;
+};
+
+export const verfiyOtp = async (params: any) => {
+  const { data } = await apiRequest({
+    url: `${SERVICE_CONFIG_URLS.AUTH.OTP}` ,
+    method: API_CONFIG.PUT,
+    showToast:true,
+    showSuccessToast:true,
+    params,
+  });
+  
+  return data;
+};
+
+export const resetPassword = async (params: any) => {
+  const { data } = await apiRequest({
+    url: `${SERVICE_CONFIG_URLS.AUTH.RESET_PASSWORD}` ,
+    method: API_CONFIG.PUT,
+    showToast:true,
+    showSuccessToast:true,
+    params,
+  });
+  
   return data;
 };

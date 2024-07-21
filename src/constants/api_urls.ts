@@ -14,8 +14,10 @@ export const SERVICE_CONFIG_URLS = {
     REQUEST_OTP: `${driver}/tokens/request-otp`,
     VERIFY_OTP: `${driver}/tokens/verify-otp`,
     PRIVACY_POLICY: `${driver}/personal/privacy-policy`,
-    FORGOT_PASSWORD: `${auth}/forget`,
-    EMAIL:`/parent/email/`
+    FORGOT_PASSWORD: `${auth}/forget-password/`,
+    EMAIL:`/parent/email/`,
+    OTP:`${auth}/forget-password/verify`,
+    RESET_PASSWORD:`${auth}/reset-password`
   },
   PLAYER: {
     REQUEST_OTP: `${student}/tokens/request-otp`,
@@ -37,7 +39,9 @@ export const SERVICE_CONFIG_URLS = {
     GET_PLAYER_PROFILE:`/player/`,
     GET_PLAYER_PERFORMANCE:'/player/',
     GET_SPONSORS:'/sponsors',
-    ABOUT_US:'/about-us'
+    ABOUT_US:'/about-us',
+    HALL_OF_FAME:'/hall-of-fame',
+    SUMMARY:'/summary/'
   },
   COACH:{
     COACH_INFO:'/coach-info/',
