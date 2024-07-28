@@ -45,6 +45,7 @@ const HomeScreen = ({route}) => {
     parentData,
     summaryData,
   } = useHomeScreenContainer(PlayerID);
+  const email = parentData?.map(elem => elem?.Email_id);
   const ParentName = parentData?.map(elem => elem?.Parent_Name);
   const saved_crt_yr = parentData?.map(elem => elem?.saved_crt_yr);
   const earned_crt_yr = parentData?.map(elem => elem?.earned_crt_yr);
@@ -360,7 +361,7 @@ const HomeScreen = ({route}) => {
                     />
                     <ButtonView
                       onPress={() =>
-                        navigate(NavigationRoutes.APP_STACK.PAYMENT_PENDING)
+                        navigate(NavigationRoutes.APP_STACK.PAYMENT_PENDING,{email})
                       }>
                       <PerformanceButtonSvg />
                     </ButtonView>
@@ -374,7 +375,7 @@ const HomeScreen = ({route}) => {
                     <H7 text="" style={{color: Colors.WHITE}} />
                   </View>
                   <H5
-                    text={pndg_inv_amt ? `$${pndg_inv_amt}` : '$0'}
+                    text={pndg_inv_amt ? `${pndg_inv_amt}` : '$0'}
                     style={{
                       color: Colors.WHITE,
                       marginTop: Metrics.doubleBaseMargin,

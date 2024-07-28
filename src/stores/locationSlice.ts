@@ -31,7 +31,12 @@ interface YearZustandSlice {
   setYearZustand: (data: any) => void;
   resetYearZustand: () => void;
 }
-const initialLocationState: LocationSlice = {};
+
+interface LocationZustandSlice {
+  locationZustand: any | null;
+  setLocationZustand: (data: any) => void;
+  resetLocationZustand: () => void;
+}
 const initialcoachAttendacnZustandState: Partial<CoachAttendacnZustandSlice> = {
   coachAttendacnZustand: {},
 };
@@ -54,12 +59,12 @@ const initialFieldingState: Partial<FieldingZustandSlice> = {
 const initialYearState: Partial<YearZustandSlice> = {
   YearZustand: new Date().getFullYear(),
 };
+const initialLocationState: Partial<LocationZustandSlice> = {
+  locationZustand: null,
+};
 
 
-export const createLocationSlice = (set: any) => ({
-  ...initialLocationState,
-  reset: () => set(initialLocationState),
-});
+
 
 export const createCoachAttendacneSlice = (set: any) => ({
   ...initialcoachAttendacnZustandState,
@@ -124,5 +129,15 @@ export const createYearSlice = (set: any) => ({
       YearZustand: data,
     })),
     resetYearZustand: () => set(initialYearState),
+});
+
+export const createLocationSlice = (set: any) => ({
+  ...initialLocationState,
+  setLocationZustand: (data: any) =>
+    set(state => ({
+      ...state,
+      locationZustand: data,
+    })),
+  resetLocationZustand: () => set(initialLocationState),
 });
 

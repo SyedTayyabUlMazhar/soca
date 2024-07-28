@@ -19,7 +19,7 @@ type TRequestProps = {
 export async function apiRequest({
   url, //Service url
   method, //Web Service type 'post,get,put,delete....'
-  params, //Paramter for request
+  params, //Paramter for request,
   config, //APIrequest Configuration
   showLoader = true, //Show spinner
   showToast = true,

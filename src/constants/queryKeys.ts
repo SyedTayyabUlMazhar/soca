@@ -40,4 +40,12 @@ export const STORAGE_KEYS = {
   GET_ID_BY_EMAIL:'getParentIdByEmail',
   HALL_OF_FAME:'getHallOfFame',
   SUMMARY:'getSummary',
+  GET_ALL_PLAYERS:'getAllPlayers',
+  GET_ACADEMY_KID_AGE:'getAcademyKidAge',
+  GET_ACADEMY_LOCATION:'getAcademyLocation',
+  GET_TIMES_PER_WEEK:'getTimesPerWeek',
+  GET_LOCATION_KEY:'getLocation',
+  GET_TYPE_OF_LANE:'getTypeOfLane',
+  GET_HOURS:'getHours',
+  GET_RENTAL:`getRental`
 };

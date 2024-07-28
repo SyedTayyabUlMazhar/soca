@@ -1,38 +1,51 @@
-import {Email, FaqsIcon, LogoSvg, LogoutSvg} from '@Asset/logo';
-import ButtonView from '@Component/ButtonView';
-import FormDataInput from '@Component/FormDateInput';
-import H2 from '@Component/Headings/H2';
-import H4 from '@Component/Headings/H4';
-import Input from '@Component/Input';
 import {Colors} from '@Theme/Colors';
 import Fonts from '@Theme/Fonts';
 import Metrics from '@Utility/Metrics';
-import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React from 'react';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import ReactNativeModal from 'react-native-modal';
-import FormHandler from '@Component/FormHandler';
-import {DATE_FORMATS} from '@Utility/DateUtils';
-import SimpleModal from '@Component/SimpleModal/SimpleModal';
-import H6 from '@Component/Headings/H6';
 
 interface ICustomModal {
   title?: string;
   desc?: string;
   handleDropOffPress: Function;
-  handleSelection: Function;
+  handleSelection: (item: any) => void; // Added item parameter
   isModalVisible: boolean;
-  modalData: any;
+  modalData: any[];
 }
 
-const CustomSelectionModal = ({
+const ServiceModal = ({
   isModalVisible,
   handleSelection,
   title,
   handleDropOffPress,
   modalData,
 }: ICustomModal) => {
-  
-  const refForm = React.useRef();
+
+  const Sample = ({item}: {item: string}) => {
+    return (
+      <TouchableOpacity
+        key={item} // Use item as the key if it is unique
+        onPress={() => handleSelection(item)} // Pass item to handleSelection
+      >
+        <Text
+          style={{
+            ...Fonts.Medium(Fonts.Size.small, Colors.WHITE),
+            marginVertical: Metrics.smallMargin,
+          }}
+        >
+          {item} {/* Display the item text */}
+        </Text>
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <ReactNativeModal
       isVisible={isModalVisible}
@@ -40,37 +53,23 @@ const CustomSelectionModal = ({
       animationOut={'fadeOut'}
       backdropOpacity={0.7}
       onBackdropPress={() => handleDropOffPress(false)}
-      backdropTransitionOutTiming={0}>
+      backdropTransitionOutTiming={0}
+    >
       <View style={styles.modal}>
-        <Text
-          style={{
-            ...Fonts.Medium(Fonts.Size.medium, Colors.DARK_BLUE),
-            alignSelf: 'center',
-            marginBottom: Metrics.baseMargin,
-          }}>
-          {title}
-        </Text>
-        {modalData?.map(item => (
-          <TouchableOpacity
-            key={item?.age_grp_id || item?.id || item?.location_id}
-            onPress={() =>
-              handleSelection(
-                item?.name ||
-                  item['Coaching Age Group'] ||
-                  item['Coaching Locations'],
-              )
-            }>
-            <Text
-              style={{
-                ...Fonts.Medium(Fonts.Size.small, Colors.WHITE),
-                marginVertical: Metrics.smallMargin,
-              }}>
-              {item?.name ||
-                item['Coaching Age Group'] ||
-                item['Coaching Locations']}
-            </Text>
-          </TouchableOpacity>
-        ))}
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <Text
+            style={{
+              ...Fonts.Medium(Fonts.Size.medium, Colors.DARK_BLUE),
+              alignSelf: 'center',
+              marginBottom: Metrics.baseMargin,
+            }}
+          >
+            {title}
+          </Text>
+          {modalData?.map(item => (
+            <Sample key={item} item={item} />
+          ))}
+        </ScrollView>
       </View>
     </ReactNativeModal>
   );
@@ -89,7 +88,8 @@ const styles = StyleSheet.create({
     marginHorizontal: Metrics.scale(10),
     borderRadius: Metrics.scale(15),
     justifyContent: 'center',
-    // alignItems:'center'
+    height: 300,
+    paddingVertical: 20,
   },
   buttonView: {
     flexDirection: 'row',
@@ -123,4 +123,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustomSelectionModal;
+export default ServiceModal;

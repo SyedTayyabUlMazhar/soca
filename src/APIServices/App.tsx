@@ -8,7 +8,7 @@ export const getUserDetails = async (params: any) => {
     method: API_CONFIG.GET,
     params,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
@@ -19,7 +19,7 @@ export const getPlayer = async (params: any) => {
     method: API_CONFIG.GET,
     params,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
@@ -29,7 +29,7 @@ export const getAnnouncements = async () => {
     url: `${SERVICE_CONFIG_URLS.PLAYER.GET_ANNOUNCEMENTS}`,
     method: API_CONFIG.GET,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
@@ -40,7 +40,7 @@ export const getFmailyPlayers = async (params: any) => {
     method: API_CONFIG.GET,
     params,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
@@ -50,7 +50,7 @@ export const getAllFaqs = async () => {
     url: `${SERVICE_CONFIG_URLS.PLAYER.FAQS}`,
     method: API_CONFIG.GET,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
@@ -71,13 +71,12 @@ export const getRedeem = async (params: any) => {
     method: API_CONFIG.GET,
     params,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
 
 export const getActivity = async (params: any) => {
-  
   const {data} = await apiRequest({
     url: `${SERVICE_CONFIG_URLS.PLAYER.GET_ACTIVITY}${params.userData}`,
     method: API_CONFIG.GET,
@@ -95,7 +94,7 @@ export const getPerformance = async (params: any) => {
     method: API_CONFIG.GET,
     params,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
@@ -106,19 +105,18 @@ export const getPayment = async (params: any) => {
     method: API_CONFIG.GET,
     params,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
 
 export const getCoachInfo = async (params: any) => {
-  
   const {data} = await apiRequest({
     url: `${SERVICE_CONFIG_URLS.COACH.COACH_INFO}${params?.parentId}`,
     method: API_CONFIG.GET,
     params,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
@@ -129,60 +127,57 @@ export const getParentDetail = async (params: any) => {
     method: API_CONFIG.GET,
     params,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
 
 export const getCoachBatch = async (params: any) => {
-  
   const {data} = await apiRequest({
     url: `${SERVICE_CONFIG_URLS.COACH.COACH_BATCH}${params?.userData}`,
     method: API_CONFIG.GET,
     params,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
 
 export const getCoachActivity = async (params: any) => {
-  
   const {data} = await apiRequest({
     url: `${SERVICE_CONFIG_URLS.COACH.COACH_ACTIVITY}${params?.userData}`,
     method: API_CONFIG.GET,
     params,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
 
 export const getPlayerProfile = async (params: any) => {
-  
   const {data} = await apiRequest({
     url: `${SERVICE_CONFIG_URLS.PLAYER.GET_PLAYER_PROFILE}${params?.playerId}/profile`,
     method: API_CONFIG.GET,
     params,
-    showToast:false
-  })
+    showToast: false,
+  });
   return data;
-}   
+};
 
 export const getAgeGroup = async () => {
   const {data} = await apiRequest({
     url: SERVICE_CONFIG_URLS.COACH.AGE_GROUP,
     method: API_CONFIG.GET,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
 
 export const getPlayerPerformance = async (params: any) => {
-const {userData,year}=params || {}
+  const {userData, year} = params || {};
 
-  const getPlayerId= params?.playerId ? params?.playerId : params
+  const getPlayerId = params?.playerId ? params?.playerId : params;
   const {data} = await apiRequest({
     url: `${SERVICE_CONFIG_URLS.PLAYER.GET_PLAYER_PERFORMANCE}${userData}/performance/${year}?playerId=${getPlayerId}`,
     method: API_CONFIG.GET,
@@ -191,8 +186,6 @@ const {userData,year}=params || {}
   });
   return data;
 };
-
-
 
 export const getManager = async (params: any) => {
   const {data} = await apiRequest({
@@ -209,33 +202,30 @@ export const getLocation = async () => {
     url: SERVICE_CONFIG_URLS.COACH.LOCATION,
     method: API_CONFIG.GET,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
-
 
 export const getTournament = async () => {
   const {data} = await apiRequest({
     url: SERVICE_CONFIG_URLS.MANAGER.GET_TOURNAMENT,
     method: API_CONFIG.GET,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
-export const getCoachAttendanceList = async (params) => {
-  
-  const {dob,team,tourney}=params?.payload || {}
-  let apiURLDefeault = `${SERVICE_CONFIG_URLS.COACH.GET_COACH_ATTENDANCE_LIST}/${params?.coachId}`
-  let apiURLParams = `${SERVICE_CONFIG_URLS.COACH.GET_COACH_ATTENDANCE_LIST}/${params?.coachId}?date=${dob}&location=${team}&age_grp=${tourney}`
- 
- 
+export const getCoachAttendanceList = async params => {
+  const {dob, team, tourney} = params?.payload || {};
+  let apiURLDefeault = `${SERVICE_CONFIG_URLS.COACH.GET_COACH_ATTENDANCE_LIST}/${params?.coachId}`;
+  let apiURLParams = `${SERVICE_CONFIG_URLS.COACH.GET_COACH_ATTENDANCE_LIST}/${params?.coachId}?date=${dob}&location=${team}&age_grp=${tourney}`;
+
   const {data} = await apiRequest({
     url: params?.dob ? apiURLParams : apiURLDefeault,
     method: API_CONFIG.GET,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
@@ -245,7 +235,7 @@ export const getDivision = async () => {
     url: SERVICE_CONFIG_URLS.MANAGER.GET_DIVISION,
     method: API_CONFIG.GET,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
@@ -255,7 +245,7 @@ export const getTeam = async () => {
     url: SERVICE_CONFIG_URLS.MANAGER.GET_TEAM,
     method: API_CONFIG.GET,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
@@ -265,69 +255,88 @@ export const getOpponent = async () => {
     url: SERVICE_CONFIG_URLS.MANAGER.GET_OPPONENT,
     method: API_CONFIG.GET,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
 
 export const getDate = async (params: any) => {
-
-  
- const {selectedDivision,selectedOpponent,selectedTeam,selectedTourney,userData}=params || {}
+  const {
+    selectedDivision,
+    selectedOpponent,
+    selectedTeam,
+    selectedTourney,
+    userData,
+  } = params || {};
   const {data} = await apiRequest({
     url: `${SERVICE_CONFIG_URLS.MANAGER.GET_DATE}${userData}?team=${selectedTeam}&tournament=${selectedTourney}&opponent=${selectedOpponent}&division=${selectedDivision}`,
     method: API_CONFIG.GET,
     params,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
 
 export const getTeamAllocation = async (params: any) => {
-  const {selectedDivision,selectedOpponent,selectedTeam,selectedTourney,userData,  selectedDate}=params || {}
+  const {
+    selectedDivision,
+    selectedOpponent,
+    selectedTeam,
+    selectedTourney,
+    userData,
+    selectedDate,
+  } = params || {};
   const {data} = await apiRequest({
     url: `${SERVICE_CONFIG_URLS.MANAGER.GET_TEAM_ALLOCATION}${userData}?date=${selectedDate}&team=${selectedTeam}&tournament=${selectedTourney}&opponent=${selectedOpponent}&division=${selectedDivision}`,
     method: API_CONFIG.GET,
     params,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
 
-export const updateCoachAttendanceList = async (params) => {
+export const updateCoachAttendanceList = async params => {
   const {data} = await apiRequest({
     url: `${SERVICE_CONFIG_URLS.COACH.GET_COACH_ATTENDANCE_LIST}/${params.playerId}/${params.coachId}`,
     method: API_CONFIG.PUT,
     showLoader: false,
     params: {attendance: params?.attendance},
-    showToast:false
+    showToast: false,
   });
-}
+};
 
 export const getFieldingSession = async (params: any) => {
-  const {selectedDivision,selectedOpponent,selectedTeam,selectedTourney,userData,  selectedDate}=params || {}
+  const {
+    selectedDivision,
+    selectedOpponent,
+    selectedTeam,
+    selectedTourney,
+    userData,
+    selectedDate,
+  } = params || {};
   const {data} = await apiRequest({
-    url: `${SERVICE_CONFIG_URLS.MANAGER.GET_FIELDING}${userData}?date=${selectedDate}&team=${selectedTeam}&tournament=${selectedTourney}&opponent=${selectedOpponent}&division=${selectedDivision}`,   
+    url: `${SERVICE_CONFIG_URLS.MANAGER.GET_FIELDING}${userData}?date=${selectedDate}&team=${selectedTeam}&tournament=${selectedTourney}&opponent=${selectedOpponent}&division=${selectedDivision}`,
     method: API_CONFIG.GET,
     params,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
-export const updateFieldingSession = async (params) => {
-  const {div,gm_date,managerId,opp_team,playerId,soca_team,tourney}=params ||{}
+export const updateFieldingSession = async params => {
+  const {div, gm_date, managerId, opp_team, playerId, soca_team, tourney} =
+    params || {};
   const {data} = await apiRequest({
     url: `${SERVICE_CONFIG_URLS.MANAGER.UPDATE_GET_FIELDING}${managerId}/${playerId}?date=${gm_date}&team=${soca_team}&tournament=${tourney}&opponent=${opp_team}&division=${div}`,
     method: API_CONFIG.PUT,
     showLoader: false,
     params,
-    showToast:false
+    showToast: false,
   });
-    return data;
-}
+  return data;
+};
 
 export const getSponsors = async (params: any) => {
   const {data} = await apiRequest({
@@ -344,32 +353,120 @@ export const About = async () => {
     url: `${SERVICE_CONFIG_URLS.PLAYER.ABOUT_US}`,
     method: API_CONFIG.GET,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
 
-
 export const HallOfFame = async (params: any) => {
-  
   const {data} = await apiRequest({
     url: `${SERVICE_CONFIG_URLS.PLAYER.HALL_OF_FAME}?type=${params?.type}`,
     method: API_CONFIG.GET,
     showLoader: false,
-    showToast:false
+    showToast: false,
   });
   return data;
 };
 
-
 export const getSummary = async (params: any) => {
-  const {playerId}=params ||{}
+  const {playerId} = params || {};
   const {data} = await apiRequest({
     url: `${SERVICE_CONFIG_URLS.PLAYER.SUMMARY}${playerId}`,
     method: API_CONFIG.GET,
     params,
     showLoader: false,
-    showToast:false
+    showToast: false,
+  });
+  return data;
+};
+
+export const getPlayers = async (params: any) => {
+  const {data} = await apiRequest({
+    url: `${SERVICE_CONFIG_URLS.PLAYER.GET_ALL_PLAYERS}`,
+    method: API_CONFIG.GET,
+    params,
+    showLoader: false,
+    showToast: false,
+  });
+  return data;
+};
+
+export const getKidAges = async () => {
+  const {data} = await apiRequest({
+    url: SERVICE_CONFIG_URLS.PLAYER.GET_ACADEMY_KID_AGE,
+    method: API_CONFIG.GET,
+    showLoader: false,
+    showToast: false,
+  });
+  return data;
+};
+
+export const getAcademyLocation = async () => {
+  const {data} = await apiRequest({
+    url: SERVICE_CONFIG_URLS.PLAYER.GET_ACADEMY_LOCATION,
+    method: API_CONFIG.GET,
+    showLoader: false,
+    showToast: false,
+  });
+  return data;
+};
+
+export const getWeeksValue = async () => {
+  const {data} = await apiRequest({
+    url: SERVICE_CONFIG_URLS.PLAYER.GET_ACADEMY_WEEKS,
+    method: API_CONFIG.GET,
+    showLoader: false,
+    showToast: false,
+  });
+  return data;
+};
+
+export const academyResult = async (params: any) => {
+  const {data} = await apiRequest({
+    url: SERVICE_CONFIG_URLS.PLAYER.GET_ACADEMY,
+    method: API_CONFIG.POST,
+    params,
+  });
+  return data;
+};
+
+export const getGames = async () => {
+  const {data} = await apiRequest({
+    url: SERVICE_CONFIG_URLS.PLAYER.GET_TYPE_OF_LANE,
+    method: API_CONFIG.GET,
+    showLoader: false,
+    showToast: false,
+  });
+  return data;
+};
+
+export const getHours = async () => {
+  const {data} = await apiRequest({
+    url: SERVICE_CONFIG_URLS.PLAYER.GET_NO_OF_HOURS,
+    method: API_CONFIG.GET,
+    showLoader: false,
+    showToast: false,
+  });
+  return data;
+};
+
+export const Rentals = async (params: any) => {
+  console.log(params, 'This is the params');
+  const {locationZustand, selectedGame, selectedHours} = params || {};
+  const {data} = await apiRequest({
+    url: `${SERVICE_CONFIG_URLS.PLAYER.GET_RENTAL}?location=${locationZustand}&hours=${selectedHours}&lane=${selectedGame}`,
+    method: API_CONFIG.GET,
+    showLoader: false,
+    showToast: false,
+  });
+  return data;
+};
+
+export const pendingPayments = async () => {
+  
+  const {data} = await apiRequest({
+    url: SERVICE_CONFIG_URLS.PLAYER.GET_PENDING_PAYMENTS,
+    method: API_CONFIG.GET,
   });
   return data;
 };

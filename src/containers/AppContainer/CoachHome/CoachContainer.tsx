@@ -48,7 +48,6 @@ export default function useCoachContainer(parentId: any) {
 
     const {mutate: updateCoachAttendanceListMutate, isLoading: updateCoachAttendanceListMutateLoading} = useMutation(updateCoachAttendanceList, {
       onSuccess: (data, payload) => {
-        console.log(data,"datadatadatadatadata ON SUCCESS")
         getCoachAttendacneList({coachId: userData})
         setCoachAttendacnZustand(data)
       },

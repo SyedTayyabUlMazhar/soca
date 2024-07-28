@@ -23,6 +23,8 @@ const CustomSelectionModal = ({
     handleDropOffPress,
     modalData
 }: ICustomModal) => {
+  console.log(modalData,'modalDatamodalDatamodalData');
+  
   const refForm = React.useRef();
   const Sample=({item})=>{
     console.log(item?.["Opponent Teams"],"This is item");

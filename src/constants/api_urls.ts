@@ -5,6 +5,7 @@ const driver = 'driver';
 const auth = 'auth'
 const roles = "roles"
 const players = "players"
+const services = "service"
 export const SERVICE_CONFIG_URLS = {
   AUTH: {
     LOGIN: `${auth}/login`,
@@ -41,7 +42,16 @@ export const SERVICE_CONFIG_URLS = {
     GET_SPONSORS:'/sponsors',
     ABOUT_US:'/about-us',
     HALL_OF_FAME:'/hall-of-fame',
-    SUMMARY:'/summary/'
+    SUMMARY:'/summary/',
+    GET_ALL_PLAYERS:'/players',
+    GET_ACADEMY_KID_AGE:`${services}/kids-age/values`,
+    GET_ACADEMY_LOCATION:`${services}/location/values`,
+    GET_ACADEMY_WEEKS:`${services}/kids-per-week/values`,
+    GET_ACADEMY:`${services}/academy`,
+    GET_TYPE_OF_LANE:`${services}/lane/values`,
+    GET_NO_OF_HOURS:`${services}/no-of-hours/values`,
+    GET_RENTAL:`${services}/rental`,
+    GET_PENDING_PAYMENTS:`/pending-payment`
   },
   COACH:{
     COACH_INFO:'/coach-info/',

@@ -234,6 +234,7 @@ import Helmet from './Helmet.svg'
 import Academy from './Academy.svg'
 import Private from './Private.svg'
 import Search from './Search.svg'
+import PlayerSearch from './PlayerSearch.svg'
 
 
 export {
@@ -469,5 +470,6 @@ CancelSmallIcon,
   Helmet,
   Academy,
   Private,
-  Search
+  Search,
+  PlayerSearch
 };

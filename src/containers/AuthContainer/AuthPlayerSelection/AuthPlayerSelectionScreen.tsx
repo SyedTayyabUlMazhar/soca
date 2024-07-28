@@ -19,7 +19,6 @@ import {STORAGE_KEYS} from '@Constants/queryKeys';
 const AuthPlayerSelectionScreen = ({route}) => {
   const {params} = route || {};
   const {data} = params;
-  console.log(data, 'datadatadata');
 
   const {parentId} = params?.data;
   const {setUserAuthentication, setIsAuth} = useContext(

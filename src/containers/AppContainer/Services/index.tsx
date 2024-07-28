@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Colors} from '@Theme/Colors';
 import Header from '@Component/AppHeader';
 import H6 from '@Component/Headings/H6';
@@ -8,26 +8,36 @@ import Fonts from '@Theme/Fonts';
 import Metrics from '@Utility/Metrics';
 import {FaqsIcon} from '@Asset/logo';
 import { useQuery } from '@tanstack/react-query';
-import { getLocation } from '@Api/App';
+import { getAcademyLocation, getLocation } from '@Api/App';
 import { STORAGE_KEYS } from '@Constants/queryKeys';
 import useModal from '@Hook/useModal';
 import CustomSelectionModal from '@Component/CustomSelectionModal';
 import HallofFameTabs from '@Component/HallofFameTabs';
 import { servicesTabs } from '@Constants/dummyData';
+import ServiceModal from './ServiceModal';
+import { setItem } from '@Service/storageService'
+import { useBoundStore } from '@Store/index';
 
 const ServicesScreen = () => {
-  const [selectedLocation,setSelectedLocation]=useState(null)
+  const [selectedLocation,setSelectedLocation]=useState<string>(null)
   const locationModal=useModal()
   const { data: getLocationList } = useQuery(
-    [STORAGE_KEYS.GET_LOCATION],
-    getLocation,
+    [STORAGE_KEYS.GET_ACADEMY_LOCATION],
+    getAcademyLocation,
     { cacheTime: 0, staleTime: 0 },
 );
+
+const setLocationZustand = useBoundStore(
+  (state: any) => state.setLocationZustand,
+);
+
 const onLocationSelect=(location: React.SetStateAction<string>)=>{
   setSelectedLocation(location)
+  setLocationZustand(location)
   locationModal.hide()
 }
 
+  
   return (
     <View style={{flex: 1, backgroundColor: Colors.APP_BACKGROUND}}>
       <Header title={'Services'} />
@@ -54,7 +64,7 @@ const onLocationSelect=(location: React.SetStateAction<string>)=>{
 
       </View>
 
-      <View
+      {/* <View
         style={{
           justifyContent: 'space-between',
           marginTop: 'auto',
@@ -79,26 +89,13 @@ const onLocationSelect=(location: React.SetStateAction<string>)=>{
             style={{...Fonts.SemiBold(Fonts.Size.xSmall, Colors.BLACK)}}
           />
         </ButtonView>
-      </View>
-      <CustomSelectionModal
+      </View> */}
+      <ServiceModal
         isModalVisible={locationModal.isVisible}
         handleSelection={onLocationSelect}
         title={"Select Location"}
         handleDropOffPress={locationModal.hide}
-        modalData={[
-          {
-            name:'Team 1',
-            id:'1'
-          },
-          {
-            name:'Team 2',
-            id:'2'
-          },
-          {
-            name:'Team 3',
-            id:'3'
-          }
-        ]}
+        modalData={getLocationList?.values}
       />
     </View>
   );
