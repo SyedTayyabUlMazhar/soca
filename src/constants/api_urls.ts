@@ -51,7 +51,11 @@ export const SERVICE_CONFIG_URLS = {
     GET_TYPE_OF_LANE:`${services}/lane/values`,
     GET_NO_OF_HOURS:`${services}/no-of-hours/values`,
     GET_RENTAL:`${services}/rental`,
-    GET_PENDING_PAYMENTS:`/pending-payment`
+    GET_PENDING_PAYMENTS:`/pending-payment`,
+    CREATE_PAYMENT:'/createPayment',
+    GET_SESSION_TYPE:`${services}/type-of-session/values`,
+    GET_KID_AGE_SESSION:`${services}/kid-age-session/values`,
+    GET_PRIVATE:`${services}/private`,
   },
   COACH:{
     COACH_INFO:'/coach-info/',

@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Colors} from '@Theme/Colors';
 import H6 from '@Component/Headings/H6';
 import Metrics from '@Utility/Metrics';
@@ -10,14 +10,19 @@ import useRentalContainer from './rentalContainer';
 import ServiceModal from '../../ServiceModal';
 import useModal from '@Hook/useModal';
 import {useBoundStore} from '@Store/index';
+import { StripeProvider, useStripe } from '@stripe/stripe-react-native';
+import { useMutation } from '@tanstack/react-query';
+import { createPayment } from '@Api/App';
 
 const Rentals = () => {
   const locationZustand = useBoundStore((state: any) => state.locationZustand);
   const [selectedGame, setSelectedGame] = useState<any>(null);
   const [selectedHours, setSelectedHours] = useState<any>(null);
+  const [stripeData, setStripeData] = useState<any>();
   const gameModal = useModal();
   const hoursModal = useModal();
-
+  const { initPaymentSheet, presentPaymentSheet, confirmPayment } = useStripe();
+  const [loading, setLoading] = useState<boolean>(false);
   const {getGamesData, getHoursData, rentalData} = useRentalContainer(locationZustand,selectedGame,selectedHours);
 
   const onHoursSelection = (hour: React.SetStateAction<string>) => {
@@ -29,8 +34,91 @@ const Rentals = () => {
     setSelectedGame(game);
     gameModal.hide();
   };
+  const emailZustand = useBoundStore(
+    (state: any) => state.emailZustand,
+  );
+  const updatedData = JSON.stringify(rentalData?.data);
+
+  const body = {
+    amount: parseFloat(rentalData?.data?.Price?.replace('$', '')) ?? 0,
+    email: emailZustand,
+    description: updatedData,
+    type: 'SERVICE',
+  };
+
+  const { mutate: paymentMutate } = useMutation(createPayment, {
+    onSuccess: response => {
+      setStripeData(response?.data);
+    },
+    onError: error => {
+      console.error('API call failed:', error);
+    },
+  });
+
+  const initializePaymentSheet = async () => {
+    if (!stripeData) return;
+    
+    const { paymentIntent, customer, ephemeralKey, publishableKey } = stripeData;
+    
+    const { error } = await initPaymentSheet({
+      merchantDisplayName: 'Example, Inc.',
+      paymentIntentClientSecret: paymentIntent,
+      customerId: customer,
+      customerEphemeralKeySecret: ephemeralKey,
+      allowsDelayedPaymentMethods: true,
+      defaultBillingDetails: {
+        name: 'Jane Doe',
+      },
+    });
+    if (error) {
+      console.log('Error initializing payment sheet:', error);
+    } else {
+      setLoading(true);
+    }
+  };
+
+  const openPaymentSheet = async () => {
+    if (!stripeData) return;
+
+    const { error } = await presentPaymentSheet();
+    if (error) {
+      console.log('Error presenting payment sheet:', error);
+      return;
+    }
+
+    // Handle the result of the payment
+    const { error: confirmError } = await confirmPayment(stripeData.paymentIntent, {
+      paymentMethodType: 'Card',
+      paymentMethodData: {
+        billingDetails: {
+          name: 'Test User',
+        },
+      }
+    });
+    if (confirmError) {
+      console.log('Error confirming payment:', confirmError);
+    } else {
+      // Payment succeeded
+      console.log('Payment successful');
+      // Navigate to success page or show success message
+    }
+  };
+
+  useEffect(() => {
+    if (stripeData) {
+      initializePaymentSheet();
+    }
+  }, [stripeData]);
+
+  const onOpenSheet = () => {
+    paymentMutate(body);
+    setTimeout(() => {
+      openPaymentSheet();
+    }, 500);
+  };
 
   return (
+    <StripeProvider publishableKey={stripeData?.publishableKey || ''}>
     <View style={{flex: 1, backgroundColor: Colors.APP_BACKGROUND}}>
       <View
         style={{
@@ -130,6 +218,7 @@ const Rentals = () => {
           />
         </View>
         <ButtonView
+        onPress={onOpenSheet}
           style={{
             backgroundColor: Colors.ICE_BLUE,
             justifyContent: 'center',
@@ -158,6 +247,7 @@ const Rentals = () => {
         modalData={getHoursData?.values}
       />
     </View>
+    </StripeProvider>
   );
 };
 

@@ -37,6 +37,12 @@ interface LocationZustandSlice {
   setLocationZustand: (data: any) => void;
   resetLocationZustand: () => void;
 }
+
+interface EmailZustandSlice {
+  emailZustand: any | null;
+  setEmailZustand: (data: any) => void;
+  resetEmailZustand: () => void;
+}
 const initialcoachAttendacnZustandState: Partial<CoachAttendacnZustandSlice> = {
   coachAttendacnZustand: {},
 };
@@ -62,6 +68,10 @@ const initialYearState: Partial<YearZustandSlice> = {
 const initialLocationState: Partial<LocationZustandSlice> = {
   locationZustand: null,
 };
+
+const initialEmailState: Partial<EmailZustandSlice> = {
+  emailZustand: null,
+}
 
 
 
@@ -139,5 +149,16 @@ export const createLocationSlice = (set: any) => ({
       locationZustand: data,
     })),
   resetLocationZustand: () => set(initialLocationState),
+});
+
+
+export const createEmailSlice = (set: any) => ({
+  ...initialEmailState,
+  setEmailZustand: (data: any) =>
+    set(state => ({
+      ...state,
+      emailZustand: data,
+    })),
+  resetEmailZustand: () => set(initialEmailState),
 });
 

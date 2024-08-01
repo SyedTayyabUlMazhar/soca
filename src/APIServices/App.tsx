@@ -451,7 +451,6 @@ export const getHours = async () => {
 };
 
 export const Rentals = async (params: any) => {
-  console.log(params, 'This is the params');
   const {locationZustand, selectedGame, selectedHours} = params || {};
   const {data} = await apiRequest({
     url: `${SERVICE_CONFIG_URLS.PLAYER.GET_RENTAL}?location=${locationZustand}&hours=${selectedHours}&lane=${selectedGame}`,
@@ -470,3 +469,46 @@ export const pendingPayments = async () => {
   });
   return data;
 };
+
+export const createPayment = async (params: any) => {
+  const {data} = await apiRequest({
+    url: SERVICE_CONFIG_URLS.PLAYER.CREATE_PAYMENT,
+    method: API_CONFIG.POST,
+    params,
+  });
+  return data;
+};
+
+export const getSessionType = async () => {
+  const {data} = await apiRequest({
+    url: SERVICE_CONFIG_URLS.PLAYER.GET_SESSION_TYPE,
+    method: API_CONFIG.GET,
+    showLoader: false,
+    showToast: false,
+  });
+  return data;
+};
+
+export const getKidAgeSession = async () => {
+  const {data} = await apiRequest({
+    url: SERVICE_CONFIG_URLS.PLAYER.GET_KID_AGE_SESSION,
+    method: API_CONFIG.GET,
+    showLoader: false,
+    showToast: false,
+  });
+  return data;
+};
+
+
+export const privateResult = async (params: any) => {
+  const {data} = await apiRequest({
+    url: SERVICE_CONFIG_URLS.PLAYER.GET_PRIVATE,
+    method: API_CONFIG.POST,
+    params,
+  });
+  return data;
+};
+
+
+
+

@@ -20,6 +20,7 @@
     "@react-native-masked-view/masked-view": "react-native-masked-view/masked-view",
     "@react-navigation/bottom-tabs": "^6.5.8",
     "@react-navigation/material-top-tabs": "^6.6.5",
+    "@stripe/stripe-react-native": "^0.25.0",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.12",
     "@tanstack/query-core": "^4.26.1",

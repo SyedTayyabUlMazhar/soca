@@ -47,5 +47,6 @@ export const STORAGE_KEYS = {
   GET_LOCATION_KEY:'getLocation',
   GET_TYPE_OF_LANE:'getTypeOfLane',
   GET_HOURS:'getHours',
-  GET_RENTAL:`getRental`
+  GET_RENTAL:`getRental`,
+  GET_SESSION_TYPE:'getSessionType',
 };

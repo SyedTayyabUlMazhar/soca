@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {Colors} from '@Theme/Colors';
 import Header from '@Component/AppHeader';
 import H6 from '@Component/Headings/H6';
@@ -7,61 +7,74 @@ import ButtonView from '@Component/ButtonView';
 import Fonts from '@Theme/Fonts';
 import Metrics from '@Utility/Metrics';
 import {FaqsIcon} from '@Asset/logo';
-import { useQuery } from '@tanstack/react-query';
-import { getAcademyLocation, getLocation } from '@Api/App';
-import { STORAGE_KEYS } from '@Constants/queryKeys';
+import {useQuery} from '@tanstack/react-query';
+import {getAcademyLocation, getLocation} from '@Api/App';
+import {STORAGE_KEYS} from '@Constants/queryKeys';
 import useModal from '@Hook/useModal';
 import CustomSelectionModal from '@Component/CustomSelectionModal';
 import HallofFameTabs from '@Component/HallofFameTabs';
-import { servicesTabs } from '@Constants/dummyData';
+import {servicesTabs} from '@Constants/dummyData';
 import ServiceModal from './ServiceModal';
-import { setItem } from '@Service/storageService'
-import { useBoundStore } from '@Store/index';
+import {setItem} from '@Service/storageService';
+import {useBoundStore} from '@Store/index';
+import EmailModal from './EmailModal';
 
 const ServicesScreen = () => {
-  const [selectedLocation,setSelectedLocation]=useState<string>(null)
-  const locationModal=useModal()
-  const { data: getLocationList } = useQuery(
+  const [selectedLocation, setSelectedLocation] = useState<string>(null);
+  const locationModal = useModal();
+  const emailModal = useModal();
+  const [data,setData]=useState(null)
+  const {data: getLocationList} = useQuery(
     [STORAGE_KEYS.GET_ACADEMY_LOCATION],
     getAcademyLocation,
-    { cacheTime: 0, staleTime: 0 },
-);
+    {cacheTime: 0, staleTime: 0},
+  );
 
-const setLocationZustand = useBoundStore(
-  (state: any) => state.setLocationZustand,
-);
+  const setLocationZustand = useBoundStore(
+    (state: any) => state.setLocationZustand,
+  );
 
-const onLocationSelect=(location: React.SetStateAction<string>)=>{
-  setSelectedLocation(location)
-  setLocationZustand(location)
-  locationModal.hide()
-}
+  const onLocationSelect = (location: React.SetStateAction<string>) => {
+    setSelectedLocation(location);
+    setLocationZustand(location);
+    locationModal.hide();
+  };
 
-  
+  useEffect(() => {
+    emailModal.show();
+  }, []);
+
+  const onEmailSubmit = (email) => {
+    setData(email)
+  };
   return (
     <View style={{flex: 1, backgroundColor: Colors.APP_BACKGROUND}}>
       <Header title={'Services'} />
-      <View style={{marginHorizontal: Metrics.scale(20),marginTop:Metrics.doubleBaseMargin,flex:1}}>
-      <ButtonView
-        onPress={() => locationModal.show()}
+      <View
         style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          borderWidth: 1,
-          borderColor: Colors.DARK_BLUE,
-          padding: 12,
-          borderRadius: 20,
-          marginBottom:20
+          marginHorizontal: Metrics.scale(20),
+          marginTop: Metrics.doubleBaseMargin,
+          flex: 1,
         }}>
-        <H6
-          text={selectedLocation ?? 'Select Location'}
-          style={{color: Colors.WHITE}}
-        />
-        <FaqsIcon />
-      </ButtonView>
-      <HallofFameTabs component={servicesTabs}/>
-
+        <ButtonView
+          onPress={() => locationModal.show()}
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            borderWidth: 1,
+            borderColor: Colors.DARK_BLUE,
+            padding: 12,
+            borderRadius: 20,
+            marginBottom: 20,
+          }}>
+          <H6
+            text={selectedLocation ?? 'Select Location'}
+            style={{color: Colors.WHITE}}
+          />
+          <FaqsIcon />
+        </ButtonView>
+        <HallofFameTabs component={servicesTabs} data={data}/>
       </View>
 
       {/* <View
@@ -93,9 +106,15 @@ const onLocationSelect=(location: React.SetStateAction<string>)=>{
       <ServiceModal
         isModalVisible={locationModal.isVisible}
         handleSelection={onLocationSelect}
-        title={"Select Location"}
+        title={'Select Location'}
         handleDropOffPress={locationModal.hide}
         modalData={getLocationList?.values}
+      />
+      <EmailModal
+        isModalVisible={emailModal.isVisible}
+        handleSelection={onEmailSubmit}
+        title={'Enter Your Email'}
+        handleDropOffPress={emailModal.hide}
       />
     </View>
   );

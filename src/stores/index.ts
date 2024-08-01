@@ -1,5 +1,5 @@
 import {create} from 'zustand';
-import {createLocationSlice,createCoachAttendacneSlice,createManagerFilterSlice, createPlayerPerformanceSlice,createManagerAllocationSlice,createFieldingSlice,createYearSlice} from './locationSlice';
+import {createLocationSlice,createCoachAttendacneSlice,createManagerFilterSlice, createPlayerPerformanceSlice,createManagerAllocationSlice,createFieldingSlice,createYearSlice,createEmailSlice} from './locationSlice';
 
 export const useBoundStore = create(set => ({
   ...createCoachAttendacneSlice(set),
@@ -8,5 +8,6 @@ export const useBoundStore = create(set => ({
   ...createManagerAllocationSlice(set),
   ...createFieldingSlice(set),
   ...createYearSlice(set),
-  ...createLocationSlice(set)
+  ...createLocationSlice(set),
+  ...createEmailSlice(set),
 }));
