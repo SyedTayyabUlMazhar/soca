@@ -15,6 +15,7 @@ import ServiceModal from '../../ServiceModal';
 import useAcademyContainer from './academyContainer';
 
 const Academy = ({route}) => {
+  const {isGuest}=route?.params || {}
   const locationZustand = useBoundStore((state: any) => state.locationZustand);
   const [selectedKidAge, setSelectedKidAge] = useState<string | null>(null);
   const [selectedTimeWeek, setSelectedTimeWeek] = useState<string | null>(null);
@@ -304,7 +305,7 @@ const Academy = ({route}) => {
               <FaqsIcon style={{ marginHorizontal: Metrics.smallMargin }} />
             </ButtonView>
           </View>
-          <View
+          {/* <View
             style={{
               marginTop: 20,
               marginBottom: 10,
@@ -334,7 +335,7 @@ const Academy = ({route}) => {
             }}>
             <H6 text="Monthly Cost" style={{ color: Colors.WHITE }} />
             <H6 text="$00.00" style={{ color: Colors.WHITE }} />
-          </View>
+          </View> */}
           <ServiceModal
             isModalVisible={kidAgeModal.isVisible}
             handleSelection={onKidSelection}
@@ -378,20 +379,25 @@ const Academy = ({route}) => {
               style={{ color: Colors.WHITE }}
             />
           </View>
-          <ButtonView
-            onPress={onOpenSheet}
-            style={{
-              backgroundColor: Colors.ICE_BLUE,
-              justifyContent: 'center',
-              padding: Metrics.baseMargin,
-              paddingHorizontal: 40,
-              borderRadius: 6,
-            }}>
-            <H6
-              text="Avail Now"
-              style={{ ...Fonts.SemiBold(Fonts.Size.xSmall, Colors.BLACK) }}
-            />
-          </ButtonView>
+          {
+            !isGuest && (
+              <ButtonView
+              onPress={onOpenSheet}
+              style={{
+                backgroundColor: Colors.ICE_BLUE,
+                justifyContent: 'center',
+                padding: Metrics.baseMargin,
+                paddingHorizontal: 40,
+                borderRadius: 6,
+              }}>
+              <H6
+                text="Avail Now"
+                style={{ ...Fonts.SemiBold(Fonts.Size.xSmall, Colors.BLACK) }}
+              />
+            </ButtonView>
+            )
+          }
+      
         </View>
       </View>
     </StripeProvider>

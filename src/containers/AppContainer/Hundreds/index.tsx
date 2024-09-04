@@ -62,7 +62,7 @@ return (
             <View style={styles.row}>
               <Text style={styles.heading}></Text>
               <Text style={styles.heading}>Best</Text>
-              <Text style={styles.heading}>Year</Text>
+              <Text style={[styles.heading,{marginRight:15}]}>Year</Text>
             </View>
           )}
         />
@@ -86,20 +86,22 @@ const styles = StyleSheet.create({
   heading: {
     flex: 1,
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'right',
     color: Colors.DARK_BLUE,
     fontSize:12
   },
   cell: {
     flex: 1,
-    textAlign: 'center',
+    textAlign: 'right',
     color: Colors.WHITE,
     height: '150%',
-    fontSize:12
+    fontSize:12,
+    marginRight:10
   },
   cells: {
     flex: 1,
-    textAlign: 'center',
+    // textAlign: 'center',
+    marginLeft:10,
     color: Colors.ICE_BLUE,
     height: '150%',
     fontSize:12

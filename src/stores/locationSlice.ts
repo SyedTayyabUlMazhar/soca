@@ -43,6 +43,12 @@ interface EmailZustandSlice {
   setEmailZustand: (data: any) => void;
   resetEmailZustand: () => void;
 }
+
+interface AttendanceZustandSlice {
+  attendanceZustand: any | null;
+  setAttendanceZustand: (data: any) => void;
+  resetAttendanceZustand: () => void;
+}
 const initialcoachAttendacnZustandState: Partial<CoachAttendacnZustandSlice> = {
   coachAttendacnZustand: {},
 };
@@ -71,6 +77,10 @@ const initialLocationState: Partial<LocationZustandSlice> = {
 
 const initialEmailState: Partial<EmailZustandSlice> = {
   emailZustand: null,
+}
+
+const initialAttendanceState: Partial<AttendanceZustandSlice> = {
+  attendanceZustand: null,
 }
 
 
@@ -160,5 +170,15 @@ export const createEmailSlice = (set: any) => ({
       emailZustand: data,
     })),
   resetEmailZustand: () => set(initialEmailState),
+});
+
+export const createAttendanceSlice = (set: any) => ({
+  ...initialAttendanceState,
+  setAttenadanceZustand: (data: any) =>
+    set(state => ({
+      ...state,
+      attendanceZustand: data,
+    })),
+  resetAttendanceZustand: () => set(initialAttendanceState),
 });
 

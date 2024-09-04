@@ -20,6 +20,7 @@ import moment from 'moment';
 import {DATE_FORMATS} from '@Utility/DateUtils';
 import FilterOptionsModal from '@Component/FilterOptionsModal';
 import useModal from '@Hook/useModal';
+import { useBoundStore } from '@Store/index';
 
 interface ICustomModal {
   title?: string;
@@ -51,8 +52,8 @@ const TeamSelectionModal = ({
   const [selectedTourney, setSelectedTourney] = useState('');
   const [selectedTeam, setIsSelectedTeam] = useState('');
   const [value,setValue]=useState()
-  console.log(value?.map(value=>value),'valuevaluevaluevalue');
-  const playersArray = value?.map(value=>value?.player_id)
+  const playersArray = value?.map(value=>value?.id)
+  const result = playersArray?.map(item => `"${item}"`).join(", ");
   const userData = getItem(STORAGE_KEYS.GET_COACH_ID);
 const playerModal=useModal()
   const toggleTourneyModal = () => {
@@ -82,17 +83,20 @@ const playerModal=useModal()
   const handleTeamDrop = (bool: boolean) => {
     setIsTeamModalVisible(bool);
   };
-
+  const setAttenadanceZustand = useBoundStore(
+    (state: any) => state.setAttenadanceZustand,
+  );
   const handlePressConfirmSelection = () => {
     const selectedDate = refForm?.current?.getInputRef('dob').getValue();
     // if(selectedDate && selectedTourney && selectedTeam){
     let payload = {
       dob: moment(selectedDate).format(DATE_FORMATS.REVERSE_FORMAT),
       tourney: selectedTourney,
-      team: selectedTeam,
+      team: result,
     };
     console.log(payload, 'payload');
     getCoachAttendacneList({coachId: userData, payload});
+    setAttenadanceZustand(payload);
     setIsDeleteAccountVisible(false);
     changeDeleteModalVisible(payload);
     // }

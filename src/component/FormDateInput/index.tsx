@@ -72,6 +72,7 @@ const FormDataInput = React.forwardRef((props: any, ref) => {
       }));
     }
   };
+console.log(state.value,'state.valuestate.valuestate.value');
 
   return (
     <View style={[styles.mainContainer, { width: props.width }]}>
@@ -117,7 +118,7 @@ const FormDataInput = React.forwardRef((props: any, ref) => {
           date={
             state.value && props.isDob
               ? moment(state.value).toDate()
-              : new Date(MinAge)
+              :  new Date(MinAge)
           }
         />
       ) : (

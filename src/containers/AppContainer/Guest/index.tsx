@@ -87,7 +87,7 @@ const Guest = () => {
               marginTop: Metrics.smallMargin,
             }}
           />
-          <H6
+          {/* <H6
             text="Consectetur adipiscing elit, sed do eiusmod onsectetur adipiscing elit, sed do eiusm od tempor."
             style={{
               alignSelf: 'center',
@@ -95,7 +95,7 @@ const Guest = () => {
               ...Fonts.Regular(Fonts.Size.xSmall, Colors.WHITE),
               marginTop: Metrics.smallMargin,
             }}
-          />
+          /> */}
         </View>
         <ImageBackground
           source={LandingPage}
@@ -153,14 +153,14 @@ const Guest = () => {
           <View style={{flexDirection: 'row', padding: 15}}>
             <Helmet />
             <View style={{marginHorizontal: Metrics.smallMargin}}>
-              <H7 text="Rentals" style={{color: Colors.WHITE}} />
+              <H7 text="Services" style={{color: Colors.WHITE}} />
               <H7
                 text="Little instruction here"
                 style={{color: Colors.ICE_BLUE}}
               />
             </View>
             <ButtonView
-              onPress={() => navigate(NavigationRoutes.APP_STACK.SERVICES)}
+              onPress={() => navigate(NavigationRoutes.APP_STACK.SERVICES,{isGuest: true})}
               style={{
                 backgroundColor: Colors.ICE_BLUE,
                 padding: 6,

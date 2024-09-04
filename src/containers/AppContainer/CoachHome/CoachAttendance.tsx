@@ -13,10 +13,10 @@ import Metrics from '@Utility/Metrics';
 import * as React from 'react';
 import {ScrollView, StyleSheet, TextInput, View} from 'react-native';
 import useCoachContainer from './CoachContainer';
+import SpinnerLoader from '@Component/SmallLoader';
 
 const CoachAttendance = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
-
   const handleSearch = (query) => {
     setSearchQuery(query);
   };
@@ -25,7 +25,7 @@ const CoachAttendance = () => {
   const coachAttendacnZustand = useBoundStore(
     (state: any) => state.coachAttendacnZustand,
   );
-  const {getCoachAttendacneList, updateCoachAttendanceListMutate} =
+  const {getCoachAttendacneList, updateCoachAttendanceListMutate,coachActivityDataLoading} =
     useCoachContainer();
     
     const filteredPlayers = coachAttendacnZustand?.data?.filter(player =>
@@ -37,6 +37,7 @@ const CoachAttendance = () => {
         contentContainerStyle={{
           paddingHorizontal: 15,
           paddingVertical: Metrics.scale(23),
+          flex:1
         }}>
         <TodayPlayerAttendance
           getCoachAttendacneList={coachAttendacnZustand}
@@ -44,6 +45,7 @@ const CoachAttendance = () => {
           searchQuery={searchQuery}
           onSearch={handleSearch}
           filteredPlayers={filteredPlayers}
+          loading={coachActivityDataLoading}
         />
       </ScrollView>
     </View>
@@ -56,6 +58,7 @@ const TodayPlayerAttendance = ({
   searchQuery,
   onSearch,
   filteredPlayers,
+  loading
 }: any) => {
   const [isDeleteAccountVisible, setIsDeleteAccountVisible] =
     React.useState(false);
@@ -159,14 +162,18 @@ const TodayPlayerAttendance = ({
       />
       <Search style={{position:'absolute', right:20, top:15}}/>
       </View>
- 
-      <View style={styles.playerWrapper}>
+      {loading ? (
+          <View style={{flex:1,backgroundColor:Colors.Colors.APP_BACKGROUND,justifyContent:'center'}}>
+          <SpinnerLoader size={'large'} color={Colors.Colors.WHITE}/>
+            
+          </View>):(     <View style={styles.playerWrapper}>
         
         <FlatListHandler
           data={filteredPlayers}
           renderItem={renderPlayerAttendance}
         />
-      </View>
+      </View>)}
+ 
       <TeamSelectionModal
         changeDeleteModalVisible={changeDeleteModalVisible}
         setIsDeleteAccountVisible={setIsDeleteAccountVisible}
@@ -184,6 +191,7 @@ const styles = StyleSheet.create({
   todayPlayerAttendanceWrapper: {
     // marginTop: Metrics.scale(28),
     marginBottom: Metrics.scale(25),
+    flex:1
   },
   todayPlayerAttendancTitle: {
     ...Fonts.SemiBold(Fonts.Size.xSmall, '#98D8FA'),

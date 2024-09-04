@@ -1,5 +1,5 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import Header from '@Component/AppHeader';
 import H2 from '@Component/Headings/H2';
 import Metrics from '@Utility/Metrics';
@@ -9,18 +9,23 @@ import FlatListHandler from '@Component/FlatlistHandler';
 import RenderMenuItem from '@Component/RenderMenuItem/RenderMenuItem';
 import ButtonView from '@Component/ButtonView';
 import H4 from '@Component/Headings/H4';
-import { FaqsIcon, NotificationIconNew, PerformanceButtonSvg, SampleAward, SignoutSvg } from '@Asset/logo';
+import {
+  FaqsIcon,
+  NotificationIconNew,
+  PerformanceButtonSvg,
+  SampleAward,
+  SignoutSvg,
+} from '@Asset/logo';
 import CustomModal from '@Component/CustomModal/CustomModal';
 import loginContext from '@Context/loginContext';
-import { LoginContext } from '@Context/loginContext/types';
-import { navigate } from '@Service/navigationService';
+import {LoginContext} from '@Context/loginContext/types';
+import {navigate} from '@Service/navigationService';
 import NavigationRoutes from '@Navigator/NavigationRoutes';
 import H6 from '@Component/Headings/H6';
 
-
 const ProfileSetting = () => {
   const [isDeleteAccountVisible, setIsDeleteAccountVisible] =
-  React.useState(false);
+    React.useState(false);
   const {handleLogoutUser} = useContext(loginContext) as LoginContext;
   const changeDeleteModalVisible = isDelete => {
     if (isDelete == true) {
@@ -31,41 +36,65 @@ const ProfileSetting = () => {
     }
   };
 
-  const { menuProfileSettingList } = useProfileSettingContainer()
+  const {menuProfileSettingList} = useProfileSettingContainer();
   return (
     <View style={{backgroundColor: Colors.Colors.APP_BACKGROUND, flex: 1}}>
-      <Header desc="Profile Setting" backButton={false} actionButton={<ButtonView  onPress={() => setIsDeleteAccountVisible(true)}><SignoutSvg/></ButtonView>}/>
+      <Header
+        desc="Profile Setting"
+        backButton={false}
+        actionButton={
+          <ButtonView onPress={() => setIsDeleteAccountVisible(true)}>
+            <SignoutSvg />
+          </ButtonView>
+        }
+      />
       <ScrollView
+        style={{flex: 1}}
         contentContainerStyle={{
           paddingHorizontal: 15,
           paddingVertical: Metrics.scale(23),
-          flex: 1,
+          flexGrow: 1,
           justifyContent: 'space-between',
         }}>
-        <View >
-          <View style={{alignItems:'center',padding:Metrics.baseMargin,flexDirection:'row',backgroundColor:Colors.Colors.FAMILY_BACKGROUND,borderRadius:Metrics.scale(16),marginBottom:Metrics.doubleBaseMargin}}>
-            <SampleAward/>
-            <View style={{marginLeft:Metrics.scale(20)}}>
-              <H4 text="Silver Tier" style={{...Fonts.SemiBold(Fonts.Size.medium, Colors.Colors.WHITE),}}/>
-              <H6 text="3 Months"style={{color:Colors.Colors.WHITE}}/>
-              <H6 text="left to unlock Gold Tier" style={{color:Colors.Colors.WHITE}}/>
-            </View>
-            <ButtonView onPress={() => navigate(NavigationRoutes.APP_STACK.TIERS,)} style={{marginBottom:'auto',marginLeft:'auto'}}>
-            <PerformanceButtonSvg />
-
-            </ButtonView>
+        <View
+          style={{
+            alignItems: 'center',
+            padding: Metrics.baseMargin,
+            flexDirection: 'row',
+            backgroundColor: Colors.Colors.FAMILY_BACKGROUND,
+            borderRadius: Metrics.scale(16),
+            marginBottom: Metrics.doubleBaseMargin,
+          }}>
+          <SampleAward />
+          <View style={{marginLeft: Metrics.scale(20)}}>
+            <H4
+              text="Silver Tier"
+              style={{
+                ...Fonts.SemiBold(Fonts.Size.medium, Colors.Colors.WHITE),
+              }}
+            />
+            <H6 text="3 Months" style={{color: Colors.Colors.WHITE}} />
+            <H6
+              text="left to unlock Gold Tier"
+              style={{color: Colors.Colors.WHITE}}
+            />
           </View>
-          <GeneralSetting />
-          <ReachOutUs menuProfileSettingList={menuProfileSettingList}/>
+          <ButtonView
+            onPress={() => navigate(NavigationRoutes.APP_STACK.TIERS)}
+            style={{marginBottom: 'auto', marginLeft: 'auto'}}>
+            <PerformanceButtonSvg />
+          </ButtonView>
         </View>
+        <GeneralSetting />
+        <ReachOutUs menuProfileSettingList={menuProfileSettingList} />
         <PrivicyPolicy />
         <CustomModal
-            changeDeleteModalVisible={changeDeleteModalVisible}
-            setIsDeleteAccountVisible={setIsDeleteAccountVisible}
-            isDeleteAccountVisible={isDeleteAccountVisible}
-            title={'Logout'}
-            desc={'Are you sure you want to logout?'}
-          />
+          changeDeleteModalVisible={changeDeleteModalVisible}
+          setIsDeleteAccountVisible={setIsDeleteAccountVisible}
+          isDeleteAccountVisible={isDeleteAccountVisible}
+          title={'Logout'}
+          desc={'Are you sure you want to logout?'}
+        />
       </ScrollView>
     </View>
   );
@@ -78,23 +107,23 @@ const GeneralSetting = () => {
       <H2 text="General" style={styles.totalGamePlayedTitle} />
       <RenderMenuItem
         icon={<NotificationIconNew />}
-        text={"Notifications"}
+        text={'Notifications'}
         action={() => {
-          console.log(isToggle, "isToggle")
-          setIsToggle(!isToggle)
+          console.log(isToggle, 'isToggle');
+          setIsToggle(!isToggle);
         }}
-        actionType={"showToggle"}
+        actionType={'showToggle'}
         allowIncomingRequests={isToggle}
       />
     </View>
   );
 };
 
-const ReachOutUs = ({menuProfileSettingList}:any) => {
+const ReachOutUs = ({menuProfileSettingList}: any) => {
   const renderItem = ({item, index}: any) => {
     // Define the action based on the item type
     // const action = item.id === 'language' ? languageModalRef.current?.show : item?.action;
-    
+
     return (
       <RenderMenuItem
         key={index}
@@ -115,52 +144,58 @@ const ReachOutUs = ({menuProfileSettingList}:any) => {
     <View>
       <H2 text="Reach Out to Us" style={styles.totalGamePlayedTitle} />
       <View style={styles.flatListWrapper}>
-          <FlatListHandler
-            data={menuProfileSettingList}
-            renderItem={renderItem} 
-            keyExtractor={() => Math.random() * 100}
-            />
-        </View>
+        <FlatListHandler
+          data={menuProfileSettingList}
+          renderItem={renderItem}
+          keyExtractor={() => Math.random() * 100}
+        />
+      </View>
     </View>
   );
 };
 
 const PrivicyPolicy = () => {
-  return(
+  return (
     <View style={styles.privicyPolicyWrapper}>
-      <ButtonView onPress={()=> navigate(NavigationRoutes.APP_STACK.WEB_VIEW, {
-        webviewUrl: 'https://creativedesignventure.com/privacy-policy/',
-      })}>
-        <H4 text='Privacy Policy' style={styles.privicyPolicyText}/>
+      <ButtonView
+        onPress={() =>
+          navigate(NavigationRoutes.APP_STACK.WEB_VIEW, {
+            webviewUrl: 'https://creativedesignventure.com/privacy-policy/',
+          })
+        }>
+        <H4 text="Privacy Policy" style={styles.privicyPolicyText} />
       </ButtonView>
-      <ButtonView onPress={()=> navigate(NavigationRoutes.APP_STACK.WEB_VIEW, {
-        webviewUrl: 'https://creativedesignventure.com/terms-and-conditions/',
-      })}>
-        <H4 text='Terms of Services' style={styles.privicyPolicyText}/>
+      <ButtonView
+        onPress={() =>
+          navigate(NavigationRoutes.APP_STACK.WEB_VIEW, {
+            webviewUrl:
+              'https://creativedesignventure.com/terms-and-conditions/',
+          })
+        }>
+        <H4 text="Terms of Services" style={styles.privicyPolicyText} />
       </ButtonView>
     </View>
-  )
-}
-
+  );
+};
 
 export default ProfileSetting;
 
 const styles = StyleSheet.create({
   totalGamePlayedTitle: {
     ...Fonts.SemiBold(Fonts.Size.xSmall, '#98D8FA'),
-    marginBottom: Metrics.scale(20)
+    marginBottom: Metrics.scale(20),
   },
   flatListWrapper: {
     paddingHorizontal: Metrics.scale(3),
     marginBottom: Metrics.verticalScale(0),
   },
-  privicyPolicyWrapper:{
+  privicyPolicyWrapper: {
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
   },
-  privicyPolicyText:{
+  privicyPolicyText: {
     ...Fonts.SemiBold(Fonts.Size.xxxSmall, Colors.Colors.DARK_BLUE),
     borderBottomWidth: 1,
-    borderBottomColor: Colors.Colors.DARK_BLUE
-  }
+    borderBottomColor: Colors.Colors.DARK_BLUE,
+  },
 });

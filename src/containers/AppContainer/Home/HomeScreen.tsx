@@ -329,7 +329,7 @@ const HomeScreen = ({route}) => {
                     <H7 text=" Hours" style={{color: Colors.WHITE}} />
                   </View>
                   <H5
-                    text={lns_usg_crt_mth ? `$${lns_usg_crt_mth}` : '$0'}
+                    text={lns_usg_crt_mth ? `${lns_usg_crt_mth}` : '$0'}
                     style={{
                       color: Colors.WHITE,
                       marginTop: Metrics.doubleBaseMargin,

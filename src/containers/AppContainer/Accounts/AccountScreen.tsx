@@ -16,7 +16,6 @@ import NavigationRoutes from '@Navigator/NavigationRoutes';
 import {navigate} from '@Service/navigationService';
 
 const AccountScreen = ({route}) => {
-  console.log(route, 'routerouterouteroute');
 
   const {player_reg_no: PlayerID, Player_Name} = route?.params?.item;
   const {handleLogoutUser} = useContext(loginContext) as LoginContext;

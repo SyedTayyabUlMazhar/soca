@@ -15,6 +15,14 @@ import {useBoundStore} from '@Store/index';
 import SpinnerLoader from '@Component/SmallLoader';
 import SelectYearModal from './SelectYearModal';
 
+const EXCLUDED_METRICS = [
+  'Economy',
+  'Strike Rate',
+  'Overs Bowled',
+  'Dot Balls (%)',
+  'Indirect R/Os'
+];
+
 const Performance = ({route}) => {
   const setPlayerPerformanceIDZustand = useBoundStore(
     state => state.setPlayerPerformanceIDZustand,
@@ -72,6 +80,7 @@ const Performance = ({route}) => {
         style={{
           paddingHorizontal: 15,
           paddingVertical: Metrics.scale(23),
+          flex:1
         }}>
         <OverAllPerformance playerId={playerId} />
         <PlayerStatistics playerId={playerId} />
@@ -189,8 +198,8 @@ const OverAllPerformance = ({playerId}) => {
 };
 
 const PlayerStatistics = ({playerId}) => {
-  const {playerPerformanceData, refetchPlayerPerformanceData, year} =
-    useAllPerformanceContainer(playerId);
+  const {playerPerformanceData, refetchPlayerPerformanceData, year} = useAllPerformanceContainer(playerId);
+  console.log(playerPerformanceData?.data?.data, 'playerPerformanceDataplayerPerformanceDataplayerPerformanceData');
 
   useEffect(() => {}, [playerPerformanceData?.data?.data]);
 
@@ -199,56 +208,58 @@ const PlayerStatistics = ({playerId}) => {
   }
 
   const categories = Object.keys(playerPerformanceData?.data?.data);
-  const metrics = Object.keys(
-    playerPerformanceData?.data?.data[categories[0]],
-  ).slice(2);
+  const metrics = Object.keys(playerPerformanceData?.data?.data[categories[0]])
+    .slice(2)
+    .filter(metric => !EXCLUDED_METRICS.includes(metric)); // Filter out excluded metrics
 
   return (
-    <>
+    <View>
       <H2 text="Player statistics" style={styles.overAllPerformanceText} />
-        <View style={styles.row}>
-          <View style={[styles.cell, styles.emptyCell]} />
-          {categories?.map((category, index) => (
-            <View key={index} style={[styles.cell, styles.headerCell]}>
-              <Text
-                style={[styles.checkingText, {color: Colors.Colors.ICE_BLUE}]}>
-                {category}
-              </Text>
-            </View>
-          ))}
-        </View>
-        <ScrollView>
+      <View style={styles.row}>
+        <View style={[styles.cell, styles.emptyCell]} />
+        {categories?.map((category, index) => (
+          <View key={index} style={[styles.cell, styles.headerCell]}>
+            <Text
+              style={[styles.checkingText, {color: Colors.Colors.ICE_BLUE}]}>
+              {category}
+            </Text>
+          </View>
+        ))}
+      </View>
+      <ScrollView >
         {metrics?.map((metric, rowIndex) => (
           <Metric
+            key={rowIndex} // Add a unique key to each Metric
             metric={metric}
             rowIndex={rowIndex}
             categories={categories}
             playerPerformanceData={playerPerformanceData}
           />
         ))}
-        </ScrollView>
-   
-    </>
+      </ScrollView>
+    </View>
   );
 };
-const Metric = ({metric, rowIndex, categories, playerPerformanceData}: any) => {
-  const metricAbbreviations: {[key: string]: string} = {
+
+const Metric = ({metric, rowIndex, categories, playerPerformanceData}) => {
+
+  const metricAbbreviations = {
+    'Runs Scored': 'Runs',
+    'Batting Ave': 'Bat Avg',
+    Highest: 'High',
+    "100's": '100s',
+    "50's": '50s',
     Wickets: 'Wkt',
     Economy: 'Eco',
     Average: 'Avg',
     'Strike Rate': 'SR',
     'Overs Bowled': 'Ovr',
     'Dot Balls (%)': 'Dot',
-    Hatrick: 'Hat',
     '4W': '4W',
     '5W': '5W',
-    'Runs Scored': 'Runs',
-    'Batting Ave': 'Bat Avg',
-    Highest: 'High',
-    "100's": '100s',
-    "50's": '50s',
+    Hatrick: 'Hat',
     Catches: 'Ct',
-    'Direct R/Os': 'Direct R/O',
+    'Direct R/Os': 'R/Os',
     'Wk Dismisals': 'Wk Dis',
     'Indirect R/Os': 'InDirect R/O',
     'Dot Balls': 'Dot',
@@ -257,24 +268,18 @@ const Metric = ({metric, rowIndex, categories, playerPerformanceData}: any) => {
   };
 
   const abbreviation = metricAbbreviations[metric] || metric;
-
-  // Check if the abbreviation exceeds 4 characters
   const shouldSplit = abbreviation.length > 4;
-
-  // Split the abbreviation into two lines if necessary
   const firstLine = shouldSplit ? abbreviation.substring(0, 4) : abbreviation;
   const secondLine = shouldSplit ? abbreviation.substring(4) : '';
 
   return (
-    <ScrollView style={{}}>
-  <View key={rowIndex} style={styles.row}>
+    <View key={rowIndex} style={styles.row}>
       <View style={[styles.cell, styles.emptyCell]}>
         <Text
           numberOfLines={2}
           style={[styles.checkingTexts, styles.metricText]}>
-          {abbreviation}
-          {/* {firstLine}
-                    {shouldSplit && '\n' + secondLine}  */}
+          {firstLine}
+          {shouldSplit && '\n' + secondLine}
         </Text>
       </View>
       {categories.map((category, colIndex) => (
@@ -285,11 +290,9 @@ const Metric = ({metric, rowIndex, categories, playerPerformanceData}: any) => {
         </View>
       ))}
     </View>
-
-    </ScrollView>
-  
   );
 };
+
 
 export default Performance;
 

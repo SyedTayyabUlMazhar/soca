@@ -49,4 +49,5 @@ export const STORAGE_KEYS = {
   GET_HOURS:'getHours',
   GET_RENTAL:`getRental`,
   GET_SESSION_TYPE:'getSessionType',
+  PENDING_PAYMENTS:'getPendingPayments'
 };

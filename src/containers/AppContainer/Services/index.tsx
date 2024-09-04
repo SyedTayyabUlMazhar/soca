@@ -13,13 +13,16 @@ import {STORAGE_KEYS} from '@Constants/queryKeys';
 import useModal from '@Hook/useModal';
 import CustomSelectionModal from '@Component/CustomSelectionModal';
 import HallofFameTabs from '@Component/HallofFameTabs';
-import {servicesTabs} from '@Constants/dummyData';
+import {onlyRentalTab, servicesTabs} from '@Constants/dummyData';
 import ServiceModal from './ServiceModal';
 import {setItem} from '@Service/storageService';
 import {useBoundStore} from '@Store/index';
 import EmailModal from './EmailModal';
 
-const ServicesScreen = () => {
+const ServicesScreen = ({route}) => {
+  const {isEmail,isGuest}=route?.params || {}
+  console.log(route?.params ,'isGuestisGuestisGuest');
+  
   const [selectedLocation, setSelectedLocation] = useState<string>(null);
   const locationModal = useModal();
   const emailModal = useModal();
@@ -40,9 +43,11 @@ const ServicesScreen = () => {
     locationModal.hide();
   };
 
-  useEffect(() => {
-    emailModal.show();
-  }, []);
+  // useEffect(() => {
+  //   if(!isEmail){
+  //     emailModal.show();
+  //   }
+  // }, []);
 
   const onEmailSubmit = (email) => {
     setData(email)
@@ -74,7 +79,7 @@ const ServicesScreen = () => {
           />
           <FaqsIcon />
         </ButtonView>
-        <HallofFameTabs component={servicesTabs} data={data}/>
+        <HallofFameTabs component={servicesTabs} data={data} isGuest={isGuest}/>
       </View>
 
       {/* <View

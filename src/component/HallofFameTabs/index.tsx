@@ -17,10 +17,11 @@ interface ITopTabs {
   isTrip?: boolean;
   handleClose?: any;
   PlayerID?:any
-  coachBatch?:any
+  isGuest?:Boolean
 }
 
-const HallofFameTabs = ({component, data, isTrip = false, handleClose,PlayerID,coachBatch}: ITopTabs) => {
+const HallofFameTabs = ({component, data, isTrip = false, handleClose,PlayerID,isGuest}: ITopTabs) => {
+
   const tabBarOptions = React.useMemo(() => {
     return {
       tabBarStyle:{
@@ -68,7 +69,7 @@ const HallofFameTabs = ({component, data, isTrip = false, handleClose,PlayerID,c
               key={`${index}+${name}`}
               name={name}
               component={component}
-              initialParams={coachBatch}
+              initialParams={{isGuest}}
             />
           );
         },

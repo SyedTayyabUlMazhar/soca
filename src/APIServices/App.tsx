@@ -217,12 +217,14 @@ export const getTournament = async () => {
   return data;
 };
 export const getCoachAttendanceList = async params => {
-  const {dob, team, tourney} = params?.payload || {};
+  const {team, tourney} = params?.payload || {};
+  const dob='04/02/24'
   let apiURLDefeault = `${SERVICE_CONFIG_URLS.COACH.GET_COACH_ATTENDANCE_LIST}/${params?.coachId}`;
-  let apiURLParams = `${SERVICE_CONFIG_URLS.COACH.GET_COACH_ATTENDANCE_LIST}/${params?.coachId}?date=${dob}&location=${team}&age_grp=${tourney}`;
+  let apiURLParams = `${SERVICE_CONFIG_URLS.COACH.GET_COACH_ATTENDANCE_LIST}/${params?.coachId}?date=${dob}&age_grp=${tourney}&ids=${team}`;
+console.log(apiURLParams,'apiURLParamsapiURLParamsapiURLParams');
 
   const {data} = await apiRequest({
-    url: params?.dob ? apiURLParams : apiURLDefeault,
+    url: dob ? apiURLParams : apiURLDefeault,
     method: API_CONFIG.GET,
     showLoader: false,
     showToast: false,
@@ -461,10 +463,11 @@ export const Rentals = async (params: any) => {
   return data;
 };
 
-export const pendingPayments = async () => {
-  
+export const pendingPayments = async (params:any) => {
+  console.log(params,'paramsparamsparams');
+  const {email}=params || {};
   const {data} = await apiRequest({
-    url: SERVICE_CONFIG_URLS.PLAYER.GET_PENDING_PAYMENTS,
+    url: `${SERVICE_CONFIG_URLS.PLAYER.GET_PENDING_PAYMENTS}?parentId=${email}`,
     method: API_CONFIG.GET,
   });
   return data;
