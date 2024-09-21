@@ -55,6 +55,7 @@ const TeamSelectionModal = ({
   const playersArray = value?.map(value=>value?.id)
   const result = playersArray?.map(item => `"${item}"`).join(", ");
   const userData = getItem(STORAGE_KEYS.GET_COACH_ID);
+  
 const playerModal=useModal()
   const toggleTourneyModal = () => {
     setIsTourneyModalVisible(!isTourneyModalVisible);
@@ -142,7 +143,7 @@ const playerModal=useModal()
                     rightIcon={<FaqsIcon />}
                     placeholder={getAgeGroupList?.data[0]['Coaching Age Group']}
                     placeholderTextColor={Colors.WHITE}
-                    value={value?.name}
+                    value={selectedTourney}
                     isDisabled={true}
                     style={{
                       backgroundColor: 'transparent',

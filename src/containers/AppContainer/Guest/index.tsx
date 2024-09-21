@@ -79,7 +79,7 @@ const Guest = () => {
             style={{color: Colors.ICE_BLUE, alignSelf: 'center'}}
             text={'What we do'}
           />
-          <H4
+          <H5
             text={'We teach cricket for all skill levels'}
             style={{
               color: Colors.WHITE,
@@ -147,7 +147,7 @@ const Guest = () => {
           source={LandingService}
           resizeMode="contain"
           style={{
-            height: 70,
+            height: 80,
             marginTop: 10,
           }}>
           <View style={{flexDirection: 'row', padding: 15}}>
@@ -155,26 +155,27 @@ const Guest = () => {
             <View style={{marginHorizontal: Metrics.smallMargin}}>
               <H7 text="Services" style={{color: Colors.WHITE}} />
               <H7
-                text="Little instruction here"
+                text=" Avail great cricket coaching (groups and private) and rent lanes for cricket practices"
                 style={{color: Colors.ICE_BLUE}}
               />
             </View>
-            <ButtonView
+
+          </View>
+        </ImageBackground>
+        <ButtonView
               onPress={() => navigate(NavigationRoutes.APP_STACK.SERVICES,{isGuest: true})}
               style={{
                 backgroundColor: Colors.ICE_BLUE,
-                padding: 6,
+                padding: 12,
                 borderRadius: 6,
                 alignItems: 'center',
-                marginLeft: 10,
                 justifyContent: 'center',
                 flex: 1,
+                marginTop: Metrics.doubleBaseMargin
               }}>
-              <H7 text="Avail Service" style={{color: Colors.DARK_BLACK}} />
+              <H5 text="Avail Service" style={{color: Colors.DARK_BLACK,fontWeight:'500'}} />
             </ButtonView>
-          </View>
-        </ImageBackground>
-        <View
+        {/* <View
           style={{
             flexDirection: 'row',
             marginTop: Metrics.verticalScale(18),
@@ -216,7 +217,7 @@ const Guest = () => {
               />
             </View>
           </View>
-        </View>
+        </View> */}
       </ScrollView>
     </View>
   );

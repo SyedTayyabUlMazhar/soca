@@ -23,6 +23,7 @@ interface ICustomModal {
   handleDropOffPress: Function;
   handleSelection: (item: any) => void; // Added item parameter
   isModalVisible: boolean;
+  email: string;
 }
 
 const EmailModal = ({
@@ -30,6 +31,7 @@ const EmailModal = ({
   handleSelection,
   title,
   handleDropOffPress,
+  email
 }: ICustomModal) => {
   const refForm = React.useRef();
   const setEmailZustand = useBoundStore(
@@ -67,7 +69,7 @@ const EmailModal = ({
                   {...SCHEMAS.email('email')}
                   placeholder="Enter your email"
                   label="Email"
-                  
+                  value={email}
                 />
               </View>
             );

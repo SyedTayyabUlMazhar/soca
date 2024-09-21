@@ -123,11 +123,12 @@ const Rentals = ({route}) => {
   }, [stripeData]);
 
   const onOpenSheet = () => {
-    if (isGuest & (emailZustand === null)) {
+    if (isGuest && (emailZustand === null)) {
       emailModal.show();
     }
     paymentMutate(body);
     if (emailZustand) {
+      
       setTimeout(() => {
         openPaymentSheet();
       }, 500);
@@ -191,6 +192,37 @@ const Rentals = ({route}) => {
             <FaqsIcon style={{marginHorizontal: Metrics.smallMargin}} />
           </ButtonView>
         </View>
+{
+  emailZustand && isGuest &&
+        <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginTop: Metrics.verticalScale(16),
+        }}>
+        <H6 text={emailZustand} style={{color: Colors.WHITE}} />
+        <ButtonView
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            borderWidth: 1,
+            borderColor: Colors.DARK_BLUE,
+            borderRadius: 20,
+            padding: 10,
+          }}
+          onPress={() => {
+            emailModal.show();
+          }}>
+          <H6
+            text={'Edit'}
+            style={{color: Colors.WHITE}}
+          />
+          <FaqsIcon style={{marginHorizontal: Metrics.smallMargin}} />
+        </ButtonView>
+      </View>
+}
+
 
         {/* <View
         style={{
@@ -272,6 +304,7 @@ const Rentals = ({route}) => {
         handleSelection={onEmailSubmit}
         title={'Enter Your Email'}
         handleDropOffPress={emailModal.hide}
+        email={emailZustand}
       />
     </StripeProvider>
   );

@@ -33,7 +33,7 @@ export default function Header(props: IHeaderProps) {
   const navigation = useNavigation();
 
   const {
-    title = 'App Heading',
+    title = '',
     actionButton,
     containerStyle,
     backButton = true,
