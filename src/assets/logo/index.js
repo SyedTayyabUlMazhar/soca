@@ -235,6 +235,7 @@ import Academy from './Academy.svg'
 import Private from './Private.svg'
 import Search from './Search.svg'
 import PlayerSearch from './PlayerSearch.svg'
+import mySocaLogo from './mySocaLogo.png'
 
 
 export {
@@ -471,5 +472,6 @@ CancelSmallIcon,
   Academy,
   Private,
   Search,
-  PlayerSearch
+  PlayerSearch,
+  mySocaLogo
 };

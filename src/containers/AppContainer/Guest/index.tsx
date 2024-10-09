@@ -1,4 +1,5 @@
 import {
+  Image,
   ImageBackground,
   ScrollView,
   StyleSheet,
@@ -20,6 +21,7 @@ import {
   LandingService,
   Private,
   RightArrowLarge,
+  mySocaLogo,
   onBoard,
 } from '@Asset/logo';
 import Metrics from '@Utility/Metrics';
@@ -69,8 +71,8 @@ const Guest = () => {
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <LOGOSVG height={Metrics.verticalScale(80)} />
-
+            {/* <LOGOSVG height={Metrics.verticalScale(80)} /> */}
+            <Image source={mySocaLogo} style={{width: 65, height: 65}} />
             <H2 text="About SOCA" style={{color: Colors.WHITE}} />
           </ImageBackground>
         </ButtonView>

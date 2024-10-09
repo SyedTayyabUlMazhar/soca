@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, StyleSheet, View, Pressable} from 'react-native';
+import {Text, StyleSheet, View, Pressable, Image} from 'react-native';
 import {Colors, Fonts} from '../../themes';
 import Metrics from '../../utility/Metrics';
 import ImageViewer from '../ImageView/Index';
@@ -11,6 +11,7 @@ import {
   LogoSvg,
   SOCASvg,
   SocaLogo,
+  mySocaLogo,
 } from '@Asset/logo';
 import H7 from '@Component/Headings/H7';
 import H6 from '@Component/Headings/H6';
@@ -52,7 +53,8 @@ export default function Header(props: IHeaderProps) {
             marginTop: Metrics.baseMargin,
           }}>
           <View style={styles.backWrapper}>
-            <LOGOSVG height={Metrics.verticalScale(70)} />
+            {/* <LOGOSVG height={Metrics.verticalScale(70)} /> */}
+            <Image source={mySocaLogo} style={{width: 50, height: 50}} />
           </View>
           <View style={{marginHorizontal: 6}}>
             <H5

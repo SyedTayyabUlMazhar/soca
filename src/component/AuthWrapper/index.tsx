@@ -10,7 +10,7 @@ import {
   ViewStyle,
 } from 'react-native';
 import styles from './style';
-import {AuthBG, BGWithLayer, LOGO, LOGOSVG} from '@Asset/logo';
+import {AuthBG, BGWithLayer, LOGO, LOGOSVG, mySocaLogo} from '@Asset/logo';
 
 interface IAuthWrapper {
   wrapperStyle?: StyleProp<ViewStyle>;
@@ -27,7 +27,8 @@ export default function AuthWrapper({wrapperStyle, children}: IAuthWrapper) {
       bounces={false}
       style={commonFullWidth}>
       <View style={[styles.container, wrapperStyle]}>
-        <LOGOSVG />
+        {/* <LOGOSVG /> */}
+        <Image source={mySocaLogo} style={{width: 90, height: 90}} />
         <View style={commonFullWidth}>{children}</View>
       </View>
     </ScrollView>

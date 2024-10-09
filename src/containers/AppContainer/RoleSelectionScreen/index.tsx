@@ -1,12 +1,13 @@
 import ButtonView from '@Component/ButtonView';
 import H4 from '@Component/Headings/H4';
-import {ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
+import {Image, ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
 import React, {useState} from 'react';
 import {
   BGWithLayer,
   CoachSvg,
   LOGOSVG,
   ManagerSvg,
+  mySocaLogo,
   ParentSvg,
   RoleSelectionSvg,
 } from '@Asset/logo';
@@ -39,7 +40,8 @@ const RoleSelectionScreen = () => {
           alignItems: 'center',
           marginTop: Metrics.verticalScale(100),
         }}>
-        <LOGOSVG />
+        {/* <LOGOSVG /> */}
+        <Image source={mySocaLogo} style={{width: 100, height: 100}} />
         <RoleButtonView
           role="Parent"
           icon={<ParentSvg />}
