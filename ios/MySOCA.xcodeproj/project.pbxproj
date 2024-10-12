@@ -17,18 +17,18 @@
 		2FD4FBF6034F4D96B01DA7B0 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1084B2EEC4E4558AE3F6538 /* Montserrat-Bold.ttf */; };
 		38D6BABE5BE3422FBCE8D4B4 /* PlusJakartaSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 805E5A451CCC453A90116A0E /* PlusJakartaSans-ExtraBoldItalic.ttf */; };
 		4128F36F3797451AB8365844 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 330422A2902C4BE7BAB3BF75 /* Montserrat-Light.ttf */; };
-		477D6D6A566B79CE02D7FEFA /* libPods-MySOCA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C9BF3BAB641240F29674E0 /* libPods-MySOCA.a */; };
 		59A2414E149F4FE8A13FF945 /* PlusJakartaSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12653F59050341B1923D1991 /* PlusJakartaSans-MediumItalic.ttf */; };
 		5BED86E01615466C86BDC006 /* PlusJakartaSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A122CFBAC75A4080A6A3E284 /* PlusJakartaSans-LightItalic.ttf */; };
 		5CA6483E3DAA405F8BE16796 /* PlusJakartaSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5F0CCF3E47C42768111C267 /* PlusJakartaSans-Medium.ttf */; };
 		62245D8B19E6443A88B80D8F /* PlusJakartaSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 949D13AC17C54980A82159BE /* PlusJakartaSans-ExtraLight.ttf */; };
 		63FC4B3D1EC44B91B4441A37 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 853DF4C533E54DA388F1DE91 /* Montserrat-Regular.ttf */; };
-		7D555071AC58F229DBFEDDF3 /* libPods-MySOCA-MySOCATests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 530F3D2C617A159DC5C9A66F /* libPods-MySOCA-MySOCATests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		89CA805AAA1749F0935ED6E4 /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C781FC7AA3914B15A9CBD367 /* Montserrat-ExtraLight.ttf */; };
 		AC84126BFF5E46E9BC039688 /* PlusJakartaSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 10750AEE0F5C43AB8B092420 /* PlusJakartaSans-Regular.ttf */; };
+		AD3EEC119431F9766778C64F /* libPods-MySOCA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8DF24018E4F920371E33027 /* libPods-MySOCA.a */; };
 		ADF306FF49E94011A5333D06 /* PlusJakartaSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21460EAC29DB4023B1D2DDFA /* PlusJakartaSans-SemiBoldItalic.ttf */; };
 		C50023B285974ED7A209FE83 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0F1B9E8A0954F9D8734BE72 /* Montserrat-Thin.ttf */; };
+		C5B242BEC2895C1C3BBB5F5E /* libPods-MySOCA-MySOCATests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4038BF75C8C48150101A45E0 /* libPods-MySOCA-MySOCATests.a */; };
 		D995E881006742BFBDB60A7C /* PlusJakartaSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B07049A7F16458EB94DF3F0 /* PlusJakartaSans-SemiBold.ttf */; };
 		DDA3B139262D4EE3ADF4F2F3 /* PlusJakartaSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C8D1B83C11EF4F83812B745A /* PlusJakartaSans-Light.ttf */; };
 		E7251202400F454AA64954C1 /* PlusJakartaSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67CDA3CFDAD9481A803B6534 /* PlusJakartaSans-BoldItalic.ttf */; };
@@ -51,7 +51,6 @@
 		00E356EE1AD99517003FC87E /* MySOCATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MySOCATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* MySOCATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MySOCATests.m; sourceTree = "<group>"; };
-		042540DECBBF750B6D181F6F /* Pods-MySOCA-MySOCATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySOCA-MySOCATests.debug.xcconfig"; path = "Target Support Files/Pods-MySOCA-MySOCATests/Pods-MySOCA-MySOCATests.debug.xcconfig"; sourceTree = "<group>"; };
 		10750AEE0F5C43AB8B092420 /* PlusJakartaSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-Regular.ttf"; path = "../src/assets/fonts/PlusJakartaSans-Regular.ttf"; sourceTree = "<group>"; };
 		12653F59050341B1923D1991 /* PlusJakartaSans-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-MediumItalic.ttf"; path = "../src/assets/fonts/PlusJakartaSans-MediumItalic.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* MySOCA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MySOCA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,15 +59,14 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MySOCA/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MySOCA/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MySOCA/main.m; sourceTree = "<group>"; };
-		13C9BF3BAB641240F29674E0 /* libPods-MySOCA.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MySOCA.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21460EAC29DB4023B1D2DDFA /* PlusJakartaSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-SemiBoldItalic.ttf"; path = "../src/assets/fonts/PlusJakartaSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		21A0FF18DB964E918A442B2B /* PlusJakartaSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-ExtraLightItalic.ttf"; path = "../src/assets/fonts/PlusJakartaSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		287BEB5F644A49A6B7169399 /* PlusJakartaSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-Bold.ttf"; path = "../src/assets/fonts/PlusJakartaSans-Bold.ttf"; sourceTree = "<group>"; };
 		29A01C38DA01485592127485 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Medium.ttf"; path = "../src/assets/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		30DECAA16A6B25BB943609C3 /* Pods-MySOCA-MySOCATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySOCA-MySOCATests.release.xcconfig"; path = "Target Support Files/Pods-MySOCA-MySOCATests/Pods-MySOCA-MySOCATests.release.xcconfig"; sourceTree = "<group>"; };
 		330422A2902C4BE7BAB3BF75 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Light.ttf"; path = "../src/assets/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
-		3F8B531179D1F63586C02609 /* Pods-MySOCA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySOCA.release.xcconfig"; path = "Target Support Files/Pods-MySOCA/Pods-MySOCA.release.xcconfig"; sourceTree = "<group>"; };
+		4038BF75C8C48150101A45E0 /* libPods-MySOCA-MySOCATests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MySOCA-MySOCATests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B07049A7F16458EB94DF3F0 /* PlusJakartaSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-SemiBold.ttf"; path = "../src/assets/fonts/PlusJakartaSans-SemiBold.ttf"; sourceTree = "<group>"; };
-		530F3D2C617A159DC5C9A66F /* libPods-MySOCA-MySOCATests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MySOCA-MySOCATests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B921167E2124BFD867D6A52 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBold.ttf"; path = "../src/assets/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		67CDA3CFDAD9481A803B6534 /* PlusJakartaSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-BoldItalic.ttf"; path = "../src/assets/fonts/PlusJakartaSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		805E5A451CCC453A90116A0E /* PlusJakartaSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-ExtraBoldItalic.ttf"; path = "../src/assets/fonts/PlusJakartaSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -77,15 +75,17 @@
 		949D13AC17C54980A82159BE /* PlusJakartaSans-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-ExtraLight.ttf"; path = "../src/assets/fonts/PlusJakartaSans-ExtraLight.ttf"; sourceTree = "<group>"; };
 		9AC98C18BAA7424DA7223916 /* PlusJakartaSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-ExtraBold.ttf"; path = "../src/assets/fonts/PlusJakartaSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		A122CFBAC75A4080A6A3E284 /* PlusJakartaSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-LightItalic.ttf"; path = "../src/assets/fonts/PlusJakartaSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		A41FA0C93772CC23EE9E2C7A /* Pods-MySOCA-MySOCATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySOCA-MySOCATests.debug.xcconfig"; path = "Target Support Files/Pods-MySOCA-MySOCATests/Pods-MySOCA-MySOCATests.debug.xcconfig"; sourceTree = "<group>"; };
 		A899078E5B3E4BE6B0F4B024 /* PlusJakartaSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-Italic.ttf"; path = "../src/assets/fonts/PlusJakartaSans-Italic.ttf"; sourceTree = "<group>"; };
+		B2AAC0EEEB30C4825383FAA3 /* Pods-MySOCA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySOCA.debug.xcconfig"; path = "Target Support Files/Pods-MySOCA/Pods-MySOCA.debug.xcconfig"; sourceTree = "<group>"; };
 		B5F0CCF3E47C42768111C267 /* PlusJakartaSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-Medium.ttf"; path = "../src/assets/fonts/PlusJakartaSans-Medium.ttf"; sourceTree = "<group>"; };
 		C781FC7AA3914B15A9CBD367 /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLight.ttf"; path = "../src/assets/fonts/Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
 		C8D1B83C11EF4F83812B745A /* PlusJakartaSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-Light.ttf"; path = "../src/assets/fonts/PlusJakartaSans-Light.ttf"; sourceTree = "<group>"; };
 		D1084B2EEC4E4558AE3F6538 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../src/assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
-		D6E95C1ED16D67E56670DE80 /* Pods-MySOCA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySOCA.debug.xcconfig"; path = "Target Support Files/Pods-MySOCA/Pods-MySOCA.debug.xcconfig"; sourceTree = "<group>"; };
-		DC1FA5D24D10746E33CE9EFE /* Pods-MySOCA-MySOCATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySOCA-MySOCATests.release.xcconfig"; path = "Target Support Files/Pods-MySOCA-MySOCATests/Pods-MySOCA-MySOCATests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F0F1B9E8A0954F9D8734BE72 /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Thin.ttf"; path = "../src/assets/fonts/Montserrat-Thin.ttf"; sourceTree = "<group>"; };
+		F8DF24018E4F920371E33027 /* libPods-MySOCA.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MySOCA.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF47B4B7988050B3D46BA2E4 /* Pods-MySOCA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySOCA.release.xcconfig"; path = "Target Support Files/Pods-MySOCA/Pods-MySOCA.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D555071AC58F229DBFEDDF3 /* libPods-MySOCA-MySOCATests.a in Frameworks */,
+				C5B242BEC2895C1C3BBB5F5E /* libPods-MySOCA-MySOCATests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,7 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				477D6D6A566B79CE02D7FEFA /* libPods-MySOCA.a in Frameworks */,
+				AD3EEC119431F9766778C64F /* libPods-MySOCA.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,8 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				13C9BF3BAB641240F29674E0 /* libPods-MySOCA.a */,
-				530F3D2C617A159DC5C9A66F /* libPods-MySOCA-MySOCATests.a */,
+				F8DF24018E4F920371E33027 /* libPods-MySOCA.a */,
+				4038BF75C8C48150101A45E0 /* libPods-MySOCA-MySOCATests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -211,10 +211,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D6E95C1ED16D67E56670DE80 /* Pods-MySOCA.debug.xcconfig */,
-				3F8B531179D1F63586C02609 /* Pods-MySOCA.release.xcconfig */,
-				042540DECBBF750B6D181F6F /* Pods-MySOCA-MySOCATests.debug.xcconfig */,
-				DC1FA5D24D10746E33CE9EFE /* Pods-MySOCA-MySOCATests.release.xcconfig */,
+				B2AAC0EEEB30C4825383FAA3 /* Pods-MySOCA.debug.xcconfig */,
+				FF47B4B7988050B3D46BA2E4 /* Pods-MySOCA.release.xcconfig */,
+				A41FA0C93772CC23EE9E2C7A /* Pods-MySOCA-MySOCATests.debug.xcconfig */,
+				30DECAA16A6B25BB943609C3 /* Pods-MySOCA-MySOCATests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -226,12 +226,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "MySOCATests" */;
 			buildPhases = (
-				D47F308542F014E28F26A598 /* [CP] Check Pods Manifest.lock */,
+				113635D0C3525F5AE4DB2A0F /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				452AF5B6634BE646F4308176 /* [CP] Embed Pods Frameworks */,
-				322CD1C0ED2705A73C307B1C /* [CP] Copy Pods Resources */,
+				CFE67A6175AB19FE69BE1D8C /* [CP] Embed Pods Frameworks */,
+				8773465B36CB9617770DE258 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -247,14 +247,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "MySOCA" */;
 			buildPhases = (
-				B7FAC794F2C060BDE9552116 /* [CP] Check Pods Manifest.lock */,
+				3EFE1EE962EBCC785EDE55E7 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				2B6C929A3FBAB8DFA597810D /* [CP] Embed Pods Frameworks */,
-				3D76708AE3933D6E6524E368 /* [CP] Copy Pods Resources */,
+				5D9966166BDED53E0A9BDD77 /* [CP] Embed Pods Frameworks */,
+				D02B0E13317B1CB394504693 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -358,75 +358,29 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		2B6C929A3FBAB8DFA597810D /* [CP] Embed Pods Frameworks */ = {
+		113635D0C3525F5AE4DB2A0F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MySOCA/Pods-MySOCA-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MySOCA/Pods-MySOCA-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MySOCA-MySOCATests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MySOCA/Pods-MySOCA-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		322CD1C0ED2705A73C307B1C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MySOCA-MySOCATests/Pods-MySOCA-MySOCATests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MySOCA-MySOCATests/Pods-MySOCA-MySOCATests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MySOCA-MySOCATests/Pods-MySOCA-MySOCATests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3D76708AE3933D6E6524E368 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MySOCA/Pods-MySOCA-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MySOCA/Pods-MySOCA-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MySOCA/Pods-MySOCA-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		452AF5B6634BE646F4308176 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MySOCA-MySOCATests/Pods-MySOCA-MySOCATests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MySOCA-MySOCATests/Pods-MySOCA-MySOCATests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MySOCA-MySOCATests/Pods-MySOCA-MySOCATests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B7FAC794F2C060BDE9552116 /* [CP] Check Pods Manifest.lock */ = {
+		3EFE1EE962EBCC785EDE55E7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -448,26 +402,72 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D47F308542F014E28F26A598 /* [CP] Check Pods Manifest.lock */ = {
+		5D9966166BDED53E0A9BDD77 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MySOCA/Pods-MySOCA-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MySOCA-MySOCATests-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-MySOCA/Pods-MySOCA-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MySOCA/Pods-MySOCA-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8773465B36CB9617770DE258 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MySOCA-MySOCATests/Pods-MySOCA-MySOCATests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MySOCA-MySOCATests/Pods-MySOCA-MySOCATests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MySOCA-MySOCATests/Pods-MySOCA-MySOCATests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CFE67A6175AB19FE69BE1D8C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MySOCA-MySOCATests/Pods-MySOCA-MySOCATests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MySOCA-MySOCATests/Pods-MySOCA-MySOCATests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MySOCA-MySOCATests/Pods-MySOCA-MySOCATests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D02B0E13317B1CB394504693 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MySOCA/Pods-MySOCA-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MySOCA/Pods-MySOCA-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MySOCA/Pods-MySOCA-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -522,7 +522,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 042540DECBBF750B6D181F6F /* Pods-MySOCA-MySOCATests.debug.xcconfig */;
+			baseConfigurationReference = A41FA0C93772CC23EE9E2C7A /* Pods-MySOCA-MySOCATests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -550,7 +550,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC1FA5D24D10746E33CE9EFE /* Pods-MySOCA-MySOCATests.release.xcconfig */;
+			baseConfigurationReference = 30DECAA16A6B25BB943609C3 /* Pods-MySOCA-MySOCATests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -575,7 +575,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D6E95C1ED16D67E56670DE80 /* Pods-MySOCA.debug.xcconfig */;
+			baseConfigurationReference = B2AAC0EEEB30C4825383FAA3 /* Pods-MySOCA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -609,7 +609,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F8B531179D1F63586C02609 /* Pods-MySOCA.release.xcconfig */;
+			baseConfigurationReference = FF47B4B7988050B3D46BA2E4 /* Pods-MySOCA.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
