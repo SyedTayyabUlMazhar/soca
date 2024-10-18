@@ -140,14 +140,12 @@ const styles = StyleSheet.create({
     // top: 260,
     width: '80%',
     alignSelf: 'center',
+    marginBottom: 24
   },
   iconContainer: {
-    // padding: 10,
-    position: 'absolute',
-    left: 265,
-    right: 0,
-    top: 20,
-    bottom: 0,
+    position:'absolute',
+    right: 16,
+    top: 20
   },
   iconFourInchContainer: {
     // padding: 10,
