@@ -1,5 +1,5 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import Header from '@Component/AppHeader';
 import H2 from '@Component/Headings/H2';
 import Metrics from '@Utility/Metrics';
@@ -22,6 +22,8 @@ import {LoginContext} from '@Context/loginContext/types';
 import {navigate} from '@Service/navigationService';
 import NavigationRoutes from '@Navigator/NavigationRoutes';
 import H6 from '@Component/Headings/H6';
+import CustomToggle from '@Component/CustomToggle/CustomToggle';
+import ToggleSwitch from '@Component/CustomToggle/CustomToggle';
 
 const ProfileSetting = () => {
   const [isDeleteAccountVisible, setIsDeleteAccountVisible] =
@@ -34,6 +36,11 @@ const ProfileSetting = () => {
     } else {
       setIsDeleteAccountVisible(!isDeleteAccountVisible);
     }
+  };
+  const [isEnabled, setIsEnabled] = useState(false);
+
+  const handleMutate = (value) => {
+    setIsEnabled(value);
   };
 
   const {menuProfileSettingList} = useProfileSettingContainer();
@@ -85,7 +92,19 @@ const ProfileSetting = () => {
             <PerformanceButtonSvg />
           </ButtonView>
         </View>
-        <GeneralSetting />
+        {/* <GeneralSetting /> */}
+        <View style={{marginBottom: Metrics.scale(31)}}>
+        <H2 text="General" style={styles.totalGamePlayedTitle} />
+
+        <View style={{flex: 1,flexDirection:'row',alignItems:'center',justifyContent:'space-between',marginTop:10}} >
+              <View style={{flexDirection:'row',alignItems:'center',marginLeft:Metrics.scale(20)}}>
+              <NotificationIconNew />
+              <H2 text="Notifications" style={{ ...Fonts.Medium(Fonts.Size.normal, Colors.Colors.WHITE),marginLeft:Metrics.scale(20)}}/>
+              </View>
+  
+        <ToggleSwitch boolean={isEnabled} handleMutate={handleMutate} />
+          </View>
+          </View>
         <ReachOutUs menuProfileSettingList={menuProfileSettingList} />
         <PrivicyPolicy />
         <CustomModal

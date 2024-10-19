@@ -1,67 +1,32 @@
-import H1 from '@Component/Headings/H1';
-import {RideJourneyBottomSheetStep} from '@Constants/user';
+// ToggleSwitch.js
+
+import React, { useRef } from 'react';
+import { StyleSheet, View, Animated } from 'react-native';
 import ButtonView from '@Component/ButtonView';
+import H1 from '@Component/Headings/H1';
 import Fonts from '@Theme/Fonts';
-import {Colors} from '@Theme/index';
+import { Colors } from '@Theme/index';
 import Metrics from '@Utility/Metrics';
-import React, {useEffect, useRef, useState} from 'react';
-import { Animated, StyleSheet, View } from 'react-native';
 
-const CustomToggle = ({
-  boolean,
-  handleMutate,
-  isShowHeading = true,
-  headingText = '',
-  isShowModal = false,
-  isRideFlow = true,
-  setRideJourneySheetZustand,
-}) => {
-  const [dotPosition, setDotPosition] = useState(
-    new Animated.Value(boolean ? 1 : 0),
-  );
-
-  useEffect(() => {
-    Animated.timing(dotPosition, {
-      toValue: boolean ? 1 : 0,
-      duration: 500, // Adjust the duration to control the speed of the animation
-      useNativeDriver: false,
-    }).start(() => {
-      // Animation finished, update dotPosition
-      setDotPosition(new Animated.Value(boolean ? 1 : 0));
-    });
-  }, [boolean]);
+const ToggleSwitch = ({ boolean, handleMutate }) => {
+  const dotPosition = useRef(new Animated.Value(boolean ? 1 : 0)).current;
 
   const changeSetValue = () => {
-    if (isRideFlow == true) {
-      if (boolean && setRideJourneySheetZustand) {
-        setRideJourneySheetZustand(RideJourneyBottomSheetStep.INCOMING_REQUEST);
-      } else {
-        let payload = {
-          allowIncomingRequests: !boolean,
-        };
-        handleMutate(payload);
-      }
-    } else {
-      let payload = {
-        allowIncomingRequests: !boolean,
-      };
-      handleMutate(payload);
-    }
+    handleMutate(!boolean);
+    Animated.timing(dotPosition, {
+      toValue: boolean ? 0 : 1,
+      duration: 500, // Adjust the duration to control the speed of the animation
+      useNativeDriver: false,
+    }).start();
   };
 
-  const dotTranslateX = dotPosition.interpolate({
+  const animatedDotTranslateX = dotPosition.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, 1],
-  });
-
-  const animatedDotTranslateX = dotTranslateX.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0, 25],
+    outputRange: [0, 25], // Adjust this value based on your bar width
   });
 
   return (
     <View style={styles.toggleContainer}>
-      {isShowHeading && <H1 style={styles.primaryWrapper} text={headingText} />}
       <ButtonView
         activeOpacity={1}
         onPress={changeSetValue}
@@ -70,10 +35,8 @@ const CustomToggle = ({
           style={[
             styles.toggleDot,
             {
-              backgroundColor: boolean
-                ? Colors.Colors.VIA_COLOR
-                : Colors.Colors.DARK_GREY,
-              transform: [{translateX: animatedDotTranslateX}],
+              backgroundColor: boolean ? Colors.Colors.VIA_COLOR : Colors.Colors.DARK_GREY,
+              transform: [{ translateX: animatedDotTranslateX }],
             },
           ]}
         />
@@ -81,9 +44,7 @@ const CustomToggle = ({
           style={[
             styles.toggleBar,
             {
-              backgroundColor: boolean
-                ? Colors.Colors.TOGGLE_COLOR
-                : Colors.Colors.GREY,
+              backgroundColor: boolean ? Colors.Colors.TOGGLE_COLOR : Colors.Colors.GREY,
             },
           ]}
         />
@@ -91,8 +52,6 @@ const CustomToggle = ({
     </View>
   );
 };
-
-export default React.memo(CustomToggle);
 
 const styles = StyleSheet.create({
   toggleWrapper: {
@@ -113,10 +72,6 @@ const styles = StyleSheet.create({
     height: Metrics.scale(14),
     borderRadius: 25,
   },
-  container: {
-    flex: 1,
-    marginHorizontal: 25,
-  },
   toggleContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -126,3 +81,5 @@ const styles = StyleSheet.create({
     ...Fonts.Medium(Fonts.Size.xxLarge, Colors.Colors.DARK_BLACK),
   },
 });
+
+export default ToggleSwitch;

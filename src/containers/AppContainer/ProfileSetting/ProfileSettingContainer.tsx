@@ -6,6 +6,7 @@ import {navigate} from '@Service/navigationService';
 import {getItem} from '@Service/storageService';
 import {useBoundStore} from '@Store/index';
 import {useQuery} from '@tanstack/react-query';
+import { Linking } from 'react-native';
 
 export default function useProfileSettingContainer() {
   const userData = getItem(STORAGE_KEYS.GET_PARENT_USER_DETAILS);
@@ -16,7 +17,6 @@ export default function useProfileSettingContainer() {
     {cacheTime: 0, staleTime: 0},
   );
   const email = parentData?.map(elem => elem?.Email_id);
-console.log(email[0],'emailemailemail');
 
   const setEmailZustand = useBoundStore((state: any) => state.setEmailZustand);
 
@@ -57,7 +57,14 @@ console.log(email[0],'emailemailemail');
       actionType: 'Chevron',
       text: 'Message Support Team',
       //   optionalText: phone || 'notAvaliable',
-      action: () => {},
+      action: async () => {
+        const url = 'https://wa.me/14435407859';
+        try {
+          await Linking.openURL(url);
+        } catch (error) {
+          console.error('Error opening link:', error);
+        }
+      }
     },
     {
       id: 3,

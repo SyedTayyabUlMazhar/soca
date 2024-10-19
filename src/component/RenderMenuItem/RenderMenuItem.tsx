@@ -1,9 +1,11 @@
-import { ChevronBlue, ChevronSvg, DriverRating, RightArrowSmall } from '@Asset/logo';
+import {
+  ChevronBlue,
+  DriverRating,
+  RightArrowSmall
+} from '@Asset/logo';
 import ButtonView from '@Component/ButtonView';
 import CustomToggle from '@Component/CustomToggle/CustomToggle';
 import H6 from '@Component/Headings/H6';
-import NavigationRoutes from '@Navigator/NavigationRoutes';
-import { navigate } from '@Service/navigationService';
 import Fonts from '@Theme/Fonts';
 import { Colors } from '@Theme/index';
 import Metrics from '@Utility/Metrics';
@@ -71,18 +73,19 @@ const RenderMenuItem = ({
             <ChevronBlue />
           </View>
         );
-        case 'showToggle':
-          return (
-            <View style={{ right: -5 }}>
-              <CustomToggle
-                boolean ={allowIncomingRequests}
-                isShowHeading={false}
-                handleMutate={() => {}}
-                isShowModal={false}
-                isRideFlow = {false}
-              />
-            </View>
-          );
+      case 'showToggle':
+        return (
+          <View style={{right: -5}}>
+            <CustomToggle
+              isActive={allowIncomingRequests}
+              onToggle={() => {
+                // Handle the toggle action here
+                console.log('Toggle pressed!',allowIncomingRequests); // Optional logging
+              }}
+            />
+          </View>
+        );
+
       case 'ArrowRight':
         return (
           <View>
@@ -97,7 +100,7 @@ const RenderMenuItem = ({
     <View>
       <ButtonView
         enableClick={!isEditable}
-        style={[styles.root, !isEditable ? { opacity: 0.5 } : { opacity: 1 }]}
+        style={[styles.root, !isEditable ? {opacity: 0.5} : {opacity: 1}]}
         onPress={() => action()}
         activeOpacity={1}>
         <View style={styles.container}>
@@ -144,7 +147,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.Colors.FAMILY_BACKGROUND,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 8
+    borderRadius: 8,
   },
   container: {
     flexDirection: 'row',
