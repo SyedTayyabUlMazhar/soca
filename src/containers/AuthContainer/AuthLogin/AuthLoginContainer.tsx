@@ -102,7 +102,7 @@ export default function useAuthLoginContainer() {
     const payload = {
       parentId: data?.parentId,
       password: data?.password,
-      fcm: fcm?.deviceId,
+      fcm: fcm?.deviceId ?? "no-token",
     };
 
     if (data != null) {
